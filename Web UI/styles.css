@@ -374,28 +374,34 @@ section[id], .anchor-block { scroll-margin-top: var(--header-height); }
    an <img> tag). See /images/README.txt for the exact filenames and
    suggested export dimensions for each figure. ------------------------- */
 .eda-figure {
-  min-height: 260px;
-  background-color: var(--color-surface);
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+  margin: var(--space-md) 0;
   border: 1.5px dashed var(--color-border);
   border-radius: var(--radius-md);
-  margin: var(--space-md) 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
   padding: var(--space-sm);
+  background-color: var(--color-surface);
+  text-align: center;
 }
-.eda-figure.eda-figure-short { min-height: 160px; }
+.eda-figure img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: var(--radius-sm);
+}
+/* Missing-image fallback: the inline onerror handler on each <img> adds
+   this class to the parent <figure>, hiding the broken-image icon and
+   reserving a sensible minimum height so the box still reads as an
+   intentional placeholder rather than empty/broken. The figcaption
+   (a sibling, not touched by this) keeps describing what belongs here
+   either way. */
+.eda-figure.eda-figure-missing { min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.eda-figure.eda-figure-missing img { display: none; }
 .eda-figure-caption {
+  display: block;
   font-size: 0.78rem;
   color: var(--color-text-muted);
-  background: rgba(255, 255, 255, 0.92);
-  padding: 4px 12px;
-  border-radius: 999px;
+  margin-top: var(--space-xs);
   text-align: center;
-  max-width: 92%;
 }
 
 /* --- Signal-strength list (Holds / Widens / Weakens / Reverses) --- */
@@ -418,8 +424,6 @@ section[id], .anchor-block { scroll-margin-top: var(--header-height); }
 
 @media (max-width: 640px) {
   .signal-item { grid-template-columns: 1fr; gap: 4px; }
-  .eda-figure { min-height: 200px; }
-  .eda-figure.eda-figure-short { min-height: 130px; }
 }
 
 /* --- Pre-Training: feature reference table --- */

@@ -276,33 +276,37 @@
       <h4 class="eda-subhead reveal" data-i18n="edaClassBalanceTitle">The Data at a Glance</h4>
       <p class="reveal" data-i18n="edaClassBalanceText">The combined dataset holds 17,949 presence ("detected") records against just 225 absence records, split into three field-verified categories: recent absence, long absence, and locally extinct ("extirpated") sites in the Great Basin. That's roughly 80 presence records for every 1 absence record &mdash; on a linear scale the three absence bars below would barely register, which is why this chart uses a log scale.</p>
 
-      <div class="eda-figure reveal" role="img" data-i18n-aria="figClassBalanceAlt" aria-label="Bar chart, log scale: detected 17,949; recent absence 20; long absence 123; extirpated 82" style="background-image:url('images/eda-class-balance.png')">
-        <!-- <span class="eda-figure-caption" data-i18n="figClassBalanceCaption">Figure: record count by status, log scale &mdash; detected 17,949 &middot; recent absence 20 &middot; long absence 123 &middot; extirpated 82.</span> -->
-      </div>
+      <figure class="eda-figure reveal">
+        <img src="images/eda-class-balance.png" data-i18n-alt="figClassBalanceAlt" alt="Bar chart, log scale: detected 17,949; recent absence 20; long absence 123; extirpated 82" loading="lazy" onerror="this.parentElement.classList.add('eda-figure-missing')">
+        <figcaption class="eda-figure-caption" data-i18n="figClassBalanceCaption">Figure: record count by status, log scale &mdash; detected 17,949 &middot; recent absence 20 &middot; long absence 123 &middot; extirpated 82.</figcaption>
+      </figure>
       <p class="eda-note reveal" data-i18n="classBalanceNote">Log scale &mdash; presence : absence ratio = 79.8 : 1.</p>
 
       <h4 class="eda-subhead reveal" data-i18n="edaGeoTitle">The Geographic Confound</h4>
       <p class="reveal" data-i18n="edaGeoText">Presence records span nearly the entire American pika range and beyond &mdash; from about 34&deg;N to 69&deg;N. Absence records, by contrast, are confined to a single corridor: roughly 37.7&deg;N to 48.5&deg;N, the Sierra Nevada / Great Basin / northern Rockies region. Any presence-vs-absence comparison built on the full data risks confusing a real ecological signal with a simple regional climate difference.</p>
 
-      <div class="eda-figure eda-figure-short reveal" role="img" data-i18n-aria="figGeoRangeAlt" aria-label="Latitude range comparison: presence 34.2 to 69.0 degrees North; absence 37.7 to 48.5 degrees North, a narrow band within the presence range" style="background-image:url('images/eda-geo-range.png')">
-        <span class="eda-figure-caption" data-i18n="figGeoRangeCaption">Figure: latitude range &mdash; presence 34.2&deg;&ndash;69.0&deg;N vs. absence 37.7&deg;&ndash;48.5&deg;N.</span>
-      </div>
+      <figure class="eda-figure reveal">
+        <img src="images/eda-geo-range.png" data-i18n-alt="figGeoRangeAlt" alt="Latitude range comparison: presence 34.2 to 69.0 degrees North; absence 37.7 to 48.5 degrees North, a narrow band within the presence range" loading="lazy" onerror="this.parentElement.classList.add('eda-figure-missing')">
+        <figcaption class="eda-figure-caption" data-i18n="figGeoRangeCaption">Figure: latitude range &mdash; presence 34.2&deg;&ndash;69.0&deg;N vs. absence 37.7&deg;&ndash;48.5&deg;N.</figcaption>
+      </figure>
 
       <h4 class="eda-subhead reveal" data-i18n="edaComparisonTitle">Comparing the Full Dataset and a Regional Subset</h4>
       <p class="reveal" data-i18n="edaComparisonText">To test that confound directly, a second analysis restricts the presence data to the exact geographic bounding box covered by the absence surveys &mdash; no buffer, no invented parameters. This keeps 4,480 of the 17,949 presence records (25%) and improves the class-imbalance ratio from 79.8:1 down to 19.9:1, at the cost of discarding most of the presence data.</p>
 
-      <div class="eda-figure reveal" role="img" data-i18n-aria="figTradeoffAlt" aria-label="Grouped bar chart, log scale: full range has 17,949 presence and 225 absence records (79.8 to 1); regional subset has 4,480 presence and 225 absence records (19.9 to 1)" style="background-image:url('images/eda-tradeoff.png')">
-        <span class="eda-figure-caption" data-i18n="figTradeoffCaption">Figure: presence/absence counts, full range vs. regional subset (79.8:1 &rarr; 19.9:1).</span>
-      </div>
+      <figure class="eda-figure reveal">
+        <img src="images/eda-tradeoff.png" data-i18n-alt="figTradeoffAlt" alt="Grouped bar chart, log scale: full range has 17,949 presence and 225 absence records (79.8 to 1); regional subset has 4,480 presence and 225 absence records (19.9 to 1)" loading="lazy" onerror="this.parentElement.classList.add('eda-figure-missing')">
+        <figcaption class="eda-figure-caption" data-i18n="figTradeoffCaption">Figure: presence/absence counts, full range vs. regional subset (79.8:1 &rarr; 19.9:1).</figcaption>
+      </figure>
       <p class="eda-note reveal" data-i18n="edaTradeoffCaption">Restricting to the absence region roughly quarters the imbalance ratio &mdash; at the cost of three-quarters of the presence data.</p>
 
       <div class="eda-highlight reveal">
         <strong class="eda-highlight-title" data-i18n="edaElevationTitle">Elevation: the Headline Reversal</strong>
         <p data-i18n="edaElevationText">Across the full dataset, detected sites had the <em>highest</em> median elevation of all four status groups (&asymp;&nbsp;2,438&nbsp;m) &mdash; elevation looked like a clean, strong predictor. Restricted to the absence region alone, that flips: detected sites drop to the lowest-or-tied-lowest median (&asymp;&nbsp;2,012&nbsp;m), while extirpated sites remain the highest (&asymp;&nbsp;2,516&nbsp;m). The historical resurvey sites were deliberately chosen at high-elevation, well-documented habitat &mdash; so within this specific region, being "detected" nearby is not the same as being at the highest elevation. Elevation's apparent importance in a range-wide model may partly reflect which broad region a point falls in, rather than how suitable that specific elevation is.</p>
 
-        <div class="eda-figure" role="img" data-i18n-aria="figElevationAlt" aria-label="Two-panel bar chart comparing median elevation by status: globally, detected sites have the highest median elevation (2438 m); restricted to the absence region, detected sites have the lowest median elevation (2012 m), while extirpated remains highest (2516 m) in both panels." style="background-image:url('images/eda-elevation-compare.png')">
-          <span class="eda-figure-caption" data-i18n="figElevationCaption">Figure: median elevation by status, global vs. regional &mdash; detected goes from highest to lowest.</span>
-        </div>
+        <figure class="eda-figure">
+          <img src="images/eda-elevation-compare.png" data-i18n-alt="figElevationAlt" alt="Two-panel bar chart comparing median elevation by status: globally, detected sites have the highest median elevation (2438 m); restricted to the absence region, detected sites have the lowest median elevation (2012 m), while extirpated remains highest (2516 m) in both panels." loading="lazy" onerror="this.parentElement.classList.add('eda-figure-missing')">
+          <figcaption class="eda-figure-caption" data-i18n="figElevationCaption">Figure: median elevation by status, global vs. regional &mdash; detected goes from highest to lowest.</figcaption>
+        </figure>
       </div>
 
       <p class="reveal" data-i18n="edaSignalIntro">Beyond elevation, each of the eight environmental variables tested in the main analysis was re-checked against the regional subset, to see whether the original presence-vs-absence gap holds up, widens, narrows, or flips:</p>
@@ -1265,6 +1269,7 @@
     document.querySelectorAll('[data-i18n-html]').forEach(function (el) { el.innerHTML = t(el.getAttribute('data-i18n-html')); });
     document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) { el.setAttribute('placeholder', t(el.getAttribute('data-i18n-placeholder'))); });
     document.querySelectorAll('[data-i18n-aria]').forEach(function (el) { el.setAttribute('aria-label', t(el.getAttribute('data-i18n-aria'))); });
+    document.querySelectorAll('[data-i18n-alt]').forEach(function (el) { el.setAttribute('alt', t(el.getAttribute('data-i18n-alt'))); });
 
     document.querySelectorAll('.lang-btn').forEach(function (btn) {
       var isActive = btn.getAttribute('data-lang') === currentLang;
