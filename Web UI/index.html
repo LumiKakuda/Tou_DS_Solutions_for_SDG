@@ -271,8 +271,7 @@
         </div>
       </div>
 
-      <p class="reveal" data-i18n="dataCollectionAbsence">Occurrence databases only record where a species <em>was</em> seen, never a confirmed absence. To give the model something to contrast presence against, background (pseudo-absence) points are generated across the accessible landscape at a fixed ratio to the real occurrence records.</p>
-    </div>
+      </div>
 
     <!-- ---- Sub-block 2: EDA ---- -->
     <div class="methodology-block anchor-block" id="eda">
@@ -280,7 +279,7 @@
       <p class="reveal" data-i18n="edaIntro">This section draws on two related analyses: a full exploratory analysis of every available presence and absence record, and a follow-up study that restricts the presence data to the same geographic window as the absence surveys, to test whether the patterns found in the first analysis hold up once that mismatch is controlled for.</p>
 
       <h4 class="eda-subhead reveal" data-i18n="edaClassBalanceTitle">The Data at a Glance</h4>
-      <p class="reveal" data-i18n="edaClassBalanceText">The combined dataset holds 17,949 presence ("detected") records against just 225 absence records, split into three field-verified categories: recent absence, long absence, and locally extinct ("extirpated") sites in the Great Basin. That's roughly 80 presence records for every 1 absence record &mdash; on a linear scale the three absence bars below would barely register, which is why this chart uses a log scale.</p>
+      <p class="reveal" data-i18n="edaClassBalanceText">The combined dataset contains 17,949 presence records and 225 absence records, the latter categorized into recent absence, long absence, and locally extinct ("extirpated") sites within the Great Basin. This represents a presence-to-absence ratio of approximately 80:1. Due to this magnitude of imbalance, a logarithmic scale is used in the chart below to display both categories clearly.</p>
 
       <figure class="eda-figure reveal">
         <img src="images/eda-class-balance.png" data-i18n-alt="figClassBalanceAlt" alt="Bar chart, log scale: detected 17,949; recent absence 20; long absence 123; extirpated 82" loading="lazy" onerror="this.parentElement.classList.add('eda-figure-missing')">
@@ -289,7 +288,7 @@
       <p class="eda-note reveal" data-i18n="classBalanceNote">Log scale &mdash; presence : absence ratio = 79.8 : 1.</p>
 
       <h4 class="eda-subhead reveal" data-i18n="edaGeoTitle">The Geographic Confound</h4>
-      <p class="reveal" data-i18n="edaGeoText">Presence records span nearly the entire American pika range and beyond &mdash; from about 34&deg;N to 69&deg;N. Absence records, by contrast, are confined to a single corridor: roughly 37.7&deg;N to 48.5&deg;N, the Sierra Nevada / Great Basin / northern Rockies region. Any presence-vs-absence comparison built on the full data risks confusing a real ecological signal with a simple regional climate difference.</p>
+      <p class="reveal" data-i18n="edaGeoText">Spatial distribution varies significantly between observation types. Presence records cover a wide latitudinal range from approximately 34°N to 69°N across the American pika range. In contrast, absence records are geographically restricted to a specific corridor between roughly 37.7°N and 48.5°N, encompassing the Sierra Nevada, Great Basin, and northern Rockies regions. Evaluating presence and absence across the entire dataset without controlling for this geographic asymmetry may introduce spatial confounding between local ecological factors and broader regional climate differences.</p>
 
       <figure class="eda-figure reveal">
         <img src="images/eda-geo-range.png" data-i18n-alt="figGeoRangeAlt" alt="Latitude range comparison: presence 34.2 to 69.0 degrees North; absence 37.7 to 48.5 degrees North, a narrow band within the presence range" loading="lazy" onerror="this.parentElement.classList.add('eda-figure-missing')">
@@ -314,29 +313,6 @@
           <figcaption class="eda-figure-caption" data-i18n="figElevationCaption">Figure: median elevation by status, global vs. regional &mdash; detected goes from highest to lowest.</figcaption>
         </figure>
       </div>
-
-      <p class="reveal" data-i18n="edaSignalIntro">Beyond elevation, each of the eight environmental variables tested in the main analysis was re-checked against the regional subset, to see whether the original presence-vs-absence gap holds up, widens, narrows, or flips:</p>
-
-      <div class="signal-list reveal">
-        <div class="signal-item"><span class="signal-var" data-i18n="signalVar1">Elevation</span><span class="signal-badge signal-reverses" data-i18n="signalReverses">Reverses</span><span class="signal-text" data-i18n="signalText1">Presence goes from the highest median elevation (full range) to the lowest (regional) &mdash; see above.</span></div>
-        <div class="signal-item"><span class="signal-var" data-i18n="signalVar2">Annual mean temp. (BIO1)</span><span class="signal-badge signal-weakens" data-i18n="signalWeakens">Weakens</span><span class="signal-text" data-i18n="signalText2">The presence&ndash;absence gap narrows substantially (&asymp;5.0&deg;C &rarr; &asymp;3.3&deg;C) once matched by region &mdash; part of the original signal was regional climate, not habitat preference.</span></div>
-        <div class="signal-item"><span class="signal-var" data-i18n="signalVar3">Max temp., warmest mo. (BIO5)</span><span class="signal-badge signal-holds" data-i18n="signalHolds">Holds</span><span class="signal-text" data-i18n="signalText3">The gap barely moves &mdash; a genuine regional signal, not a sampling artifact.</span></div>
-        <div class="signal-item"><span class="signal-var" data-i18n="signalVar4">Min temp., coldest mo. (BIO6)</span><span class="signal-badge signal-weakens" data-i18n="signalWeakens">Weakens</span><span class="signal-text" data-i18n="signalText4">The gap narrows sharply (&asymp;5.5&deg;C &rarr; &asymp;1.7&deg;C) once matched by region.</span></div>
-        <div class="signal-item"><span class="signal-var" data-i18n="signalVar5">Annual precipitation (BIO12)</span><span class="signal-badge signal-widens" data-i18n="signalWidens">Widens</span><span class="signal-text" data-i18n="signalText5">The gap grows even larger regionally (138&nbsp;mm &rarr; 573&nbsp;mm) &mdash; presence sites are wetter still, once compared like-for-like.</span></div>
-        <div class="signal-item"><span class="signal-var" data-i18n="signalVar6">Months with snow</span><span class="signal-badge signal-holds" data-i18n="signalHolds">Holds</span><span class="signal-text" data-i18n="signalText6">Identical in both scopes (a 2-month gap either way) &mdash; a stable, genuine signal.</span></div>
-        <div class="signal-item"><span class="signal-var" data-i18n="signalVar7">Annual mean PDSI (drought)</span><span class="signal-badge signal-holds" data-i18n="signalHolds">Holds</span><span class="signal-text" data-i18n="signalText7">Essentially unchanged &mdash; presence sites are consistently associated with milder historical drought.</span></div>
-        <div class="signal-item"><span class="signal-var" data-i18n="signalVar8">Annual mean SWE (snow-water)</span><span class="signal-badge signal-widens" data-i18n="signalWidens">Widens</span><span class="signal-text" data-i18n="signalText8">The gap nearly quadruples regionally (31&nbsp;mm &rarr; 115&nbsp;mm) &mdash; a stronger, not weaker, signal once region is controlled for.</span></div>
-      </div>
-
-      <h4 class="eda-subhead reveal" data-i18n="edaKeyFindingsTitle">Key Findings</h4>
-      <ul class="benefits-list reveal">
-        <li data-i18n="edaKeyFinding1">The dataset is severely imbalanced &mdash; about 80 presence records for every 1 absence record &mdash; which rules out plain accuracy as a useful model metric.</li>
-        <li data-i18n="edaKeyFinding2">Presence and absence records were collected across very different geographic extents, which confounds most presence-vs-absence comparisons unless explicitly controlled for.</li>
-        <li data-i18n="edaKeyFinding3">Restricting presence data to the absence survey region quarters the imbalance ratio (79.8:1 &rarr; 19.9:1) but discards 75% of the presence data &mdash; a real trade-off between sample size and confound-free comparisons.</li>
-        <li data-i18n="edaKeyFinding4">Snow cover, drought severity, and precipitation differences between presence and absence sites hold up &mdash; or even strengthen &mdash; once the geographic confound is removed, suggesting a genuine ecological signal.</li>
-        <li data-i18n="edaKeyFinding5">Elevation does not: it is the one variable whose relationship with presence reverses once region is controlled for &mdash; a reminder that a strong-looking predictor range-wide can really be tracking "which region" rather than "how suitable."</li>
-        <li data-i18n="edaKeyFinding6">Correlation structure among the environmental predictors themselves is stable across both the full and regional data, so feature-redundancy decisions made in the main analysis carry over safely.</li>
-      </ul>
     </div>
 
     <!-- ---- Sub-block 3: Pre-Training ---- -->
