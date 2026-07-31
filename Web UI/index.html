@@ -58,9 +58,8 @@
     </a>
     <nav class="main-nav" id="main-nav" aria-label="Primary">
       <a href="#problem" class="nav-link" data-i18n="navProblem">Problem</a>
-      <a href="#product" class="nav-link" data-i18n="navProduct">Product</a>
+      <a href="#research-question" class="nav-link" data-i18n="navResearchQuestion">Research Question</a>
       <a href="#methodology" class="nav-link" data-i18n="navMethodology">Methodology</a>
-      <a href="#results" class="nav-link" data-i18n="navResults">Results</a>
       <a href="#test-model" class="nav-link nav-link-cta" data-i18n="navTest">Try It</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="main-nav">
@@ -107,7 +106,7 @@
 <!-- ============================================================ -->
 <section id="problem" class="section">
   <div class="container">
-    <p class="section-eyebrow reveal" data-i18n="problemEyebrow">01 &middot; The Problem</p>
+    <p class="section-eyebrow reveal" data-i18n="problemEyebrow">01 &middot; The Problem &amp; the SDG Challenge</p>
     <h2 class="reveal" data-i18n="problemTitle">The Pika and Rising Temperatures</h2>
 
     <h3 class="subhead reveal" data-i18n="h3MeetSpecies">Meet the Species</h3>
@@ -164,49 +163,55 @@
     </div>
 
     <p class="section-closing reveal" data-i18n="s2Closing">The species overall is still classified as Least Concern, but that number hides a sharper local reality: since the early 2000s, researchers have documented pikas disappearing from numerous historically occupied sites across the Great Basin — an early warning for a species that has nowhere left to climb.</p>
+
+    <h3 class="subhead reveal" data-i18n="sdgTitle">The SDG Challenge</h3>
+    <p class="reveal" data-i18n="sdgIntro">The American pika's crisis is a small, sharply-focused case study of two of the United Nations' 17 Sustainable Development Goals.</p>
+
+    <div class="sdg-grid reveal">
+      <div class="sdg-card">
+        <span class="sdg-tag">SDG 13</span>
+        <h4 data-i18n="sdgBadge13Title">Climate Action</h4>
+        <p data-i18n="sdgBadge13Desc">Calls for urgent action to combat climate change and its impacts &mdash; exactly the mechanism described above: rising heat, vanishing snowpack, and deepening drought.</p>
+      </div>
+      <div class="sdg-card">
+        <span class="sdg-tag">SDG 15</span>
+        <h4 data-i18n="sdgBadge15Title">Life on Land</h4>
+        <p data-i18n="sdgBadge15Desc">Target 15.4 specifically calls for conserving mountain ecosystems and their biodiversity; Target 15.5 calls for urgent action to halt biodiversity loss and prevent the extinction of threatened species.</p>
+      </div>
+    </div>
+
+    <p class="reveal" data-i18n="sdgClosing">A cold-adapted mountain specialist with nowhere higher to climb is precisely the kind of species these targets exist to protect &mdash; and precisely the kind of species that benefits from a monitoring tool like the one this project builds.</p>
   </div>
 </section>
 
 <div class="divider" aria-hidden="true"><svg viewBox="0 0 1440 32" preserveAspectRatio="none"><path d="M0.0,16.6 Q0.0,16.6 80.0,18.6 Q160.0,20.6 240.0,16.1 Q320.0,11.7 400.0,12.8 Q480.0,13.8 560.0,19.0 Q640.0,24.2 720.0,21.2 Q800.0,18.3 880.0,13.0 Q960.0,7.7 1040.0,11.1 Q1120.0,14.5 1200.0,18.0 Q1280.0,21.5 1360.0,17.5 Q1440,16.0 1440,16.0" /></svg></div>
 
 <!-- ============================================================ -->
-<!--  SECTION 02 — PRODUCT                                         -->
+<!--  SECTION 02 — RESEARCH QUESTIONS                              -->
 <!-- ============================================================ -->
-<section id="product" class="section section-alt">
+<section id="research-question" class="section section-alt">
   <div class="container">
-    <p class="section-eyebrow reveal" data-i18n="productEyebrow">02 &middot; The Product</p>
-    <h2 class="reveal" data-i18n="productTitle">The Product</h2>
-    <p class="section-intro reveal" data-i18n="productIntro">PikaWatch is the educational web platform built around this idea. Pick a place on the map — or type coordinates directly — describe its climate, terrain, snow, and drought conditions, and the platform runs those numbers through a species distribution model to estimate whether an American pika could survive there. It's built for students, educators, and anyone curious about how climate data and machine learning come together in conservation work — not as an official monitoring tool, but as a hands-on way to see the relationship for yourself.</p>
+    <p class="section-eyebrow reveal" data-i18n="rqEyebrow">02 &middot; Research Questions</p>
+    <h2 class="reveal" data-i18n="rqTitle">Research Questions</h2>
+    <p class="section-intro reveal" data-i18n="rqIntro">Before writing any code, a project like this needs a clear question to answer. PikaWatch is organized around four &mdash; each a different flavor of the same underlying problem.</p>
 
-    <div class="model-flow reveal">
-      <div class="flow-step">
-        <span class="flow-number">1</span>
-        <h4 data-i18n="flowStep1Title">Climate &amp; Site Data</h4>
-        <p data-i18n="flowStep1Text">Temperature, precipitation, snow, drought, slope, and location for a place and year.</p>
+    <div class="rq-grid reveal">
+      <div class="rq-card">
+        <span class="rq-label" data-i18n="rq1Label">Classification</span>
+        <p data-i18n="rq1Text">Can we classify whether a given site is likely to have a present pika population, based on its climate, terrain, and drought conditions?</p>
       </div>
-      <svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg>
-      <div class="flow-step">
-        <span class="flow-number">2</span>
-        <h4 data-i18n="flowStep2Title">Classification Model</h4>
-        <p data-i18n="flowStep2Text">A trained classifier weighs each variable against patterns learned from real occurrence records.</p>
+      <div class="rq-card">
+        <span class="rq-label" data-i18n="rq2Label">Explanation</span>
+        <p data-i18n="rq2Text">Which environmental variables best distinguish presence from absence &mdash; and does the answer change once regional sampling bias is accounted for?</p>
       </div>
-      <svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg>
-      <div class="flow-step">
-        <span class="flow-number">3</span>
-        <h4 data-i18n="flowStep3Title">Presence / Absence</h4>
-        <p data-i18n="flowStep3Text">A prediction, with a confidence score, for whether the site is likely pika habitat.</p>
+      <div class="rq-card">
+        <span class="rq-label" data-i18n="rq3Label">Forecasting</span>
+        <p data-i18n="rq3Text">Can we forecast how a site's predicted suitability might shift under a specified future year's climate conditions?</p>
       </div>
-    </div>
-
-    <div class="benefits reveal">
-      <h3 data-i18n="productBenefitsTitle">Why This Approach Helps Conservation</h3>
-      <ul class="benefits-list">
-        <li data-i18n="benefit1">Finds climate refugia — cooler, more stable sites worth protecting first</li>
-        <li data-i18n="benefit2">Directs limited field-survey time toward the highest-priority locations</li>
-        <li data-i18n="benefit3">Flags at-risk populations before a local extinction is confirmed on the ground</li>
-        <li data-i18n="benefit4">Supports habitat corridor and connectivity planning between mountain ranges</li>
-        <li data-i18n="benefit5">Gives land managers a quantitative basis for permitting and policy decisions</li>
-      </ul>
+      <div class="rq-card">
+        <span class="rq-label" data-i18n="rq4Label">Optimization</span>
+        <p data-i18n="rq4Text">Can model predictions help prioritize limited conservation and field-survey resources toward the sites most likely to serve as climate refugia?</p>
+      </div>
     </div>
   </div>
 </section>
@@ -228,8 +233,9 @@
     <nav class="jump-pills reveal" aria-label="Methodology sections">
       <a href="#data-collection" class="jump-pill"><span class="pill-number">1</span><span data-i18n="pillDataCollection">Data Collection</span></a>
       <a href="#eda" class="jump-pill"><span class="pill-number">2</span><span data-i18n="pillEDA">EDA</span></a>
-      <a href="#pre-training" class="jump-pill"><span class="pill-number">3</span><span data-i18n="pillPreTraining">Pre-Training</span></a>
+      <a href="#pre-training" class="jump-pill"><span class="pill-number">3</span><span data-i18n="pillPreTraining">Pre-processing</span></a>
       <a href="#model-build" class="jump-pill"><span class="pill-number">4</span><span data-i18n="pillModel">Model</span></a>
+      <a href="#evaluation" class="jump-pill"><span class="pill-number">5</span><span data-i18n="pillEvaluation">Evaluation</span></a>
     </nav>
 
     <!-- ---- Sub-block 1: Data Collection ---- -->
@@ -336,7 +342,7 @@
     <!-- ---- Sub-block 3: Pre-Training ---- -->
 
     <div class="methodology-block anchor-block" id="pre-training">
-      <h3 class="subhead reveal" data-i18n="preTrainingTitle">Pre-Training: Features &amp; Preparation</h3>
+      <h3 class="subhead reveal" data-i18n="preTrainingTitle">Pre-processing: Features &amp; Preparation</h3>
       <p class="reveal" data-i18n="preTrainingIntro">From the raw data, 15 variables were carried forward into the final feature set — the same ones used in the interactive tool below. Each was chosen because it plausibly affects a pika's chances of surviving both a summer and a winter at a given site.</p>
       <p class="reveal" data-i18n="preTrainingPrep">Tree-based models don't require feature scaling, so the main preprocessing steps were spatial thinning to reduce sampling bias, generating pseudo-absence points at a fixed ratio to presence records, and splitting the data by geographic block — rather than at random — so that nearby points from the same site never end up in both the training and validation sets.</p>
 
@@ -411,79 +417,95 @@
         </div>
       </div>
     </div>
+
+    <!-- ---- Sub-block 5: Evaluation (was a standalone "Results" section) ---- -->
+    <div class="methodology-block anchor-block" id="evaluation">
+      <h3 class="subhead reveal" data-i18n="evaluationTitle">Evaluation</h3>
+      <p class="reveal" data-i18n="evaluationIntro">With a trained model in hand, its performance needs to be measured against data it never saw during training &mdash; the final step in the pipeline before putting it to use.</p>
+
+      <div class="demo-disclaimer reveal" data-i18n="resultsDisclaimer">
+        Illustrative example only. This layout shows how a real model's evaluation would appear here; the figures below are placeholder values, not measurements from a trained model.
+      </div>
+
+      <div class="metric-grid reveal">
+        <div class="metric-card">
+          <div class="metric-value">0.85</div>
+          <div class="metric-label">AUC-ROC</div>
+          <p class="metric-desc" data-i18n="metricAUCDesc">Area under the ROC curve. 0.5 is random; above 0.8 is generally considered good discrimination.</p>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">0.65</div>
+          <div class="metric-label">TSS</div>
+          <p class="metric-desc" data-i18n="metricTSSDesc">True Skill Statistic (sensitivity + specificity − 1). Above 0.6 is generally considered useful.</p>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">82%</div>
+          <div class="metric-label" data-i18n="metricAccuracyLabel">Accuracy</div>
+          <p class="metric-desc" data-i18n="metricAccuracyDesc">Share of all sites the model classified correctly.</p>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">80%</div>
+          <div class="metric-label" data-i18n="metricSensitivityLabel">Sensitivity</div>
+          <p class="metric-desc" data-i18n="metricSensitivityDesc">Share of true presence sites the model correctly identified.</p>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">84%</div>
+          <div class="metric-label" data-i18n="metricSpecificityLabel">Specificity</div>
+          <p class="metric-desc" data-i18n="metricSpecificityDesc">Share of true absence sites the model correctly identified.</p>
+        </div>
+      </div>
+
+      <h4 class="importance-title reveal" data-i18n="resultsImportanceTitle">Which Variables Mattered Most</h4>
+      <div class="importance-list reveal">
+        <div class="importance-item"><span class="importance-label" data-i18n="factorSummerHeat">Summer heat (max temperature)</span><div class="importance-track"><div class="importance-fill" style="width:23%"></div></div><span class="importance-pct">23%</span></div>
+        <div class="importance-item"><span class="importance-label" data-i18n="factorMonthsAbove25">Months above 25&deg;C</span><div class="importance-track"><div class="importance-fill" style="width:15%"></div></div><span class="importance-pct">15%</span></div>
+        <div class="importance-item"><span class="importance-label" data-i18n="factorSnowCover">Snow cover (insulation)</span><div class="importance-track"><div class="importance-fill" style="width:14%"></div></div><span class="importance-pct">14%</span></div>
+        <div class="importance-item"><span class="importance-label" data-i18n="factorSummerMin">Summer minimum temperature</span><div class="importance-track"><div class="importance-fill" style="width:11%"></div></div><span class="importance-pct">11%</span></div>
+        <div class="importance-item"><span class="importance-label" data-i18n="factorSlope">Talus slope steepness</span><div class="importance-track"><div class="importance-fill" style="width:8%"></div></div><span class="importance-pct">8%</span></div>
+        <div class="importance-item"><span class="importance-label" data-i18n="factorAnnualMeanTemp">Annual mean temperature</span><div class="importance-track"><div class="importance-fill" style="width:7%"></div></div><span class="importance-pct">7%</span></div>
+        <div class="importance-item"><span class="importance-label" data-i18n="factorDroughtCurrent">Drought severity (current year)</span><div class="importance-track"><div class="importance-fill" style="width:7%"></div></div><span class="importance-pct">7%</span></div>
+        <div class="importance-item"><span class="importance-label" data-i18n="factorPrecipitation">Annual precipitation</span><div class="importance-track"><div class="importance-fill" style="width:6%"></div></div><span class="importance-pct">6%</span></div>
+        <div class="importance-item"><span class="importance-label" data-i18n="factorWinterWarmth">Winter warmth</span><div class="importance-track"><div class="importance-fill" style="width:5%"></div></div><span class="importance-pct">5%</span></div>
+        <div class="importance-item"><span class="importance-label" data-i18n="factorDroughtPrevious">Drought severity (year before)</span><div class="importance-track"><div class="importance-fill" style="width:4%"></div></div><span class="importance-pct">4%</span></div>
+      </div>
+
+      <p class="section-closing reveal" data-i18n="resultsCaveat">Real-world performance can vary by region, especially in areas poorly represented in the training data, and a model like this should be checked against new field observations before it informs any real conservation decision.</p>
+    </div>
   </div>
 </section>
 
 <div class="divider" aria-hidden="true"><svg viewBox="0 0 1440 32" preserveAspectRatio="none"><path d="M0.0,16.6 Q0.0,16.6 80.0,18.6 Q160.0,20.6 240.0,16.1 Q320.0,11.7 400.0,12.8 Q480.0,13.8 560.0,19.0 Q640.0,24.2 720.0,21.2 Q800.0,18.3 880.0,13.0 Q960.0,7.7 1040.0,11.1 Q1120.0,14.5 1200.0,18.0 Q1280.0,21.5 1360.0,17.5 Q1440,16.0 1440,16.0" /></svg></div>
 
 <!-- ============================================================ -->
-<!--  SECTION 04 — RESULTS                                         -->
-<!-- ============================================================ -->
-<section id="results" class="section section-alt">
-  <div class="container">
-    <p class="section-eyebrow reveal" data-i18n="resultsEyebrow">04 &middot; Results</p>
-    <h2 class="reveal" data-i18n="resultsTitle">Results</h2>
-
-    <div class="demo-disclaimer reveal" data-i18n="resultsDisclaimer">
-      Illustrative example only. This layout shows how a real model's evaluation would appear here; the figures below are placeholder values, not measurements from a trained model.
-    </div>
-
-    <div class="metric-grid reveal">
-      <div class="metric-card">
-        <div class="metric-value">0.85</div>
-        <div class="metric-label">AUC-ROC</div>
-        <p class="metric-desc" data-i18n="metricAUCDesc">Area under the ROC curve. 0.5 is random; above 0.8 is generally considered good discrimination.</p>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value">0.65</div>
-        <div class="metric-label">TSS</div>
-        <p class="metric-desc" data-i18n="metricTSSDesc">True Skill Statistic (sensitivity + specificity − 1). Above 0.6 is generally considered useful.</p>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value">82%</div>
-        <div class="metric-label" data-i18n="metricAccuracyLabel">Accuracy</div>
-        <p class="metric-desc" data-i18n="metricAccuracyDesc">Share of all sites the model classified correctly.</p>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value">80%</div>
-        <div class="metric-label" data-i18n="metricSensitivityLabel">Sensitivity</div>
-        <p class="metric-desc" data-i18n="metricSensitivityDesc">Share of true presence sites the model correctly identified.</p>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value">84%</div>
-        <div class="metric-label" data-i18n="metricSpecificityLabel">Specificity</div>
-        <p class="metric-desc" data-i18n="metricSpecificityDesc">Share of true absence sites the model correctly identified.</p>
-      </div>
-    </div>
-
-    <h3 class="importance-title reveal" data-i18n="resultsImportanceTitle">Which Variables Mattered Most</h3>
-    <div class="importance-list reveal">
-      <div class="importance-item"><span class="importance-label" data-i18n="factorSummerHeat">Summer heat (max temperature)</span><div class="importance-track"><div class="importance-fill" style="width:23%"></div></div><span class="importance-pct">23%</span></div>
-      <div class="importance-item"><span class="importance-label" data-i18n="factorMonthsAbove25">Months above 25&deg;C</span><div class="importance-track"><div class="importance-fill" style="width:15%"></div></div><span class="importance-pct">15%</span></div>
-      <div class="importance-item"><span class="importance-label" data-i18n="factorSnowCover">Snow cover (insulation)</span><div class="importance-track"><div class="importance-fill" style="width:14%"></div></div><span class="importance-pct">14%</span></div>
-      <div class="importance-item"><span class="importance-label" data-i18n="factorSummerMin">Summer minimum temperature</span><div class="importance-track"><div class="importance-fill" style="width:11%"></div></div><span class="importance-pct">11%</span></div>
-      <div class="importance-item"><span class="importance-label" data-i18n="factorSlope">Talus slope steepness</span><div class="importance-track"><div class="importance-fill" style="width:8%"></div></div><span class="importance-pct">8%</span></div>
-      <div class="importance-item"><span class="importance-label" data-i18n="factorAnnualMeanTemp">Annual mean temperature</span><div class="importance-track"><div class="importance-fill" style="width:7%"></div></div><span class="importance-pct">7%</span></div>
-      <div class="importance-item"><span class="importance-label" data-i18n="factorDroughtCurrent">Drought severity (current year)</span><div class="importance-track"><div class="importance-fill" style="width:7%"></div></div><span class="importance-pct">7%</span></div>
-      <div class="importance-item"><span class="importance-label" data-i18n="factorPrecipitation">Annual precipitation</span><div class="importance-track"><div class="importance-fill" style="width:6%"></div></div><span class="importance-pct">6%</span></div>
-      <div class="importance-item"><span class="importance-label" data-i18n="factorWinterWarmth">Winter warmth</span><div class="importance-track"><div class="importance-fill" style="width:5%"></div></div><span class="importance-pct">5%</span></div>
-      <div class="importance-item"><span class="importance-label" data-i18n="factorDroughtPrevious">Drought severity (year before)</span><div class="importance-track"><div class="importance-fill" style="width:4%"></div></div><span class="importance-pct">4%</span></div>
-    </div>
-
-    <p class="section-closing reveal" data-i18n="resultsCaveat">Real-world performance can vary by region, especially in areas poorly represented in the training data, and a model like this should be checked against new field observations before it informs any real conservation decision.</p>
-  </div>
-</section>
-
-<div class="divider" aria-hidden="true"><svg viewBox="0 0 1440 32" preserveAspectRatio="none"><path d="M0.0,16.6 Q0.0,16.6 80.0,18.6 Q160.0,20.6 240.0,16.1 Q320.0,11.7 400.0,12.8 Q480.0,13.8 560.0,19.0 Q640.0,24.2 720.0,21.2 Q800.0,18.3 880.0,13.0 Q960.0,7.7 1040.0,11.1 Q1120.0,14.5 1200.0,18.0 Q1280.0,21.5 1360.0,17.5 Q1440,16.0 1440,16.0" /></svg></div>
-
-<!-- ============================================================ -->
-<!--  SECTION 05 — TRY THE MODEL (map + form + prediction)         -->
+<!--  SECTION 04 — TRY THE MODEL (map + form + prediction)         -->
 <!-- ============================================================ -->
 <section id="test-model" class="section">
   <div class="container">
-    <p class="section-eyebrow reveal" data-i18n="s4Eyebrow">05 &middot; Try It</p>
+    <p class="section-eyebrow reveal" data-i18n="s4Eyebrow">04 &middot; Try It</p>
     <h2 class="reveal" data-i18n="s4Title">Test the Prediction Model</h2>
-    <p class="section-intro reveal" data-i18n="s4Intro">You've seen how the model behind PikaWatch was built and evaluated — now try it yourself. Select a site on the map, or enter coordinates directly, then fill in the climate and terrain conditions and run the model.</p>
+    <p class="section-intro reveal" data-i18n="tryItLeadIntro">This tool puts the research questions above into practice. Pick a place on the map &mdash; or type coordinates directly &mdash; describe its climate, terrain, snow, and drought conditions, and the model estimates whether an American pika could survive there.</p>
+
+    <div class="model-flow reveal">
+      <div class="flow-step">
+        <span class="flow-number">1</span>
+        <h4 data-i18n="flowStep1Title">Climate &amp; Site Data</h4>
+        <p data-i18n="flowStep1Text">Temperature, precipitation, snow, drought, slope, and location for a place and year.</p>
+      </div>
+      <svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg>
+      <div class="flow-step">
+        <span class="flow-number">2</span>
+        <h4 data-i18n="flowStep2Title">Classification Model</h4>
+        <p data-i18n="flowStep2Text">A trained classifier weighs each variable against patterns learned from real occurrence records.</p>
+      </div>
+      <svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg>
+      <div class="flow-step">
+        <span class="flow-number">3</span>
+        <h4 data-i18n="flowStep3Title">Presence / Absence</h4>
+        <p data-i18n="flowStep3Text">A prediction, with a confidence score, for whether the site is likely pika habitat.</p>
+      </div>
+    </div>
+
+    <p class="reveal" data-i18n="s4Intro">You've seen how the model behind PikaWatch was built and evaluated — now try it yourself. Select a site on the map, or enter coordinates directly, then fill in the climate and terrain conditions and run the model.</p>
 
     <div class="demo-disclaimer reveal" data-i18n-html="demoDisclaimer">
       <strong>Demo logic only.</strong> This interface runs a simplified rule-of-thumb function to demonstrate the workflow, not the trained model described above. See the code comments in <code>index.html</code> for how to connect a real classifier's API once it's ready.
@@ -675,14 +697,14 @@
       noscriptMsg: "This page uses JavaScript for the interactive map and prediction tool. Please enable JavaScript to use those features.",
       langGroupLabel: "Language",
       a11yToggleLabel: "Accessibility Mode",
-      navProblem: "Problem", navProduct: "Product", navMethodology: "Methodology", navResults: "Results", navTest: "Try It",
+      navProblem: "Problem", navResearchQuestion: "Research Question", navMethodology: "Methodology", navTest: "Try It",
       heroEyebrow: "Species Distribution Model \u00B7 Climate Conservation",
       heroTitle: "Protecting the American Pika",
       heroSubtitle: "<em>Ochotona princeps</em> survives on a knife-edge of temperature. This is the data behind its disappearing mountain habitat \u2014 and a model built to help track it.",
       heroReadout: "ELEV. RANGE 2,500\u20134,000 M \u00B7 HEAT LIMIT ~25\u00B0C \u00B7 RANGE WESTERN N. AMERICA",
       heroBtnPrimary: "Test the Prediction Model", heroBtnSecondary: "Learn About the Pika",
 
-      problemEyebrow: "01 \u00B7 The Problem",
+      problemEyebrow: "01 \u00B7 The Problem & the SDG Challenge",
       problemTitle: "The Pika and Rising Temperatures",
       h3MeetSpecies: "Meet the Species",
       s1Lede: "High in the talus fields of the western mountains lives an animal that never sleeps through winter and cannot survive a hot afternoon.",
@@ -708,24 +730,29 @@
       card4Title: "Drought and Disappearing Forage",
       card4Text: "Drier conditions reduce the alpine grasses and wildflowers pikas depend on for both summer grazing and winter haypiles. Researchers have linked low air moisture to reduced plant growth and thinner snowpack at once \u2014 a combined effect some recent studies suggest may threaten certain populations even more than heat alone.",
       s2Closing: "The species overall is still classified as Least Concern, but that number hides a sharper local reality: since the early 2000s, researchers have documented pikas disappearing from numerous historically occupied sites across the Great Basin \u2014 an early warning for a species that has nowhere left to climb.",
+      sdgTitle: "The SDG Challenge",
+      sdgIntro: "The American pika's crisis is a small, sharply-focused case study of two of the United Nations' 17 Sustainable Development Goals.",
+      sdgBadge13Title: "Climate Action",
+      sdgBadge13Desc: "Calls for urgent action to combat climate change and its impacts \u2014 exactly the mechanism described above: rising heat, vanishing snowpack, and deepening drought.",
+      sdgBadge15Title: "Life on Land",
+      sdgBadge15Desc: "Target 15.4 specifically calls for conserving mountain ecosystems and their biodiversity; Target 15.5 calls for urgent action to halt biodiversity loss and prevent the extinction of threatened species.",
+      sdgClosing: "A cold-adapted mountain specialist with nowhere higher to climb is precisely the kind of species these targets exist to protect \u2014 and precisely the kind of species that benefits from a monitoring tool like the one this project builds.",
 
-      productEyebrow: "02 \u00B7 The Product",
-      productTitle: "The Product",
-      productIntro: "PikaWatch is the educational web platform built around this idea. Pick a place on the map \u2014 or type coordinates directly \u2014 describe its climate, terrain, snow, and drought conditions, and the platform runs those numbers through a species distribution model to estimate whether an American pika could survive there. It's built for students, educators, and anyone curious about how climate data and machine learning come together in conservation work \u2014 not as an official monitoring tool, but as a hands-on way to see the relationship for yourself.",
+      rqEyebrow: "02 \u00B7 Research Questions",
+      rqTitle: "Research Questions",
+      rqIntro: "Before writing any code, a project like this needs a clear question to answer. PikaWatch is organized around four \u2014 each a different flavor of the same underlying problem.",
+      rq1Label: "Classification", rq1Text: "Can we classify whether a given site is likely to have a present pika population, based on its climate, terrain, and drought conditions?",
+      rq2Label: "Explanation", rq2Text: "Which environmental variables best distinguish presence from absence \u2014 and does the answer change once regional sampling bias is accounted for?",
+      rq3Label: "Forecasting", rq3Text: "Can we forecast how a site's predicted suitability might shift under a specified future year's climate conditions?",
+      rq4Label: "Optimization", rq4Text: "Can model predictions help prioritize limited conservation and field-survey resources toward the sites most likely to serve as climate refugia?",
       flowStep1Title: "Climate & Site Data", flowStep1Text: "Temperature, precipitation, snow, drought, slope, and location for a place and year.",
       flowStep2Title: "Classification Model", flowStep2Text: "A trained classifier weighs each variable against patterns learned from real occurrence records.",
       flowStep3Title: "Presence / Absence", flowStep3Text: "A prediction, with a confidence score, for whether the site is likely pika habitat.",
-      productBenefitsTitle: "Why This Approach Helps Conservation",
-      benefit1: "Finds climate refugia \u2014 cooler, more stable sites worth protecting first",
-      benefit2: "Directs limited field-survey time toward the highest-priority locations",
-      benefit3: "Flags at-risk populations before a local extinction is confirmed on the ground",
-      benefit4: "Supports habitat corridor and connectivity planning between mountain ranges",
-      benefit5: "Gives land managers a quantitative basis for permitting and policy decisions",
 
       methodologyEyebrow: "03 \u00B7 Methodology",
       methodologyTitle: "How the Model Was Built",
       methodologyIntro: "Behind every prediction sits a full data science pipeline: records of where pikas have actually been found, a set of climate and terrain variables describing those places, and a model trained to tell presence from absence. This section walks through each stage, from raw data to a finished model \u2014 jump to any part below, or read straight through.",
-      pillDataCollection: "Data Collection", pillEDA: "EDA", pillPreTraining: "Pre-Training", pillModel: "Model",
+      pillDataCollection: "Data Collection", pillEDA: "EDA", pillPreTraining: "Pre-processing", pillModel: "Model", pillEvaluation: "Evaluation",
 
       dataCollectionTitle: "Data Collection",
       dataCollectionIntro: "Species distribution models are only as good as the data behind them. This project draws on five kinds of data, each covering the same places and years so they can be combined into a single training table.",
@@ -791,7 +818,7 @@
       figElevationAlt: "Two-panel bar chart comparing median elevation by status: globally, detected sites have the highest median elevation (2438 m); restricted to the absence region, detected sites have the lowest median elevation (2012 m), while extirpated remains highest (2516 m) in both panels.",
       figElevationCaption: "Figure: median elevation by status, global vs. regional \u2014 detected goes from highest to lowest.",
 
-      preTrainingTitle: "Pre-Training: Features & Preparation",
+      preTrainingTitle: "Pre-processing: Features & Preparation",
       preTrainingIntro: "From the raw data, 15 variables were carried forward into the final feature set \u2014 the same ones used in the interactive tool below. Each was chosen because it plausibly affects a pika's chances of surviving both a summer and a winter at a given site.",
       preTrainingPrep: "Tree-based models don't require feature scaling, so the main preprocessing steps were spatial thinning to reduce sampling bias, generating pseudo-absence points at a fixed ratio to presence records, and splitting the data by geographic block \u2014 rather than at random \u2014 so that nearby points from the same site never end up in both the training and validation sets.",
       featureTableCaption: "Final Feature Set (15 variables)",
@@ -809,9 +836,9 @@
       trainStep3Title: "Cross-Validate", trainStep3Text: "Performance is checked across multiple spatial folds, not just a single held-out set.",
       trainStep4Title: "Tune Hyperparameters", trainStep4Text: "Tree count, depth, and leaf size are searched to find the best-performing configuration.",
       trainStep5Title: "Finalize the Model", trainStep5Text: "The best configuration is retrained on all available data and saved for predictions.",
+      evaluationTitle: "Evaluation",
+      evaluationIntro: "With a trained model in hand, its performance needs to be measured against data it never saw during training \u2014 the final step in the pipeline before putting it to use.",
 
-      resultsEyebrow: "04 \u00B7 Results",
-      resultsTitle: "Results",
       resultsDisclaimer: "Illustrative example only. This layout shows how a real model's evaluation would appear here; the figures below are placeholder values, not measurements from a trained model.",
       metricAUCDesc: "Area under the ROC curve. 0.5 is random; above 0.8 is generally considered good discrimination.",
       metricTSSDesc: "True Skill Statistic (sensitivity + specificity \u2212 1). Above 0.6 is generally considered useful.",
@@ -821,8 +848,9 @@
       resultsImportanceTitle: "Which Variables Mattered Most",
       resultsCaveat: "Real-world performance can vary by region, especially in areas poorly represented in the training data, and a model like this should be checked against new field observations before it informs any real conservation decision.",
 
-      s4Eyebrow: "05 \u00B7 Try It",
+      s4Eyebrow: "04 \u00B7 Try It",
       s4Title: "Test the Prediction Model",
+      tryItLeadIntro: "This tool puts the research questions above into practice. Pick a place on the map \u2014 or type coordinates directly \u2014 describe its climate, terrain, snow, and drought conditions, and the model estimates whether an American pika could survive there.",
       s4Intro: "You've seen how the model behind PikaWatch was built and evaluated \u2014 now try it yourself. Select a site on the map, or enter coordinates directly, then fill in the climate and terrain conditions and run the model.",
       demoDisclaimer: "<strong>Demo logic only.</strong> This interface runs a simplified rule-of-thumb function to demonstrate the workflow, not the trained model described above. See the code comments in <code>index.html</code> for how to connect a real classifier's API once it's ready.",
       mapLocateBtn: "Use My Location", mapHint: "Click anywhere on the map to drop a pin",
@@ -870,14 +898,14 @@
       noscriptMsg: "Esta p\u00E1gina usa JavaScript para el mapa interactivo y la herramienta de predicci\u00F3n. Activa JavaScript para usar estas funciones.",
       langGroupLabel: "Idioma",
       a11yToggleLabel: "Modo de Accesibilidad",
-      navProblem: "Problema", navProduct: "Producto", navMethodology: "Metodolog\u00EDa", navResults: "Resultados", navTest: "Probarlo",
+      navProblem: "Problema", navResearchQuestion: "Pregunta de Investigaci\u00F3n", navMethodology: "Metodolog\u00EDa", navTest: "Probarlo",
       heroEyebrow: "Modelo de Distribuci\u00F3n de Especies \u00B7 Conservaci\u00F3n Clim\u00E1tica",
       heroTitle: "Protegiendo a la Pika Americana",
       heroSubtitle: "<em>Ochotona princeps</em> sobrevive al filo de la temperatura. Estos son los datos detr\u00E1s de su h\u00E1bitat de monta\u00F1a en desaparici\u00F3n \u2014 y un modelo creado para ayudar a monitorearlo.",
       heroReadout: "RANGO DE ELEVACI\u00D3N 2.500\u20134.000 M \u00B7 L\u00CDMITE DE CALOR ~25\u00B0C \u00B7 DISTRIBUCI\u00D3N OESTE DE AM\u00C9RICA DEL NORTE",
       heroBtnPrimary: "Probar el Modelo de Predicci\u00F3n", heroBtnSecondary: "Conoce a la Pika",
 
-      problemEyebrow: "01 \u00B7 El Problema",
+      problemEyebrow: "01 \u00B7 El Problema y el Desaf\u00EDo de los ODS",
       problemTitle: "La Pika y el Aumento de la Temperatura",
       h3MeetSpecies: "Conoce a la Especie",
       s1Lede: "En lo alto de los pedregales de las monta\u00F1as occidentales vive un animal que nunca duerme durante el invierno y no sobrevive a una tarde calurosa.",
@@ -903,24 +931,29 @@
       card4Title: "Sequ\u00EDa y Desaparici\u00F3n del Alimento",
       card4Text: "Las condiciones m\u00E1s secas reducen los pastos alpinos y las flores silvestres de los que dependen las pikas tanto para pastar en verano como para el pajar de invierno. Los investigadores han vinculado la baja humedad del aire con una menor crecimiento de las plantas y un manto de nieve m\u00E1s delgado al mismo tiempo \u2014 un efecto combinado que, seg\u00FAn estudios recientes, podr\u00EDa amenazar a ciertas poblaciones incluso m\u00E1s que el calor por s\u00ED solo.",
       s2Closing: "La especie en su conjunto todav\u00EDa se clasifica como de Preocupaci\u00F3n Menor, pero esa cifra oculta una realidad local m\u00E1s dura: desde principios de los a\u00F1os 2000, los investigadores han documentado la desaparici\u00F3n de pikas en numerosos sitios hist\u00F3ricamente ocupados en toda la regi\u00F3n de Great Basin \u2014 una alerta temprana para una especie que ya no tiene a d\u00F3nde subir.",
+      sdgTitle: "El Desaf\u00EDo de los ODS",
+      sdgIntro: "La crisis de la pika americana es un caso de estudio peque\u00F1o y muy concreto de dos de los 17 Objetivos de Desarrollo Sostenible de las Naciones Unidas.",
+      sdgBadge13Title: "Acci\u00F3n por el Clima",
+      sdgBadge13Desc: "Exige medidas urgentes para combatir el cambio clim\u00E1tico y sus efectos \u2014 exactamente el mecanismo descrito arriba: aumento del calor, desaparici\u00F3n del manto de nieve y sequ\u00EDa cada vez m\u00E1s profunda.",
+      sdgBadge15Title: "Vida de Ecosistemas Terrestres",
+      sdgBadge15Desc: "La Meta 15.4 exige espec\u00EDficamente conservar los ecosistemas de monta\u00F1a y su biodiversidad; la Meta 15.5 exige medidas urgentes para detener la p\u00E9rdida de biodiversidad y prevenir la extinci\u00F3n de especies amenazadas.",
+      sdgClosing: "Un especialista de monta\u00F1a adaptado al fr\u00EDo que ya no tiene a d\u00F3nde subir es exactamente el tipo de especie que estas metas buscan proteger \u2014 y exactamente el tipo de especie que se beneficia de una herramienta de monitoreo como la que construye este proyecto.",
 
-      productEyebrow: "02 \u00B7 El Producto",
-      productTitle: "El Producto",
-      productIntro: "PikaWatch es la plataforma web educativa construida alrededor de esta idea. Elige un lugar en el mapa \u2014 o escribe las coordenadas directamente \u2014 describe su clima, terreno, nieve y condiciones de sequ\u00EDa, y la plataforma procesa esos n\u00FAmeros a trav\u00E9s de un modelo de distribuci\u00F3n de especies para estimar si una pika americana podr\u00EDa sobrevivir all\u00ED. Est\u00E1 pensada para estudiantes, educadores y cualquier persona curiosa sobre c\u00F3mo los datos clim\u00E1ticos y el aprendizaje autom\u00E1tico se combinan en el trabajo de conservaci\u00F3n \u2014 no como una herramienta oficial de monitoreo, sino como una forma pr\u00E1ctica de ver la relaci\u00F3n por ti mismo.",
+      rqEyebrow: "02 \u00B7 Preguntas de Investigaci\u00F3n",
+      rqTitle: "Preguntas de Investigaci\u00F3n",
+      rqIntro: "Antes de escribir cualquier c\u00F3digo, un proyecto como este necesita una pregunta clara que responder. PikaWatch se organiza en torno a cuatro \u2014 cada una una variante distinta del mismo problema subyacente.",
+      rq1Label: "Clasificaci\u00F3n", rq1Text: "\u00BFPodemos clasificar si es probable que un sitio determinado tenga una poblaci\u00F3n presente de pika, seg\u00FAn sus condiciones de clima, terreno y sequ\u00EDa?",
+      rq2Label: "Explicaci\u00F3n", rq2Text: "\u00BFQu\u00E9 variables ambientales distinguen mejor la presencia de la ausencia \u2014 y cambia la respuesta una vez que se tiene en cuenta el sesgo de muestreo regional?",
+      rq3Label: "Pron\u00F3stico", rq3Text: "\u00BFPodemos pronosticar c\u00F3mo podr\u00EDa cambiar la idoneidad prevista de un sitio bajo las condiciones clim\u00E1ticas de un a\u00F1o futuro especificado?",
+      rq4Label: "Optimizaci\u00F3n", rq4Text: "\u00BFPueden las predicciones del modelo ayudar a priorizar los recursos limitados de conservaci\u00F3n y estudio de campo hacia los sitios con mayor probabilidad de servir como refugios clim\u00E1ticos?",
       flowStep1Title: "Datos de Clima y Sitio", flowStep1Text: "Temperatura, precipitaci\u00F3n, nieve, sequ\u00EDa, pendiente y ubicaci\u00F3n de un lugar y a\u00F1o.",
       flowStep2Title: "Modelo de Clasificaci\u00F3n", flowStep2Text: "Un clasificador entrenado pondera cada variable frente a los patrones aprendidos de registros reales de ocurrencia.",
       flowStep3Title: "Presencia / Ausencia", flowStep3Text: "Una predicci\u00F3n, con un puntaje de confianza, sobre si el sitio es probablemente h\u00E1bitat de pika.",
-      productBenefitsTitle: "Por Qu\u00E9 Este Enfoque Ayuda a la Conservaci\u00F3n",
-      benefit1: "Encuentra refugios clim\u00E1ticos \u2014 sitios m\u00E1s fr\u00EDos y estables que merecen protecci\u00F3n prioritaria",
-      benefit2: "Dirige el tiempo limitado de estudio de campo hacia las ubicaciones de mayor prioridad",
-      benefit3: "Se\u00F1ala poblaciones en riesgo antes de que se confirme una extinci\u00F3n local sobre el terreno",
-      benefit4: "Apoya la planificaci\u00F3n de corredores de h\u00E1bitat y conectividad entre cadenas monta\u00F1osas",
-      benefit5: "Ofrece a los gestores de tierras una base cuantitativa para decisiones de permisos y pol\u00EDticas",
 
       methodologyEyebrow: "03 \u00B7 Metodolog\u00EDa",
       methodologyTitle: "C\u00F3mo se Construy\u00F3 el Modelo",
       methodologyIntro: "Detr\u00E1s de cada predicci\u00F3n hay un proceso completo de ciencia de datos: registros de d\u00F3nde se ha encontrado realmente a las pikas, un conjunto de variables clim\u00E1ticas y de terreno que describen esos lugares, y un modelo entrenado para distinguir presencia de ausencia. Esta secci\u00F3n recorre cada etapa, desde los datos crudos hasta un modelo terminado \u2014 salta a cualquier parte a continuaci\u00F3n, o l\u00E9elo de corrido.",
-      pillDataCollection: "Recolecci\u00F3n de Datos", pillEDA: "EDA", pillPreTraining: "Pre-Entrenamiento", pillModel: "Modelo",
+      pillDataCollection: "Recolecci\u00F3n de Datos", pillEDA: "EDA", pillPreTraining: "Preprocesamiento", pillModel: "Modelo", pillEvaluation: "Evaluaci\u00F3n",
 
       dataCollectionTitle: "Recolecci\u00F3n de Datos",
       dataCollectionIntro: "Los modelos de distribuci\u00F3n de especies son tan buenos como los datos detr\u00E1s de ellos. Este proyecto se basa en cinco tipos de datos, cada uno cubriendo los mismos lugares y a\u00F1os para poder combinarlos en una \u00FAnica tabla de entrenamiento.",
@@ -986,7 +1019,7 @@
       figElevationAlt: "Gr\u00E1fico de barras de dos paneles que compara la mediana de elevaci\u00F3n por estado: a nivel global, los sitios detectados tienen la mediana de elevaci\u00F3n m\u00E1s alta (2438 m); restringido a la regi\u00F3n de ausencia, los sitios detectados tienen la mediana m\u00E1s baja (2012 m), mientras que los extirpados siguen siendo los m\u00E1s altos (2516 m) en ambos paneles.",
       figElevationCaption: "Figura: mediana de elevaci\u00F3n por estado, global frente a regional \u2014 detectada pasa de la m\u00E1s alta a la m\u00E1s baja.",
       
-      preTrainingTitle: "Pre-Entrenamiento: Variables y Preparaci\u00F3n",
+      preTrainingTitle: "Preprocesamiento: Variables y Preparaci\u00F3n",
       preTrainingIntro: "A partir de los datos crudos, se llevaron 15 variables al conjunto final de caracter\u00EDsticas \u2014 las mismas que se usan en la herramienta interactiva m\u00E1s abajo. Cada una fue elegida porque afecta de forma plausible las posibilidades de una pika de sobrevivir tanto un verano como un invierno en un sitio determinado.",
       preTrainingPrep: "Los modelos basados en \u00E1rboles no requieren escalado de variables, as\u00ED que los principales pasos de preprocesamiento fueron el adelgazamiento espacial para reducir el sesgo de muestreo, la generaci\u00F3n de puntos de pseudoausencia en una proporci\u00F3n fija respecto a los registros de presencia, y la divisi\u00F3n de los datos por bloque geogr\u00E1fico \u2014 en lugar de al azar \u2014 para que puntos cercanos del mismo sitio nunca terminen tanto en el conjunto de entrenamiento como en el de validaci\u00F3n.",
       featureTableCaption: "Conjunto Final de Variables (15 variables)",
@@ -1004,9 +1037,9 @@
       trainStep3Title: "Validaci\u00F3n Cruzada", trainStep3Text: "El desempe\u00F1o se verifica en m\u00FAltiples divisiones espaciales, no solo en un \u00FAnico conjunto reservado.",
       trainStep4Title: "Ajustar Hiperpar\u00E1metros", trainStep4Text: "Se buscan el n\u00FAmero de \u00E1rboles, la profundidad y el tama\u00F1o de hoja para encontrar la configuraci\u00F3n con mejor desempe\u00F1o.",
       trainStep5Title: "Finalizar el Modelo", trainStep5Text: "La mejor configuraci\u00F3n se reentrena con todos los datos disponibles y se guarda para hacer predicciones.",
+      evaluationTitle: "Evaluaci\u00F3n",
+      evaluationIntro: "Con un modelo entrenado en mano, su rendimiento debe medirse frente a datos que nunca vio durante el entrenamiento \u2014 el paso final del proceso antes de ponerlo en uso.",
 
-      resultsEyebrow: "04 \u00B7 Resultados",
-      resultsTitle: "Resultados",
       resultsDisclaimer: "Solo un ejemplo ilustrativo. Este dise\u00F1o muestra c\u00F3mo se ver\u00EDa aqu\u00ED la evaluaci\u00F3n de un modelo real; las cifras a continuaci\u00F3n son valores de marcador de posici\u00F3n, no mediciones de un modelo entrenado.",
       metricAUCDesc: "\u00C1rea bajo la curva ROC. 0,5 es aleatorio; por encima de 0,8 generalmente se considera buena discriminaci\u00F3n.",
       metricTSSDesc: "Estad\u00EDstico de Habilidad Verdadera (sensibilidad + especificidad \u2212 1). Por encima de 0,6 generalmente se considera \u00FAtil.",
@@ -1016,8 +1049,9 @@
       resultsImportanceTitle: "Qu\u00E9 Variables Importaron M\u00E1s",
       resultsCaveat: "El desempe\u00F1o en el mundo real puede variar seg\u00FAn la regi\u00F3n, especialmente en \u00E1reas poco representadas en los datos de entrenamiento, y un modelo como este deber\u00EDa verificarse con nuevas observaciones de campo antes de que influya en cualquier decisi\u00F3n real de conservaci\u00F3n.",
 
-      s4Eyebrow: "05 \u00B7 Pru\u00E9balo",
+      s4Eyebrow: "04 \u00B7 Pru\u00E9balo",
       s4Title: "Prueba el Modelo de Predicci\u00F3n",
+      tryItLeadIntro: "Esta herramienta pone en pr\u00E1ctica las preguntas de investigaci\u00F3n de arriba. Elige un lugar en el mapa \u2014 o escribe las coordenadas directamente \u2014 describe su clima, terreno, nieve y condiciones de sequ\u00EDa, y el modelo estima si una pika americana podr\u00EDa sobrevivir all\u00ED.",
       s4Intro: "Ya viste c\u00F3mo se construy\u00F3 y evalu\u00F3 el modelo detr\u00E1s de PikaWatch \u2014 ahora pru\u00E9balo t\u00FA mismo. Selecciona un sitio en el mapa, o ingresa las coordenadas directamente, luego completa las condiciones clim\u00E1ticas y de terreno y ejecuta el modelo.",
       demoDisclaimer: "<strong>Solo l\u00F3gica de demostraci\u00F3n.</strong> Esta interfaz ejecuta una funci\u00F3n simplificada de regla pr\u00E1ctica para demostrar el flujo de trabajo, no el modelo entrenado descrito arriba. Consulta los comentarios de c\u00F3digo en <code>index.html</code> para saber c\u00F3mo conectar la API de un clasificador real una vez que est\u00E9 listo.",
       mapLocateBtn: "Usar Mi Ubicaci\u00F3n", mapHint: "Haz clic en cualquier parte del mapa para colocar un marcador",
@@ -1065,14 +1099,14 @@
       noscriptMsg: "Esta p\u00E1gina usa JavaScript para o mapa interativo e a ferramenta de predi\u00E7\u00E3o. Ative o JavaScript para usar esses recursos.",
       langGroupLabel: "Idioma",
       a11yToggleLabel: "Modo de Acessibilidade",
-      navProblem: "Problema", navProduct: "Produto", navMethodology: "Metodologia", navResults: "Resultados", navTest: "Testar",
+      navProblem: "Problema", navResearchQuestion: "Pergunta de Pesquisa", navMethodology: "Metodologia", navTest: "Testar",
       heroEyebrow: "Modelo de Distribui\u00E7\u00E3o de Esp\u00E9cies \u00B7 Conserva\u00E7\u00E3o Clim\u00E1tica",
       heroTitle: "Protegendo o Pika-Americano",
       heroSubtitle: "<em>Ochotona princeps</em> sobrevive no limite da temperatura. Estes s\u00E3o os dados por tr\u00E1s do seu habitat de montanha em desaparecimento \u2014 e um modelo criado para ajudar a monitor\u00E1-lo.",
       heroReadout: "FAIXA DE ELEVA\u00C7\u00C3O 2.500\u20134.000 M \u00B7 LIMITE DE CALOR ~25\u00B0C \u00B7 DISTRIBUI\u00C7\u00C3O OESTE DA AM. DO NORTE",
       heroBtnPrimary: "Testar o Modelo de Predi\u00E7\u00E3o", heroBtnSecondary: "Conhe\u00E7a o Pika",
 
-      problemEyebrow: "01 \u00B7 O Problema",
+      problemEyebrow: "01 \u00B7 O Problema e o Desafio dos ODS",
       problemTitle: "O Pika e o Aumento da Temperatura",
       h3MeetSpecies: "Conhe\u00E7a a Esp\u00E9cie",
       s1Lede: "No alto dos campos de blocos rochosos das montanhas ocidentais vive um animal que nunca dorme durante o inverno e n\u00E3o sobrevive a uma tarde quente.",
@@ -1098,24 +1132,29 @@
       card4Title: "Seca e o Desaparecimento do Alimento",
       card4Text: "Condi\u00E7\u00F5es mais secas reduzem as gram\u00EDneas alpinas e flores silvestres das quais os pikas dependem tanto para se alimentar no ver\u00E3o quanto para montar as pilhas de feno de inverno. Pesquisadores associaram a baixa umidade do ar \u00E0 redu\u00E7\u00E3o do crescimento das plantas e a uma camada de neve mais fina ao mesmo tempo \u2014 um efeito combinado que, segundo estudos recentes, pode amea\u00E7ar certas popula\u00E7\u00F5es ainda mais do que o calor sozinho.",
       s2Closing: "A esp\u00E9cie como um todo ainda \u00E9 classificada como Pouco Preocupante, mas esse n\u00FAmero esconde uma realidade local mais dura: desde o in\u00EDcio dos anos 2000, pesquisadores documentaram o desaparecimento de pikas em numerosos locais historicamente ocupados na regi\u00E3o do Great Basin \u2014 um alerta precoce para uma esp\u00E9cie que j\u00E1 n\u00E3o tem para onde subir.",
+      sdgTitle: "O Desafio dos ODS",
+      sdgIntro: "A crise do pika-americano \u00E9 um estudo de caso pequeno e muito espec\u00EDfico de dois dos 17 Objetivos de Desenvolvimento Sustent\u00E1vel das Na\u00E7\u00F5es Unidas.",
+      sdgBadge13Title: "A\u00E7\u00E3o Clim\u00E1tica",
+      sdgBadge13Desc: "Exige a\u00E7\u00E3o urgente para combater a mudan\u00E7a clim\u00E1tica e seus impactos \u2014 exatamente o mecanismo descrito acima: aumento do calor, desaparecimento do manto de neve e aprofundamento da seca.",
+      sdgBadge15Title: "Vida Terrestre",
+      sdgBadge15Desc: "A Meta 15.4 pede especificamente a conserva\u00E7\u00E3o dos ecossistemas de montanha e sua biodiversidade; a Meta 15.5 pede a\u00E7\u00E3o urgente para deter a perda de biodiversidade e prevenir a extin\u00E7\u00E3o de esp\u00E9cies amea\u00E7adas.",
+      sdgClosing: "Um especialista de montanha adaptado ao frio que n\u00E3o tem mais para onde subir \u00E9 exatamente o tipo de esp\u00E9cie que essas metas existem para proteger \u2014 e exatamente o tipo de esp\u00E9cie que se beneficia de uma ferramenta de monitoramento como a que este projeto constr\u00F3i.",
 
-      productEyebrow: "02 \u00B7 O Produto",
-      productTitle: "O Produto",
-      productIntro: "O PikaWatch \u00E9 a plataforma web educacional constru\u00EDda em torno dessa ideia. Escolha um local no mapa \u2014 ou digite as coordenadas diretamente \u2014 descreva seu clima, terreno, neve e condi\u00E7\u00F5es de seca, e a plataforma processa esses n\u00FAmeros por meio de um modelo de distribui\u00E7\u00E3o de esp\u00E9cies para estimar se um pika-americano conseguiria sobreviver ali. Foi criado para estudantes, educadores e qualquer pessoa curiosa sobre como dados clim\u00E1ticos e aprendizado de m\u00E1quina se combinam no trabalho de conserva\u00E7\u00E3o \u2014 n\u00E3o como uma ferramenta oficial de monitoramento, mas como uma forma pr\u00E1tica de ver essa rela\u00E7\u00E3o por conta pr\u00F3pria.",
+      rqEyebrow: "02 \u00B7 Perguntas de Pesquisa",
+      rqTitle: "Perguntas de Pesquisa",
+      rqIntro: "Antes de escrever qualquer c\u00F3digo, um projeto como este precisa de uma pergunta clara para responder. O PikaWatch \u00E9 organizado em torno de quatro \u2014 cada uma uma varia\u00E7\u00E3o diferente do mesmo problema subjacente.",
+      rq1Label: "Classifica\u00E7\u00E3o", rq1Text: "Podemos classificar se um determinado local provavelmente tem uma popula\u00E7\u00E3o presente de pika, com base em suas condi\u00E7\u00F5es de clima, terreno e seca?",
+      rq2Label: "Explica\u00E7\u00E3o", rq2Text: "Quais vari\u00E1veis ambientais melhor distinguem presen\u00E7a de aus\u00EAncia \u2014 e a resposta muda depois que o vi\u00E9s de amostragem regional \u00E9 considerado?",
+      rq3Label: "Previs\u00E3o", rq3Text: "Podemos prever como a adequa\u00E7\u00E3o prevista de um local pode mudar sob as condi\u00E7\u00F5es clim\u00E1ticas de um ano futuro especificado?",
+      rq4Label: "Otimiza\u00E7\u00E3o", rq4Text: "As previs\u00F5es do modelo podem ajudar a priorizar recursos limitados de conserva\u00E7\u00E3o e levantamento de campo para os locais com maior probabilidade de servir como ref\u00FAgios clim\u00E1ticos?",
       flowStep1Title: "Dados Clim\u00E1ticos e do Local", flowStep1Text: "Temperatura, precipita\u00E7\u00E3o, neve, seca, declividade e localiza\u00E7\u00E3o para um local e ano.",
       flowStep2Title: "Modelo de Classifica\u00E7\u00E3o", flowStep2Text: "Um classificador treinado pondera cada vari\u00E1vel com base em padr\u00F5es aprendidos a partir de registros reais de ocorr\u00EAncia.",
       flowStep3Title: "Presen\u00E7a / Aus\u00EAncia", flowStep3Text: "Uma previs\u00E3o, com um \u00EDndice de confian\u00E7a, sobre a probabilidade de o local ser habitat de pika.",
-      productBenefitsTitle: "Por Que Essa Abordagem Ajuda a Conserva\u00E7\u00E3o",
-      benefit1: "Identifica ref\u00FAgios clim\u00E1ticos \u2014 locais mais frios e est\u00E1veis que merecem prote\u00E7\u00E3o priorit\u00E1ria",
-      benefit2: "Direciona o tempo limitado de levantamento em campo para os locais de maior prioridade",
-      benefit3: "Sinaliza popula\u00E7\u00F5es em risco antes que uma extin\u00E7\u00E3o local seja confirmada em campo",
-      benefit4: "Apoia o planejamento de corredores de habitat e conectividade entre cadeias montanhosas",
-      benefit5: "Fornece aos gestores de terras uma base quantitativa para decis\u00F5es de licenciamento e pol\u00EDticas p\u00FAblicas",
 
       methodologyEyebrow: "03 \u00B7 Metodologia",
       methodologyTitle: "Como o Modelo Foi Constru\u00EDdo",
       methodologyIntro: "Por tr\u00E1s de cada previs\u00E3o existe um pipeline completo de ci\u00EAncia de dados: registros de onde os pikas realmente foram encontrados, um conjunto de vari\u00E1veis clim\u00E1ticas e de terreno que descrevem esses locais, e um modelo treinado para distinguir presen\u00E7a de aus\u00EAncia. Esta se\u00E7\u00E3o percorre cada etapa, dos dados brutos at\u00E9 um modelo finalizado \u2014 pule para qualquer parte abaixo, ou leia tudo em sequ\u00EAncia.",
-      pillDataCollection: "Coleta de Dados", pillEDA: "EDA", pillPreTraining: "Pr\u00E9-Treinamento", pillModel: "Modelo",
+      pillDataCollection: "Coleta de Dados", pillEDA: "EDA", pillPreTraining: "Pr\u00E9-processamento", pillModel: "Modelo", pillEvaluation: "Avalia\u00E7\u00E3o",
 
       dataCollectionTitle: "Coleta de Dados",
       dataCollectionIntro: "Modelos de distribui\u00E7\u00E3o de esp\u00E9cies s\u00E3o t\u00E3o bons quanto os dados por tr\u00E1s deles. Este projeto se baseia em cinco tipos de dados, cada um cobrindo os mesmos locais e anos para que possam ser combinados em uma \u00FAnica tabela de treinamento.",
@@ -1181,7 +1220,7 @@
       figElevationAlt: "Gr\u00E1fico de barras de dois pain\u00E9is comparando a mediana de eleva\u00E7\u00E3o por status: globalmente, locais detectados t\u00EAm a maior mediana de eleva\u00E7\u00E3o (2438 m); restrito \u00E0 regi\u00E3o de aus\u00EAncia, locais detectados t\u00EAm a menor mediana (2012 m), enquanto extirpados permanecem os mais altos (2516 m) em ambos os pain\u00E9is.",
       figElevationCaption: "Figura: mediana de eleva\u00E7\u00E3o por status, global vs. regional \u2014 detectado passa de maior para menor.",
       
-      preTrainingTitle: "Pr\u00E9-Treinamento: Vari\u00E1veis e Prepara\u00E7\u00E3o",
+      preTrainingTitle: "Pr\u00E9-processamento: Vari\u00E1veis e Prepara\u00E7\u00E3o",
       preTrainingIntro: "A partir dos dados brutos, 15 vari\u00E1veis foram levadas ao conjunto final de atributos \u2014 as mesmas usadas na ferramenta interativa abaixo. Cada uma foi escolhida por afetar de forma plaus\u00EDvel as chances de um pika sobreviver tanto a um ver\u00E3o quanto a um inverno em um determinado local.",
       preTrainingPrep: "Modelos baseados em \u00E1rvores n\u00E3o exigem normaliza\u00E7\u00E3o de vari\u00E1veis, ent\u00E3o as principais etapas de pr\u00E9-processamento foram o adelga\u00E7amento espacial para reduzir o vi\u00E9s de amostragem, a gera\u00E7\u00E3o de pontos de pseudoaus\u00EAncia numa propor\u00E7\u00E3o fixa em rela\u00E7\u00E3o aos registros de presen\u00E7a, e a divis\u00E3o dos dados por bloco geogr\u00E1fico \u2014 em vez de aleatoriamente \u2014 para que pontos pr\u00F3ximos do mesmo local nunca acabem tanto no conjunto de treinamento quanto no de valida\u00E7\u00E3o.",
       featureTableCaption: "Conjunto Final de Atributos (15 vari\u00E1veis)",
@@ -1199,9 +1238,9 @@
       trainStep3Title: "Valida\u00E7\u00E3o Cruzada", trainStep3Text: "O desempenho \u00E9 verificado em m\u00FAltiplas divis\u00F5es espaciais, n\u00E3o apenas em um \u00FAnico conjunto reservado.",
       trainStep4Title: "Ajustar Hiperpar\u00E2metros", trainStep4Text: "N\u00FAmero de \u00E1rvores, profundidade e tamanho de folha s\u00E3o testados para encontrar a configura\u00E7\u00E3o com melhor desempenho.",
       trainStep5Title: "Finalizar o Modelo", trainStep5Text: "A melhor configura\u00E7\u00E3o \u00E9 retreinada com todos os dados dispon\u00EDveis e salva para gerar previs\u00F5es.",
+      evaluationTitle: "Avalia\u00E7\u00E3o",
+      evaluationIntro: "Com um modelo treinado em m\u00E3os, seu desempenho precisa ser medido em rela\u00E7\u00E3o a dados que ele nunca viu durante o treinamento \u2014 a etapa final do pipeline antes de coloc\u00E1-lo em uso.",
 
-      resultsEyebrow: "04 \u00B7 Resultados",
-      resultsTitle: "Resultados",
       resultsDisclaimer: "Apenas um exemplo ilustrativo. Este layout mostra como a avalia\u00E7\u00E3o de um modelo real apareceria aqui; os n\u00FAmeros abaixo s\u00E3o valores de espa\u00E7o reservado, n\u00E3o medi\u00E7\u00F5es de um modelo treinado.",
       metricAUCDesc: "\u00C1rea sob a curva ROC. 0,5 \u00E9 aleat\u00F3rio; acima de 0,8 geralmente \u00E9 considerado boa discrimina\u00E7\u00E3o.",
       metricTSSDesc: "Estat\u00EDstica de Habilidade Verdadeira (sensibilidade + especificidade \u2212 1). Acima de 0,6 geralmente \u00E9 considerado \u00FAtil.",
@@ -1211,8 +1250,9 @@
       resultsImportanceTitle: "Quais Vari\u00E1veis Mais Importaram",
       resultsCaveat: "O desempenho no mundo real pode variar por regi\u00E3o, especialmente em \u00E1reas pouco representadas nos dados de treinamento, e um modelo como este deveria ser verificado contra novas observa\u00E7\u00F5es de campo antes de embasar qualquer decis\u00E3o real de conserva\u00E7\u00E3o.",
 
-      s4Eyebrow: "05 \u00B7 Teste",
+      s4Eyebrow: "04 \u00B7 Teste",
       s4Title: "Teste o Modelo de Predi\u00E7\u00E3o",
+      tryItLeadIntro: "Esta ferramenta coloca em pr\u00E1tica as perguntas de pesquisa acima. Escolha um local no mapa \u2014 ou digite as coordenadas diretamente \u2014 descreva seu clima, terreno, neve e condi\u00E7\u00F5es de seca, e o modelo estima se um pika-americano conseguiria sobreviver ali.",
       s4Intro: "Voc\u00EA acabou de ver como o modelo por tr\u00E1s do PikaWatch foi constru\u00EDdo e avaliado \u2014 agora teste voc\u00EA mesmo. Selecione um local no mapa, ou insira as coordenadas diretamente, depois preencha as condi\u00E7\u00F5es clim\u00E1ticas e de terreno e execute o modelo.",
       demoDisclaimer: "<strong>Apenas l\u00F3gica de demonstra\u00E7\u00E3o.</strong> Esta interface executa uma fun\u00E7\u00E3o simplificada de regra pr\u00E1tica para demonstrar o fluxo de trabalho, n\u00E3o o modelo treinado descrito acima. Veja os coment\u00E1rios no c\u00F3digo de <code>index.html</code> para saber como conectar a API de um classificador real quando estiver pronto.",
       mapLocateBtn: "Usar Minha Localiza\u00E7\u00E3o", mapHint: "Clique em qualquer lugar do mapa para colocar um marcador",

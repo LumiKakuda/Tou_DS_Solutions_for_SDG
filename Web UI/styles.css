@@ -240,7 +240,7 @@ section[id], .anchor-block { scroll-margin-top: var(--header-height); }
 
 .hero-content { position: relative; z-index: 1; max-width: 640px; }
 .eyebrow { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: #F6EBF1; margin: 0 0 var(--space-sm); }
-.hero h1 { font-size: clamp(2.3rem, 5vw, 3.4rem); font-weight: 700; margin-bottom: var(--space-md); letter-spacing: -0.01em; max-width: none; }
+.hero h1 { font-size: clamp(2.3rem, 5vw, 3.4rem); font-weight: 700; margin-bottom: var(--space-md); letter-spacing: -0.01em; max-width: none; color: #FFFFFF; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35); }
 .hero-subtitle { font-size: 1.15rem; line-height: 1.55; color: #FFFFFF; margin-bottom: var(--space-md); max-width: none; }
 .hero-readout {
   font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.03em; color: var(--color-stone);
@@ -294,9 +294,27 @@ section[id], .anchor-block { scroll-margin-top: var(--header-height); }
 .impact-card h4 { font-size: 1.05rem; margin-bottom: var(--space-2xs); }
 .impact-card p { font-size: 0.93rem; color: var(--color-ink); }
 
+/* --- SDG cards (closing sub-block of the Problem section) --- */
+.sdg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-md); margin: var(--space-md) 0; }
+.sdg-card { background: var(--color-surface); border: 1.5px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-md); }
+.sdg-tag {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em;
+  color: #fff; background: var(--color-slate); padding: 0.25em 0.7em; border-radius: var(--radius-sm); margin-bottom: var(--space-sm);
+}
+.sdg-card h4 { font-size: 1.02rem; margin-bottom: var(--space-2xs); }
+.sdg-card p { font-size: 0.92rem; color: var(--color-ink); }
+
 /* ================================================================
-   SECTION 02 — PRODUCT (model-flow + benefits, reused component)
+   SECTION 02 — RESEARCH QUESTIONS (+ model-flow, reused in Try It)
    ================================================================ */
+.rq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-md); margin-top: var(--space-md); }
+.rq-card { background: var(--color-surface); border: 1.5px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-md); }
+.rq-label {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--color-heather-text); background: var(--color-heather-tint); padding: 0.25em 0.7em; border-radius: 999px; margin-bottom: var(--space-sm);
+}
+.rq-card p { font-size: 0.96rem; color: var(--color-ink); font-weight: 500; max-width: none; }
+
 .model-flow { display: flex; align-items: stretch; gap: var(--space-md); margin: var(--space-xl) 0; flex-wrap: wrap; }
 .flow-step { flex: 1 1 200px; background: var(--color-surface); border: 1.5px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-md); }
 .flow-number { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--color-slate); color: #fff; font-family: var(--font-mono); font-size: 0.85rem; margin-bottom: var(--space-sm); flex-shrink: 0; }
@@ -305,8 +323,6 @@ section[id], .anchor-block { scroll-margin-top: var(--header-height); }
 .flow-step p { font-size: 0.89rem; color: var(--color-ink); }
 .flow-arrow { width: 22px; height: 22px; align-self: center; color: var(--color-heather-text); flex-shrink: 0; }
 
-.benefits { background: var(--color-moss-tint); border: 1.5px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-lg); }
-.benefits h3 { font-size: 1.1rem; margin-bottom: var(--space-sm); max-width: none; }
 .benefits-list { display: flex; flex-direction: column; gap: var(--space-xs); }
 .benefits-list li { position: relative; padding-left: var(--space-md); color: var(--color-ink); font-size: 0.96rem; max-width: 62ch; }
 .benefits-list li::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 8px; height: 8px; border-radius: 50%; background: var(--color-moss); }
@@ -561,7 +577,7 @@ body.a11y-mode .btn, body.a11y-mode fieldset, body.a11y-mode .field input, body.
 body.a11y-mode .impact-card, body.a11y-mode .flow-step, body.a11y-mode .result-card, body.a11y-mode #map,
 body.a11y-mode .source-card, body.a11y-mode .eda-item, body.a11y-mode .metric-card,
 body.a11y-mode table.feature-table, body.a11y-mode .feature-table-wrap,
-body.a11y-mode .signal-item, body.a11y-mode .eda-figure { border-width: 2.5px; }
+body.a11y-mode .signal-item, body.a11y-mode .eda-figure, body.a11y-mode .sdg-card, body.a11y-mode .rq-card { border-width: 2.5px; }
 body.a11y-mode :focus-visible { outline: 3px solid var(--color-heather); outline-offset: 3px; }
 body.a11y-mode .confidence-bar, body.a11y-mode .importance-track { height: 14px; }
 body.a11y-mode .jump-pill { border-width: 2px; border-color: var(--color-heather-text); }
