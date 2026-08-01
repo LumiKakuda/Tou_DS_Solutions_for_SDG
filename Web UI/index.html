@@ -89,7 +89,6 @@
     <p class="eyebrow" data-i18n="heroEyebrow">Species Distribution Model &middot; Climate Conservation</p>
     <h1 data-i18n="heroTitle">Protecting the American Pika</h1>
     <p class="hero-subtitle" data-i18n-html="heroSubtitle"><em>Ochotona princeps</em> survives on a knife-edge of temperature. This is the data behind its disappearing mountain habitat — and a model built to help track it.</p>
-    <p class="hero-readout" data-i18n="heroReadout">ELEV. RANGE 2,500&ndash;4,000&nbsp;M &nbsp;&middot;&nbsp; HEAT LIMIT ~25&deg;C &nbsp;&middot;&nbsp; RANGE WESTERN N. AMERICA</p>
     <div class="hero-actions">
       <a href="#test-model" class="btn btn-primary" data-i18n="heroBtnPrimary">Test the Prediction Model</a>
       <a href="#problem" class="btn btn-outline-light" data-i18n="heroBtnSecondary">Learn About the Pika</a>
@@ -228,7 +227,7 @@
   <div class="container">
     <p class="section-eyebrow reveal" data-i18n="methodologyEyebrow">03 &middot; Methodology</p>
     <h2 class="reveal" data-i18n="methodologyTitle">How the Model Was Built</h2>
-    <p class="section-intro reveal" data-i18n="methodologyIntro">Behind every prediction sits a full data science pipeline: records of where pikas have actually been found, a set of climate and terrain variables describing those places, and a model trained to tell presence from absence. This section walks through each stage, from raw data to a finished model — jump to any part below, or read straight through.</p>
+    <p class="section-intro reveal" data-i18n="methodologyIntro">The proposed data product is an interactive web-based platform designed to transform complex species distribution modelling into an accessible, data-driven resource for climate education, environmental awareness, and conservation planning. By bridging the gap between advanced ecological data science and public understanding, the platform replaces traditional, static scientific reports with dynamic, interactive maps that allow users to explore current American pika (Ochotona princeps) habitat suitability and compare projected distributions under multiple future climate scenarios. A key differentiator of the platform lies in its integration of machine learning–based predictive models with diverse spatial datasets—including climate variables, topographic features, vegetation indices, and drought indicators—within an interactive geographic information system. Grounded in a rigorous scientific foundation, the platform utilizes documented species occurrence data, peer-reviewed modelling methodologies (Elith & Leathwick, 2009), and IPCC climate projections (IPCC, 2023) supported by established ecological research on pika climate sensitivity (Beever et al., 2011; Millar & Westfall, 2010). Ultimately, this solution provides students, educators, researchers, conservation practitioners, and policymakers with a credible, engaging tool that demonstrates the practical application of data science to real-world environmental challenges while fostering informed discussions around mountain ecosystem protection.</p>
 
     <nav class="jump-pills reveal" aria-label="Methodology sections">
       <a href="#data-collection" class="jump-pill"><span class="pill-number">1</span><span data-i18n="pillDataCollection">Data Collection</span></a>
@@ -633,6 +632,54 @@
   </div>
 </section>
 
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 1440 32" preserveAspectRatio="none"><path d="M0.0,16.6 Q0.0,16.6 80.0,18.6 Q160.0,20.6 240.0,16.1 Q320.0,11.7 400.0,12.8 Q480.0,13.8 560.0,19.0 Q640.0,24.2 720.0,21.2 Q800.0,18.3 880.0,13.0 Q960.0,7.7 1040.0,11.1 Q1120.0,14.5 1200.0,18.0 Q1280.0,21.5 1360.0,17.5 Q1440,16.0 1440,16.0" /></svg></div>
+
+<!-- ============================================================ -->
+<!--  SECTION 05 — References         -->
+<!-- ============================================================ -->
+<section id="references" class="section">
+  <div class="container">
+    <p class="section-eyebrow reveal" data-i18n="s5Eyebrow">05 &middot; References</p>
+    <h2 class="reveal" data-i18n="s5Title">References</h2>
+    <ul class="references-list">
+    <li class="reference-item">
+      <span class="authors">Beever, E. A., Ray, C., Wilkening, J. L., Brussard, P. F., & Mote, P. W.</span> 
+      <span class="year">(2011).</span> 
+      <span class="title">Contemporary climate change alters the pace and drivers of extinction.</span> 
+      <span class="journal"><em>Global Change Biology</em>, 17(6), 2054–2070.</span>
+    </li>
+
+    <li class="reference-item">
+      <span class="authors">Elith, J., & Leathwick, J. R.</span> 
+      <span class="year">(2009).</span> 
+      <span class="title">Species distribution models: Ecological explanation and prediction across space and time.</span> 
+      <span class="journal"><em>Annual Review of Ecology, Evolution, and Systematics</em>, 40(1), 677–697.</span>
+    </li>
+
+    <li class="reference-item">
+      <span class="authors">IPCC.</span> 
+      <span class="year">(2023).</span> 
+      <span class="title"><em>Climate Change 2023: Synthesis Report. Contribution of Working Groups I, II and III to the Sixth Assessment Report of the Intergovernmental Panel on Climate Change</em></span> 
+      <span class="publisher">[Core Writing Team, H. Lee and J. Romero (eds.)]. IPCC, Geneva, Switzerland.</span>
+    </li>
+
+    <li class="reference-item">
+      <span class="authors">Millar, C. I., & Westfall, R. D.</span> 
+      <span class="year">(2010).</span> 
+      <span class="title">Distribution and climatic relationships of the American pika (<em>Ochotona princeps</em>) in the Sierra Nevada and Western Great Basin, USA; periglacial landforms as refugia in warming climates.</span> 
+      <span class="journal"><em>Arctic, Antarctic, and Alpine Research</em>, 42(1), 76–88.</span>
+    </li>
+
+    <li class="reference-item">
+      <span class="authors">Smith, A. T., & Weston, M. L.</span> 
+      <span class="year">(1990).</span> 
+      <span class="title"><em>Ochotona princeps</em>.</span> 
+      <span class="journal"><em>Mammalian Species</em>, (352), 1–8.</span>
+    </li>
+  </ul>
+  </div>
+</section>
+
 </main>
 
 <!-- ============================================================ -->
@@ -665,7 +712,7 @@
    * backend model. Only visible labels/hints/copy change with language.
    * Languages: English (default), Spanish, Portuguese (Brazil).
    * ============================================================ */
-  var I18N = {
+  /* var I18N = {
     en: {
       metaTitle: "PikaWatch \u2014 American Pika Climate Conservation",
       metaDescription: "An educational case study and interactive web app about the American pika: the conservation problem, the product, the full data science pipeline behind it, and a live species distribution model you can test yourself.",
