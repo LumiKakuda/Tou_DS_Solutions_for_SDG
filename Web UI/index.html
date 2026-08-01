@@ -331,6 +331,11 @@
     <figcaption class="eda-figure-caption" data-i18n="figShapCaption">Figure: SHAP feature importance for the final 20 predictors — temperature variables dominate, with snow water equivalent and precipitation seasonality as secondary drivers.</figcaption>
   </figure>
 
+  <div class="eda-highlight reveal">
+    <strong class="eda-highlight-title" data-i18n="shapCorrelatedTitle">Why the Top Three Survive Despite Being Correlated</strong>
+    <p data-i18n="shapCorrelatedText">The correlation-based pruning step was only ever applied to <em>low-importance</em> variables flagged by SHAP — never to the top-ranked predictors, so <code>bio5_temp_max_warm</code>, <code>max_temperature</code>, and <code>bio1_temp_mean_annual</code> were never candidates for removal on correlation grounds alone. They're also not fully redundant: each captures a different temporal slice of the same underlying heat signal. BIO5 is the long-term (1970&ndash;2000) climatological normal for the warmest month; <code>max_temperature</code> is the actual maximum recorded in that specific observation year, capturing how far that year departed from the baseline; BIO1 is the long-term annual mean, reflecting overall thermal regime rather than a summer spike alone. A site can have a high BIO5 baseline but a mild <code>max_temperature</code> in a given year, or the reverse &mdash; and those are exactly the cases where keeping all three gives the model information a single temperature variable would miss.</p>
+  </div>
+
   <div class="feature-table-wrap reveal">
     <table class="feature-table">
       <caption data-i18n="featureTableCaption">Final Feature Set (20 variables)</caption>
@@ -376,93 +381,94 @@
     </div>
 
     <!-- ---- Sub-block 4: Model ---- -->
-    <div class="methodology-block anchor-block" id="model-build">
-      <h3 class="subhead reveal" data-i18n="modelBuildTitle">Building the Model</h3>
-      <p class="reveal" data-i18n="modelBuildIntro">With features in hand, the project trains a binary classifier — Random Forest, in this implementation — chosen because it handles non-linear relationships and correlated climate variables gracefully, needs little preprocessing, and reports which features mattered most to its own predictions. Gradient-boosted trees and MaxEnt, a method built specifically for presence-only species data, are common alternatives worth comparing against.</p>
-      <p class="reveal" data-i18n="modelBuildValidation">To keep validation honest, the data is split by spatial block rather than randomly, so a site near a training point is never used to test the model. Hyperparameters — including the number of trees, tree depth, and minimum samples per leaf — are tuned by cross-validated search, and the configuration with the best validation performance is kept as the final model.</p>
+<div class="methodology-block anchor-block" id="model-build">
+  <h3 class="subhead reveal" data-i18n="modelBuildTitle">Building the Model</h3>
+  <p class="reveal" data-i18n="modelBuildIntro">Three tree-based ensemble classifiers were trained and compared on the final 20-feature set: Random Forest (RF), XGBoost, and LightGBM. All three handle non-linear relationships and correlated climate variables gracefully, need little preprocessing, and report which features mattered most to their own predictions — well suited to a predictor set dominated by intercorrelated bioclimatic variables.</p>
+  <p class="reveal" data-i18n="modelBuildValidation">Because presence records (14,393) vastly outnumber absence records (187) — roughly 77:1 — training used balanced resampling rather than the full imbalanced set: each iteration draws a random subset of about 200&ndash;225 presence records and pairs it with the available absence records, then randomly withholds 20% of that balanced subset for testing. Hyperparameters for each algorithm were tuned via cross-validation before the ensemble step below.</p>
 
-      <div class="model-flow reveal">
-        <div class="flow-step">
-          <span class="flow-number">1</span>
-          <h4 data-i18n="trainStep1Title">Split by Location</h4>
-          <p data-i18n="trainStep1Text">Data is divided into spatial blocks so nearby sites never appear in both training and validation.</p>
-        </div>
-        <div class="flow-step">
-          <span class="flow-number">2</span>
-          <h4 data-i18n="trainStep2Title">Train the Classifier</h4>
-          <p data-i18n="trainStep2Text">A Random Forest learns to separate presence from background points using the 15 input features.</p>
-        </div>
-        <div class="flow-step">
-          <span class="flow-number">3</span>
-          <h4 data-i18n="trainStep3Title">Cross-Validate</h4>
-          <p data-i18n="trainStep3Text">Performance is checked across multiple spatial folds, not just a single held-out set.</p>
-        </div>
-        <div class="flow-step">
-          <span class="flow-number">4</span>
-          <h4 data-i18n="trainStep4Title">Tune Hyperparameters</h4>
-          <p data-i18n="trainStep4Text">Tree count, depth, and leaf size are searched to find the best-performing configuration.</p>
-        </div>
-        <div class="flow-step">
-          <span class="flow-number">5</span>
-          <h4 data-i18n="trainStep5Title">Finalize the Model</h4>
-          <p data-i18n="trainStep5Text">The best configuration is retrained on all available data and saved for predictions.</p>
-        </div>
-      </div>
+  <div class="model-flow reveal">
+    <div class="flow-step">
+      <span class="flow-number">1</span>
+      <h4 data-i18n="trainStep1Title">Balance the Classes</h4>
+      <p data-i18n="trainStep1Text">With presence outnumbering absence roughly 77:1, each iteration draws a random subset of ~200&ndash;225 presence records and pairs it with the available absence records, rather than training on the full imbalanced set.</p>
     </div>
-
-    <!-- ---- Sub-block 5: Evaluation (was a standalone "Results" section) ---- -->
-    <div class="methodology-block anchor-block" id="evaluation">
-      <h3 class="subhead reveal" data-i18n="evaluationTitle">Evaluation</h3>
-      <p class="reveal" data-i18n="evaluationIntro">With a trained model in hand, its performance needs to be measured against data it never saw during training &mdash; the final step in the pipeline before putting it to use.</p>
-
-      <div class="demo-disclaimer reveal" data-i18n="resultsDisclaimer">
-        Illustrative example only. This layout shows how a real model's evaluation would appear here; the figures below are placeholder values, not measurements from a trained model.
-      </div>
-
-      <div class="metric-grid reveal">
-        <div class="metric-card">
-          <div class="metric-value">0.85</div>
-          <div class="metric-label">AUC-ROC</div>
-          <p class="metric-desc" data-i18n="metricAUCDesc">Area under the ROC curve. 0.5 is random; above 0.8 is generally considered good discrimination.</p>
-        </div>
-        <div class="metric-card">
-          <div class="metric-value">0.65</div>
-          <div class="metric-label">TSS</div>
-          <p class="metric-desc" data-i18n="metricTSSDesc">True Skill Statistic (sensitivity + specificity − 1). Above 0.6 is generally considered useful.</p>
-        </div>
-        <div class="metric-card">
-          <div class="metric-value">82%</div>
-          <div class="metric-label" data-i18n="metricAccuracyLabel">Accuracy</div>
-          <p class="metric-desc" data-i18n="metricAccuracyDesc">Share of all sites the model classified correctly.</p>
-        </div>
-        <div class="metric-card">
-          <div class="metric-value">80%</div>
-          <div class="metric-label" data-i18n="metricSensitivityLabel">Sensitivity</div>
-          <p class="metric-desc" data-i18n="metricSensitivityDesc">Share of true presence sites the model correctly identified.</p>
-        </div>
-        <div class="metric-card">
-          <div class="metric-value">84%</div>
-          <div class="metric-label" data-i18n="metricSpecificityLabel">Specificity</div>
-          <p class="metric-desc" data-i18n="metricSpecificityDesc">Share of true absence sites the model correctly identified.</p>
-        </div>
-      </div>
-
-      <h4 class="importance-title reveal" data-i18n="resultsImportanceTitle">Which Variables Mattered Most</h4>
-      <div class="importance-list reveal">
-        <div class="importance-item"><span class="importance-label" data-i18n="factorSummerHeat">Summer heat (max temperature)</span><div class="importance-track"><div class="importance-fill" style="width:23%"></div></div><span class="importance-pct">23%</span></div>
-        <div class="importance-item"><span class="importance-label" data-i18n="factorMonthsAbove25">Months above 25&deg;C</span><div class="importance-track"><div class="importance-fill" style="width:15%"></div></div><span class="importance-pct">15%</span></div>
-        <div class="importance-item"><span class="importance-label" data-i18n="factorSnowCover">Snow cover (insulation)</span><div class="importance-track"><div class="importance-fill" style="width:14%"></div></div><span class="importance-pct">14%</span></div>
-        <div class="importance-item"><span class="importance-label" data-i18n="factorSummerMin">Summer minimum temperature</span><div class="importance-track"><div class="importance-fill" style="width:11%"></div></div><span class="importance-pct">11%</span></div>
-        <div class="importance-item"><span class="importance-label" data-i18n="factorSlope">Talus slope steepness</span><div class="importance-track"><div class="importance-fill" style="width:8%"></div></div><span class="importance-pct">8%</span></div>
-        <div class="importance-item"><span class="importance-label" data-i18n="factorAnnualMeanTemp">Annual mean temperature</span><div class="importance-track"><div class="importance-fill" style="width:7%"></div></div><span class="importance-pct">7%</span></div>
-        <div class="importance-item"><span class="importance-label" data-i18n="factorDroughtCurrent">Drought severity (current year)</span><div class="importance-track"><div class="importance-fill" style="width:7%"></div></div><span class="importance-pct">7%</span></div>
-        <div class="importance-item"><span class="importance-label" data-i18n="factorPrecipitation">Annual precipitation</span><div class="importance-track"><div class="importance-fill" style="width:6%"></div></div><span class="importance-pct">6%</span></div>
-        <div class="importance-item"><span class="importance-label" data-i18n="factorWinterWarmth">Winter warmth</span><div class="importance-track"><div class="importance-fill" style="width:5%"></div></div><span class="importance-pct">5%</span></div>
-        <div class="importance-item"><span class="importance-label" data-i18n="factorDroughtPrevious">Drought severity (year before)</span><div class="importance-track"><div class="importance-fill" style="width:4%"></div></div><span class="importance-pct">4%</span></div>
-      </div>
-
-      <p class="section-closing reveal" data-i18n="resultsCaveat">Real-world performance can vary by region, especially in areas poorly represented in the training data, and a model like this should be checked against new field observations before it informs any real conservation decision.</p>
+    <div class="flow-step">
+      <span class="flow-number">2</span>
+      <h4 data-i18n="trainStep2Title">Hold Out a Test Set</h4>
+      <p data-i18n="trainStep2Text">20% of each balanced subset is randomly withheld for testing, with the remaining 80% used for training — redrawn fresh for every ensemble iteration.</p>
     </div>
+    <div class="flow-step">
+      <span class="flow-number">3</span>
+      <h4 data-i18n="trainStep3Title">Tune Hyperparameters</h4>
+      <p data-i18n="trainStep3Text">For each of the three algorithms — RF, XGBoost, LightGBM — hyperparameters are optimized via cross-validation to maximize performance while limiting overfitting.</p>
+    </div>
+    <div class="flow-step">
+      <span class="flow-number">4</span>
+      <h4 data-i18n="trainStep4Title">Build a 100-Model Ensemble</h4>
+      <p data-i18n="trainStep4Text">For each algorithm, 100 models are trained, each on a freshly resampled ~200-presence-record subset. Their predicted probabilities are averaged, and a site is classified as suitable when that average is &ge; 0.5.</p>
+    </div>
+    <div class="flow-step">
+      <span class="flow-number">5</span>
+      <h4 data-i18n="trainStep5Title">Select the Final Model</h4>
+      <p data-i18n="trainStep5Text">The three ensembles are compared on independent test data; Random Forest yields the highest overall accuracy and is retained as the final habitat suitability model.</p>
+    </div>
+  </div>
+</div>
+
+    <!-- ---- Sub-block 5: Evaluation ---- -->
+  <div class="methodology-block anchor-block" id="evaluation">
+  <h3 class="subhead reveal" data-i18n="evaluationTitle">Evaluation</h3>
+  <p class="reveal" data-i18n="evaluationIntro">With a trained model in hand, its performance is measured against an independent testing set it never saw during training &mdash; 20% of the balanced dataset, withheld before any training took place. Of the three algorithms compared, the Random Forest ensemble produced the highest overall accuracy and was selected as the final habitat suitability model.</p>
+
+  <div class="demo-disclaimer reveal" data-i18n="resultsLimitationNote">
+    These figures come from the Random Forest ensemble at the default 0.5 probability threshold. Because only 187 absence records were available &mdash; and nearly all were needed for training &mdash; the independent test set contained just 38 absence observations, so the absence-side metrics below should be read with that small sample size in mind.
+  </div>
+
+  <div class="metric-grid reveal">
+    <div class="metric-card">
+      <div class="metric-value">0.999</div>
+      <div class="metric-label">ROC-AUC</div>
+      <p class="metric-desc" data-i18n="metricAUCDesc">Area under the ROC curve. 0.5 is random; 1.0 is perfect discrimination between presence and absence.</p>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">0.99</div>
+      <div class="metric-label" data-i18n="metricBalancedAccLabel">Balanced Accuracy</div>
+      <p class="metric-desc" data-i18n="metricBalancedAccDesc">Average of presence and absence recall &mdash; keeps the rare absence class from being swamped by the much larger presence class.</p>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">98%</div>
+      <div class="metric-label" data-i18n="metricAccuracyLabel">Overall Accuracy</div>
+      <p class="metric-desc" data-i18n="metricAccuracyDesc">2,860 of 2,917 independent test observations classified correctly.</p>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">98%</div>
+      <div class="metric-label" data-i18n="metricSensitivityLabel">Presence Recall</div>
+      <p class="metric-desc" data-i18n="metricSensitivityDesc">Share of true presence sites correctly identified &mdash; 2,822 of 2,879, with 57 missed (false negatives).</p>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">40%</div>
+      <div class="metric-label" data-i18n="metricAbsencePrecisionLabel">Absence Precision</div>
+      <p class="metric-desc" data-i18n="metricAbsencePrecisionDesc">Of sites predicted absent, share truly absent. Low mainly because absence is so rare in the test set (38 of 2,917) &mdash; specificity is 100%, with zero false positives.</p>
+    </div>
+  </div>
+
+  <p class="reveal" data-i18n="resultsThreshold">At the default 0.5 threshold, the model made zero false-positive predictions: every site it flagged as suitable habitat was a confirmed pika presence, at the cost of missing 57 true presence sites. Lowering the threshold to about 0.4 reduces those missed detections and raises absence precision to roughly 70% &mdash; trading some of that conservatism for more complete presence detection. Which threshold is "right" depends on whether the priority is a conservative estimate of suitable habitat or a more complete one.</p>
+
+  <div class="feature-table-wrap reveal">
+    <table class="feature-table">
+      <caption data-i18n="confusionTableCaption">Confusion Matrix &mdash; Random Forest Ensemble, Independent Test Set</caption>
+      <thead>
+        <tr><th></th><th data-i18n="confusionColPredPresence">Predicted Presence</th><th data-i18n="confusionColPredAbsence">Predicted Absence</th></tr>
+      </thead>
+      <tbody>
+        <tr><th data-i18n="confusionRowActualPresence">Actual Presence</th><td>2,822 (TP)</td><td>57 (FN)</td></tr>
+        <tr><th data-i18n="confusionRowActualAbsence">Actual Absence</th><td>0 (FP)</td><td>38 (TN)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="section-closing reveal" data-i18n="resultsCaveat">The absence data is scarce and geographically clustered &mdash; concentrated within a limited number of resurvey sites &mdash; so this evaluation doesn't fully test how the model generalizes to unsampled parts of the pika's range. A follow-up check split the test set into 15 spatial clusters and found consistent PR-AUC across them, with no evidence of major regional variation &mdash; but only within regions already represented in the training data. Applying the model outside those surveyed regions would be an extrapolation beyond what has actually been validated.</p>
+  </div>
   </div>
 </section>
 
@@ -687,6 +693,13 @@
       <span class="journal"><em>Arctic, Antarctic, and Alpine Research</em>, 42(1), 76–88.</span>
     </li>
 
+    <li class="reference-item">
+      <span class="authors">Qin, Y., Abatzoglou, J. T., Siebert, S., Huning, L. S., AghaKouchak, A., Mankin, J. S., Hong, C., Tong, D., Davis, S. J., & Mueller, N. D.</span> 
+      <span class="year">(2020).</span> 
+      <span class="title">Agricultural risks from changing snowmelt.</span> 
+      <span class="journal"><em>Nature Climate Change</em>, 10(5), 459–465.</span>
+    </li>
+    
     <li class="reference-item">
       <span class="authors">Smith, A. T., & Weston, M. L.</span> 
       <span class="year">(1990).</span> 
