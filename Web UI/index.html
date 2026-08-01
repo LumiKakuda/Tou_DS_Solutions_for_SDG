@@ -239,38 +239,37 @@
 
     <!-- ---- Sub-block 1: Data Collection ---- -->
     <div class="methodology-block anchor-block" id="data-collection">
-      <h3 class="subhead reveal" data-i18n="dataCollectionTitle">Data Collection</h3>
-      <p class="reveal" data-i18n="dataCollectionIntro">Species distribution models are only as good as the data behind them. This project draws on five kinds of data, each covering the same places and years so they can be combined into a single training table.</p>
+  <h3 class="subhead reveal" data-i18n="dataCollectionTitle">Data Collection</h3>
+  <p class="reveal" data-i18n="dataCollectionIntro">Species distribution models are only as good as the data behind them. This project compiles a comprehensive occurrence dataset for the American pika — with particular emphasis on reliable <em>absence</em> records, not just presence — and pairs every record with matching topographic and climatic information for the same place and year.</p>
 
-      <div class="source-grid reveal">
-        <div class="source-card">
-          <svg class="impact-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7Z"/><circle cx="12" cy="9" r="2.5" fill="var(--color-surface)"/></svg>
-          <h4 data-i18n="sourceOccurrenceTitle">Occurrence Records</h4>
-          <p data-i18n="sourceOccurrenceText">Confirmed sightings of the American pika, most commonly compiled from public biodiversity databases such as GBIF, filtered to records with reliable coordinates and reasonable spatial precision.</p>
-        </div>
-        <div class="source-card">
-          <svg class="impact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="10" y="3" width="4" height="12" rx="2"/><circle cx="12" cy="18" r="3.4"/></svg>
-          <h4 data-i18n="sourceClimateTitle">Bioclimatic Variables</h4>
-          <p data-i18n="sourceClimateText">Standardized temperature and precipitation summaries — such as WorldClim's BIO1, BIO4, BIO5, BIO6, and BIO12 — describing the long-term climate at each location.</p>
-        </div>
-        <div class="source-card">
-          <svg class="impact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 20 L10 6 L14 13 L17 8 L21 20 Z"/></svg>
-          <h4 data-i18n="sourceTerrainTitle">Terrain (Slope)</h4>
-          <p data-i18n="sourceTerrainText">Steepness of the terrain, calculated from a digital elevation model, since pikas depend on the loose, sloped rockfields known as talus.</p>
-        </div>
-        <div class="source-card">
-          <svg class="impact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><line x1="5" y1="7.5" x2="19" y2="16.5"/><line x1="19" y1="7.5" x2="5" y2="16.5"/></svg>
-          <h4 data-i18n="sourceSnowTitle">Snow Cover</h4>
-          <p data-i18n="sourceSnowText">Estimated depth or persistence of winter snowpack, which insulates the talus and buffers pikas from lethal winter cold.</p>
-        </div>
-        <div class="source-card">
-          <svg class="impact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>
-          <h4 data-i18n="sourceDroughtTitle">Drought Index</h4>
-          <p data-i18n="sourceDroughtText">A standardized drought severity index, in the style of the Palmer Drought Severity Index (PDSI), for the current and preceding year, capturing delayed effects on forage.</p>
-        </div>
-      </div>
-
-      </div>
+  <div class="source-grid reveal">
+    <div class="source-card">
+      <svg class="impact-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7Z"/><circle cx="12" cy="9" r="2.5" fill="var(--color-surface)"/></svg>
+      <h4 data-i18n="sourceOccurrenceTitle">Occurrence Records</h4>
+      <p data-i18n="sourceOccurrenceText">Each record pairs geographic coordinates and a year of observation with a species status of 1 (presence) or 0 (absence). Absence means a site with a documented historical pika record that was resurveyed and found unoccupied — a stronger signal than a simple "no sightings" location.</p>
+    </div>
+    <div class="source-card">
+      <svg class="impact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="10" y="3" width="4" height="12" rx="2"/><circle cx="12" cy="18" r="3.4"/></svg>
+      <h4 data-i18n="sourceClimateTitle">Long-Term Climate (WorldClim v2.1)</h4>
+      <p data-i18n="sourceClimateText">Bioclimatic normals averaged over 1970–2000 — BIO1, BIO4, BIO5, BIO6, BIO12, BIO15 — describing each location's long-term climatic niche. Since these are multi-decade averages, only the coordinates were needed to retrieve them.</p>
+    </div>
+    <div class="source-card">
+      <svg class="impact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 20 L10 6 L14 13 L17 8 L21 20 Z"/></svg>
+      <h4 data-i18n="sourceTerrainTitle">Topography</h4>
+      <p data-i18n="sourceTerrainText">Elevation and slope, derived directly from digital elevation data. Pikas are cold-adapted alpine specialists tied to steep, talus-strewn terrain, so both variables describe the physical structure of suitable habitat.</p>
+    </div>
+    <div class="source-card">
+      <svg class="impact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><line x1="5" y1="7.5" x2="19" y2="16.5"/><line x1="19" y1="7.5" x2="5" y2="16.5"/></svg>
+      <h4 data-i18n="sourceSnowTitle">Interannual Climate (TerraClimate)</h4>
+      <p data-i18n="sourceSnowText">Monthly climate data, matched to each record's specific observation year and aggregated into ecologically meaningful indicators — snow water equivalent, snow duration, and seasonal temperature extremes — for that year and the year before.</p>
+    </div>
+    <div class="source-card">
+      <svg class="impact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>
+      <h4 data-i18n="sourceDroughtTitle">Drought Indices (TerraClimate)</h4>
+      <p data-i18n="sourceDroughtText">Palmer Drought Severity Index (PDSI) summaries — annual, summer, and winter means, plus a "worst month" value — computed for the observation year and lagged one year to capture delayed effects on forage.</p>
+    </div>
+  </div>
+  </div>
 
     <!-- ---- Sub-block 2: EDA ---- -->
     <div class="methodology-block anchor-block" id="eda">
@@ -278,7 +277,7 @@
       <p class="reveal" data-i18n="edaIntro">This section draws on two related analyses: a full exploratory analysis of every available presence and absence record, and a follow-up study that restricts the presence data to the same geographic window as the absence surveys, to test whether the patterns found in the first analysis hold up once that mismatch is controlled for.</p>
 
       <h4 class="eda-subhead reveal" data-i18n="edaClassBalanceTitle">The Data at a Glance</h4>
-      <p class="reveal" data-i18n="edaClassBalanceText">The combined dataset contains 17,949 presence records and 225 absence records, the latter categorized into recent absence, long absence, and locally extinct ("extirpated") sites within the Great Basin. This represents a presence-to-absence ratio of approximately 80:1. Due to this magnitude of imbalance, a logarithmic scale is used in the chart below to display both categories clearly.</p>
+      <p class="reveal" data-i18n="edaClassBalanceText">The original combined dataset (before any data cleaning process) contains 17,949 presence records and 225 absence records, the latter categorized into recent absence, long absence, and locally extinct ("extirpated") sites within the Great Basin. This represents a presence-to-absence ratio of approximately 80:1. Due to this magnitude of imbalance, a logarithmic scale is used in the chart below to display both categories clearly.</p>
 
       <figure class="eda-figure reveal">
         <img src="images/eda-class-balance.png" data-i18n-alt="figClassBalanceAlt" alt="Bar chart, log scale: detected 17,949; recent absence 20; long absence 123; extirpated 82" loading="lazy" onerror="this.parentElement.classList.add('eda-figure-missing')">
@@ -317,45 +316,63 @@
     <!-- ---- Sub-block 3: Pre-Training ---- -->
 
     <div class="methodology-block anchor-block" id="pre-training">
-      <h3 class="subhead reveal" data-i18n="preTrainingTitle">Pre-processing: Features &amp; Preparation</h3>
-      <p class="reveal" data-i18n="preTrainingIntro">From the raw data, 15 variables were carried forward into the final feature set — the same ones used in the interactive tool below. Each was chosen because it plausibly affects a pika's chances of surviving both a summer and a winter at a given site.</p>
-      <p class="reveal" data-i18n="preTrainingPrep">Tree-based models don't require feature scaling, so the main preprocessing steps were spatial thinning to reduce sampling bias, generating pseudo-absence points at a fixed ratio to presence records, and splitting the data by geographic block — rather than at random — so that nearby points from the same site never end up in both the training and validation sets.</p>
+    <h3 class="subhead reveal" data-i18n="preTrainingTitle">Pre-processing: Features &amp; Preparation</h3>
+  <p class="reveal" data-i18n="preTrainingIntro">Before modelling, the geographic coordinates and year of observation were dropped from the predictor set. Both were essential for retrieving the right environmental data in the first place, but leaving them in as predictors risked letting the model memorize <em>where</em> and <em>when</em> pikas were recorded, rather than learn the environmental conditions that actually determine habitat suitability.</p>
 
-      <div class="feature-table-wrap reveal">
-        <table class="feature-table">
-          <caption data-i18n="featureTableCaption">Final Feature Set (15 variables)</caption>
-          <thead>
-            <tr>
-              <th data-i18n="featureColVar">Variable</th>
-              <th data-i18n="featureColDesc">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="group-row"><th colspan="2" data-i18n="legendLocation">Location &amp; Time</th></tr>
-            <tr><td class="feature-var">latitude</td><td class="feature-desc" data-i18n="featDescLatitude">Latitude of the site, in decimal degrees.</td></tr>
-            <tr><td class="feature-var">longitude</td><td class="feature-desc" data-i18n="featDescLongitude">Longitude of the site, in decimal degrees.</td></tr>
-            <tr><td class="feature-var">year</td><td class="feature-desc" data-i18n="fieldYearHint">Observation or future-projection year.</td></tr>
-            <tr><td class="feature-var">slope_deg</td><td class="feature-desc" data-i18n="fieldSlopeHint">Terrain steepness at the site.</td></tr>
+  <h4 class="eda-subhead reveal" data-i18n="featureEngTitle">From 35 Candidate Variables&hellip;</h4>
+  <p class="reveal" data-i18n="featureEngText">An initial set of 35 environmental predictors was assembled from the literature on species distribution modelling and pika ecology: WorldClim's long-term bioclimatic normals used as-is, plus topographic variables and TerraClimate's monthly data aggregated into seasonal temperature extremes, drought severity, and snow-related metrics — several with one-year-lagged versions to capture carry-over effects on forage and snowpack.</p>
 
-            <tr class="group-row"><th colspan="2" data-i18n="legendTemperature">Temperature Variables</th></tr>
-            <tr><td class="feature-var">bio1_temp_mean_annual</td><td class="feature-desc" data-i18n="fieldBio1Hint">Average temperature across the year (WorldClim BIO1).</td></tr>
-            <tr><td class="feature-var">bio4_seasonality_temp</td><td class="feature-desc" data-i18n="fieldBio4Hint">Variability through the year (WorldClim BIO4).</td></tr>
-            <tr><td class="feature-var">bio5_temp_max_warm</td><td class="feature-desc" data-i18n="featDescBio5">Average maximum temperature of the warmest month (WorldClim BIO5).</td></tr>
-            <tr><td class="feature-var">bio6_temp_min_cold</td><td class="feature-desc" data-i18n="featDescBio6">Average minimum temperature of the coldest month (WorldClim BIO6).</td></tr>
-            <tr><td class="feature-var">winter_max_temperature</td><td class="feature-desc" data-i18n="fieldWinterMaxHint">Warmest point typically reached in winter.</td></tr>
-            <tr><td class="feature-var">summer_min_temperature</td><td class="feature-desc" data-i18n="fieldSummerMinHint">Coolest point typically reached in summer.</td></tr>
-            <tr><td class="feature-var">months_above_25</td><td class="feature-desc" data-i18n="fieldMonthsAboveHint">Count of months exceeding the pika's heat-stress threshold.</td></tr>
+  <h4 class="eda-subhead reveal" data-i18n="shapTitle">&hellip;to 20, via SHAP</h4>
+  <p class="reveal" data-i18n="shapText">Because climate variables are inherently correlated, the goal wasn't to strip out correlation itself, but to find predictors that were both highly correlated <em>and</em> added little beyond what other variables already captured. The model was first trained on all 35 predictors, then a SHAP (SHapley Additive exPlanations) analysis ranked each one by its average contribution to predictions. Low-importance variables flagged by SHAP were cross-checked against their Spearman correlation with stronger predictors and removed iteratively — trimming the set from 35 to 20 variables with no loss in predictive performance.</p>
+  <p class="reveal" data-i18n="shapResult">Temperature dominates the result: the maximum temperature of the warmest month (BIO5), the observation year's maximum temperature, and annual mean temperature (BIO1) are the three strongest predictors — consistent with the pika's well-documented sensitivity to heat. Snowpack metrics, such as snow water equivalent and months with snow, form an important secondary group. Elevation's individual contribution turns out to be small once climate is accounted for, since its effect on suitability is largely mediated through climate rather than independent.</p>
 
-            <tr class="group-row"><th colspan="2" data-i18n="legendPrecipitation">Precipitation &amp; Snow</th></tr>
-            <tr><td class="feature-var">bio12_precip_annual</td><td class="feature-desc" data-i18n="fieldBio12Hint">Total precipitation across the year (WorldClim BIO12).</td></tr>
-            <tr><td class="feature-var">estim_snow</td><td class="feature-desc" data-i18n="fieldSnowHint">Approximate depth — insulates pikas through winter.</td></tr>
+  <figure class="eda-figure reveal">
+    <img src="images/shap-feature-importance.png" data-i18n-alt="figShapAlt" alt="Horizontal bar chart of mean SHAP feature importance for the final 20 predictors, ranked from bio5_temp_max_warm (highest) down to AnnualMean_swe (lowest)" loading="lazy" onerror="this.parentElement.classList.add('eda-figure-missing')">
+    <figcaption class="eda-figure-caption" data-i18n="figShapCaption">Figure: SHAP feature importance for the final 20 predictors — temperature variables dominate, with snow water equivalent and precipitation seasonality as secondary drivers.</figcaption>
+  </figure>
 
-            <tr class="group-row"><th colspan="2" data-i18n="legendDrought">Drought Conditions</th></tr>
-            <tr><td class="feature-var">Worst_drought</td><td class="feature-desc" data-i18n="fieldDroughtHint">More negative = more severe drought (e.g., a PDSI-style index).</td></tr>
-            <tr><td class="feature-var">Worst_drought_YearBefore</td><td class="feature-desc" data-i18n="fieldDroughtPrevHint">Same index for the preceding year, capturing lagged effects.</td></tr>
-          </tbody>
-        </table>
-      </div>
+  <div class="feature-table-wrap reveal">
+    <table class="feature-table">
+      <caption data-i18n="featureTableCaption">Final Feature Set (20 variables)</caption>
+      <thead>
+        <tr>
+          <th data-i18n="featureColVar">Variable</th>
+          <th data-i18n="featureColDesc">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="group-row"><th colspan="2" data-i18n="legendTopography">Topography</th></tr>
+        <tr><td class="feature-var">elevation</td><td class="feature-desc" data-i18n="featDescElevation">Shapes temperature, snow persistence, vegetation, and oxygen availability; pikas are predominantly a high-elevation, alpine species.</td></tr>
+
+        <tr class="group-row"><th colspan="2" data-i18n="legendTemperature">Temperature</th></tr>
+        <tr><td class="feature-var">bio5_temp_max_warm</td><td class="feature-desc" data-i18n="featDescBio5">Average maximum temperature of the warmest month (WorldClim BIO5) — the single strongest predictor, since extreme summer heat is a major limiting factor for pikas.</td></tr>
+        <tr><td class="feature-var">max_temperature</td><td class="feature-desc" data-i18n="featDescMaxTemp">Maximum temperature recorded during the observation year — annual heat extremes.</td></tr>
+        <tr><td class="feature-var">bio1_temp_mean_annual</td><td class="feature-desc" data-i18n="featDescBio1">Average temperature across the year (WorldClim BIO1) — overall thermal conditions.</td></tr>
+        <tr><td class="feature-var">months_above_25</td><td class="feature-desc" data-i18n="featDescMonthsAbove25">Count of months exceeding 25°C — frequency of potentially stressful heat conditions.</td></tr>
+        <tr><td class="feature-var">winter_max_temperature</td><td class="feature-desc" data-i18n="featDescWinterMax">Warmest point typically reached in winter — unusually warm winters can reduce snow persistence.</td></tr>
+        <tr><td class="feature-var">bio4_seasonality_temp</td><td class="feature-desc" data-i18n="featDescBio4">Variability through the year (WorldClim BIO4), linked to snow cover duration and growing-season length.</td></tr>
+        <tr><td class="feature-var">bio6_temp_min_cold</td><td class="feature-desc" data-i18n="featDescBio6">Average minimum temperature of the coldest month (WorldClim BIO6) — a proxy for winter extremes and the insulating role of snow.</td></tr>
+        <tr><td class="feature-var">winter_min_temperature</td><td class="feature-desc" data-i18n="featDescWinterMin">Winter minimum temperature during the observation year — the harshest conditions experienced that winter.</td></tr>
+        <tr><td class="feature-var">summer_min_temperature</td><td class="feature-desc" data-i18n="featDescSummerMin">Coolest point typically reached in summer — cool nighttime conditions during the growing season.</td></tr>
+
+        <tr class="group-row"><th colspan="2" data-i18n="legendPrecipitation">Precipitation &amp; Snow</th></tr>
+        <tr><td class="feature-var">bio15_seasonality_precip</td><td class="feature-desc" data-i18n="featDescBio15">How evenly precipitation is distributed through the year (WorldClim BIO15), shaping plant growth and snow accumulation.</td></tr>
+        <tr><td class="feature-var">bio12_precip_annual</td><td class="feature-desc" data-i18n="featDescBio12">Total precipitation across the year (WorldClim BIO12), reflecting overall water availability for vegetation.</td></tr>
+        <tr><td class="feature-var">winter_precip</td><td class="feature-desc" data-i18n="featDescWinterPrecip">Total winter precipitation — a key input to snowpack formation.</td></tr>
+        <tr><td class="feature-var">months_with_snow</td><td class="feature-desc" data-i18n="featDescMonthsSnow">Number of months with snow cover during the observation year — duration of winter insulation.</td></tr>
+        <tr><td class="feature-var">months_with_snow_YearBefore</td><td class="feature-desc" data-i18n="featDescMonthsSnowPrev">Months with snow cover in the previous year — a lagged version of the same effect.</td></tr>
+        <tr><td class="feature-var">estim_snow</td><td class="feature-desc" data-i18n="featDescEstimSnow">Approximate total snow accumulation — insulates the talus in winter and feeds water availability after melt.</td></tr>
+
+        <tr class="group-row"><th colspan="2" data-i18n="legendSWE">Snow Water Equivalent (SWE)</th></tr>
+        <tr><td class="feature-var">AnnualMean_swe</td><td class="feature-desc" data-i18n="featDescAnnualSwe">Average water stored in the snowpack across the observation year.</td></tr>
+        <tr><td class="feature-var">AnnualMean_YearBefore_swe</td><td class="feature-desc" data-i18n="featDescAnnualSwePrev">Annual mean SWE, previous year — carry-over snowpack effects on vegetation and hydrology.</td></tr>
+        <tr><td class="feature-var">Max_snow_YearBefore</td><td class="feature-desc" data-i18n="featDescMaxSwePrev">Maximum SWE, previous year — the prior year's peak snow depth.</td></tr>
+        <tr><td class="feature-var">springMean_YearBefore_swe</td><td class="feature-desc" data-i18n="featDescSpringSwePrev">Spring mean SWE, previous year — lagged snowmelt-timing effects on forage availability.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="reveal" data-i18n="preTrainingBalance">The cleaned dataset's 14,393 presence and 187 absence records form a heavily imbalanced base for training — handled next, in the model-building step, through balanced resampling and an ensemble approach.</p>
     </div>
 
     <!-- ---- Sub-block 4: Model ---- -->
