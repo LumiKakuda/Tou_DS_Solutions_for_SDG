@@ -378,12 +378,23 @@
       </tbody>
     </table>
   </div>
-  <p class="reveal" data-i18n="preTrainingBalance">The cleaned dataset's 14,393 presence and 187 absence records form a heavily imbalanced base for training — handled next, in the model-building step, through balanced resampling and an ensemble approach.</p>
+  
     </div>
 
   <div class="eda-highlight reveal">
-    <strong class="eda-highlight-title" data-i18n="shapCorrelatedTitle">Extra section </strong>
-    <p data-i18n="shapCorrelatedText">The correlation-based pruning step was only ever applied to <em>low-importance</em> variables flagged by SHAP — never to the top-ranked predictors, so <code>bio5_temp_max_warm</code>, <code>max_temperature</code>, and <code>bio1_temp_mean_annual</code> were never candidates for removal on correlation grounds alone. They're also not fully redundant: each captures a different temporal slice of the same underlying heat signal. BIO5 is the long-term (1970&ndash;2000) climatological normal for the warmest month; <code>max_temperature</code> is the actual maximum recorded in that specific observation year, capturing how far that year departed from the baseline; BIO1 is the long-term annual mean, reflecting overall thermal regime rather than a summer spike alone. A site can have a high BIO5 baseline but a mild <code>max_temperature</code> in a given year, or the reverse &mdash; and those are exactly the cases where keeping all three gives the model information a single temperature variable would miss.</p>
+    <strong class="eda-highlight-title" data-i18n="shapCorrelatedTitle">How the features influence the predictions </strong>
+    <p data-i18n="shapCorrelatedText">The SHAP summary plot below provides insight into how each environmental variable influences the model's predictions of habitat suitability. Unlike feature importance, which only ranks variables by their overall contribution, SHAP values show both the direction and magnitude of each predictor's effect for every observation. Each point represents a single observation, with its position on the x-axis indicating its SHAP value. Positive SHAP values increase the predicted habitat suitability, whereas negative SHAP values decrease it. Point colour indicates the value of the predictor, with red representing high values and blue representing low values.</p>
+<figure class="eda-figure reveal">
+    <img src="images/SHAP_summary_plot6_top20_final.png" data-i18n-alt="figShapAlt" alt="SHAP summary plot  for the final 20 predictors" loading="lazy" onerror="this.parentElement.classList.add('eda-figure-missing')">
+    <figcaption class="eda-figure-caption" data-i18n="figShapCaption">Figure: SHAP summary plot for the final 20 predictors.</figcaption>
+  </figure>
+<p data-i18n="shapCorrelatedText">The SHAP summary plot confirms that temperature is the strongest driver of habitat suitability for the American pika. For the three most influential temperature variables—annual mean temperature (bio1), maximum temperature of the warmest month (bio5), and maximum temperature—high temperatures (red points) are predominantly associated with negative SHAP values, indicating a reduction in predicted habitat suitability. In contrast, lower temperatures (blue points) generally have positive SHAP values, increasing the likelihood of suitable habitat. This pattern reflects the pika's dependence on cool alpine environments and its sensitivity to heat stress.</p>
+
+<p data-i18n="shapCorrelatedText">Snow-related variables show the opposite pattern. Higher values of annual mean snow water equivalent (SWE) from the previous year, maximum SWE, and the number of snow-covered months are generally associated with positive SHAP values, suggesting that greater snow accumulation and longer-lasting snow cover improve habitat suitability. These conditions likely provide thermal insulation during winter and help maintain favourable moisture and temperature conditions throughout the year.</p>
+
+<p data-i18n="shapCorrelatedText"></p>Precipitation seasonality (bio15) exhibits a more variable response, with both positive and negative SHAP values across its range. This indicates that its influence on habitat suitability is more complex and depends on interactions with other environmental conditions rather than following a simple linear trend.
+
+Overall, the SHAP analysis reinforces the feature importance results by showing that temperature variables are the primary determinants of American pika habitat suitability, while snowpack characteristics provide important secondary controls. Together, these findings demonstrate that the final set of 20 environmental predictors captures the key climatic and topographic factors influencing pika distribution, resulting in a model that is both accurate and ecologically interpretabile.</p>
   </div>
 
     <!-- ---- Sub-block 4: Model ---- -->
