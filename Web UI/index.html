@@ -1480,10 +1480,14 @@
       caption: 'Projected suitability for ~2050 under SSP2-4.5 (mild warming).',
       info: 'You\u2019re viewing the <strong>Mild Scenario (SSP2-4.5)</strong> \u2014 the classifier\u2019s re-scored suitability for around 2050 assuming moderate emissions reductions. Cooler colors mark sites that stay suitable; warmer colors mark sites the model expects to lose suitability.',
       stats: [
-        { label: 'Sites remaining suitable', value: '\u2014' },
-        { label: 'Sites losing suitability', value: '\u2014' },
-        { label: 'Mean suitability change', value: '\u2014' }
-      ]
+        { label: 'Mean suitability today:', value: '0.934' },
+        { label: 'Mean suitability mild:', value: '0.826' },
+        { label: 'Mean change in suitability:', value: '-0.108' },
+        { label: 'Sites declining:', value: '12670 / 14580' },
+        { label: 'Sharp decline (less than 0.20 suitability):', value: '3203' }
+      ],
+      legend: 'Each dot is one of the training sites, re-scored using the mild-scenario climate inputs for ~2050. Color follows the same 0-to-1 suitability scale shown on the map: green sites are still expected to be highly suitable; orange and red sites are the ones the model expects to lose suitability as their local climate shifts.'
+
     },
     extreme: {
       image: 'images/extreme-scenario-2050.png',
@@ -1491,10 +1495,13 @@
       caption: 'Projected suitability for ~2050 under SSP5-8.5 (extreme warming).',
       info: 'You\u2019re viewing the <strong>Extreme Scenario (SSP5-8.5)</strong> \u2014 the classifier\u2019s re-scored suitability for around 2050 under continued high emissions. Expect a larger share of currently suitable sites to fall below the suitability threshold than under the mild scenario.',
       stats: [
-        { label: 'Sites remaining suitable', value: '\u2014' },
-        { label: 'Sites losing suitability', value: '\u2014' },
-        { label: 'Mean suitability change', value: '\u2014' }
-      ]
+        { label: 'Mean suitability today:', value: '0.934' },
+        { label: 'Mean suitability extreme:', value: '0.785' },
+        { label: 'Mean change in suitability:', value: '-0.148' },
+        { label: 'Sites declining:', value: '13673 / 14580' },
+        { label: 'Sharp decline (less than 0.20 suitability):', value: '4729' }
+      ],
+      legend: 'Each dot is one of the training sites, re-scored using the mild-scenario climate inputs for ~2050. Color follows the same 0-to-1 suitability scale shown on the map: green sites are still expected to be highly suitable; orange and red sites are the ones the model expects to lose suitability as their local climate shifts.'
     }
   };
 
@@ -1506,15 +1513,15 @@
   var viewIntro = document.getElementById('projection-view-intro');
   var scenarioInfo = document.getElementById('projection-scenario-info');
 
-  function renderStats(stats) {
-    if (!stats) {
-      statsPanel.innerHTML = '<p class="proj-stats-empty">This is the raw occurrence data the model was trained on \u2014 no projection stats apply here.</p>';
-      return;
-    }
-    var rows = stats.map(function (s) {
-      return '<div class="proj-stats-row"><dt>' + s.label + '</dt><dd>' + s.value + '</dd></div>';
-    }).join('');
-    statsPanel.innerHTML = '<dl class="proj-stats-list">' + rows + '</dl>';
+  function renderStats(stats, legend) {
+  var statsHtml = stats
+    ? '<dl class="proj-stats-list">' + stats.map(function (s) {
+        return '<div class="proj-stats-row"><dt>' + s.label + '</dt><dd>' + s.value + '</dd></div>';
+      }).join('') + '</dl>'
+    : '<p class="proj-stats-empty">This is the raw occurrence data the model was trained on \u2014 no projection stats apply here.</p>';
+
+  var legendHtml = legend ? '<p class="proj-plot-explainer">' + legend + '</p>' : '';
+  statsPanel.innerHTML = statsHtml + legendHtml;
   }
 
   function setView(view) {
@@ -1546,7 +1553,7 @@
       if (scenarioInfo) scenarioInfo.hidden = true;
     }
 
-    renderStats(data.stats);
+    renderStats(data.stats, data.legend);
   }
 
   buttons.forEach(function (btn) {

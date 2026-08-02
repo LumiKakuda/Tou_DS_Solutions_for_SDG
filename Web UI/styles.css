@@ -520,6 +520,15 @@ table.feature-table tbody tr:last-child td { border-bottom: none; }
 .proj-stats-row dd { margin: 0; font-family: var(--font-mono); font-weight: 600; color: var(--color-slate); text-align: right; }
 .proj-stats-empty { margin: 0; font-size: 0.9rem; color: var(--color-text-muted); }
 
+.proj-plot-explainer {
+  margin: var(--space-sm) 0 0;
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--color-border-soft);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
 /* ================================================================
    LEAFLET OVERRIDES
    ================================================================ */
