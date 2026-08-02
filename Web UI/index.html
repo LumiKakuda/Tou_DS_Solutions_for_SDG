@@ -60,7 +60,7 @@
       <a href="#problem" class="nav-link" data-i18n="navProblem">Problem</a>
       <a href="#research-question" class="nav-link" data-i18n="navResearchQuestion">Research Question</a>
       <a href="#methodology" class="nav-link" data-i18n="navMethodology">Methodology</a>
-      <a href="#test-model" class="nav-link nav-link-cta" data-i18n="navTest">Try It</a>
+      <a href="#test-model" class="nav-link nav-link-cta" data-i18n="navTest">Check It</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="main-nav">
       <span></span><span></span><span></span>
@@ -90,7 +90,7 @@
     <h1 data-i18n="heroTitle">Protecting the American Pika</h1>
     <p class="hero-subtitle" data-i18n-html="heroSubtitle"><em>Ochotona princeps</em> survives on a knife-edge of temperature. This is the data behind its disappearing mountain habitat — and a model built to help track it.</p>
     <div class="hero-actions">
-      <a href="#test-model" class="btn btn-primary" data-i18n="heroBtnPrimary">Test the Prediction Model</a>
+      <a href="#test-model" class="btn btn-primary" data-i18n="heroBtnPrimary">Check the Model</a>
       <a href="#problem" class="btn btn-outline-light" data-i18n="heroBtnSecondary">Learn About the Pika</a>
     </div>
   </div>
@@ -273,46 +273,117 @@
   </div>
 
     <!-- ---- Sub-block 2: EDA ---- -->
-    <div class="methodology-block anchor-block" id="eda">
-      <h3 class="subhead reveal" data-i18n="edaTitle">Exploratory Data Analysis (EDA)</h3>
-      <p class="reveal" data-i18n="edaIntro">This section draws on two related analyses: a full exploratory analysis of every available presence and absence record, and a follow-up study that restricts the presence data to the same geographic window as the absence surveys, to test whether the patterns found in the first analysis hold up once that mismatch is controlled for.</p>
+  <div class="methodology-block anchor-block" id="eda">
+  <h3 class="subhead reveal" data-i18n="edaTitle">Exploratory Data Analysis (EDA)</h3>
+  <p class="reveal" data-i18n="edaIntro">This section draws on two related analyses: a full exploratory analysis of every available presence and absence record, and a follow-up study that restricts the presence data to the same geographic window as the absence surveys, to test whether the patterns found in the first analysis hold up once that mismatch is controlled for.</p>
 
-      <h4 class="eda-subhead reveal" data-i18n="edaClassBalanceTitle">The Data at a Glance</h4>
-      <p class="reveal" data-i18n="edaClassBalanceText">The original combined dataset (before any data cleaning process) contains 17,949 presence records and 225 absence records, the latter categorized into recent absence, long absence, and locally extinct ("extirpated") sites within the Great Basin. This represents a presence-to-absence ratio of approximately 80:1. Due to this magnitude of imbalance, a logarithmic scale is used in the chart below to display both categories clearly.</p>
+  <h4 class="eda-subhead reveal" data-i18n="edaClassBalanceTitle">The Data at a Glance</h4>
+  <p class="reveal" data-i18n="edaClassBalanceText">The combined dataset contains 17,949 presence records and 225 absence records, the latter categorized into recent absence, long absence, and locally extinct ("extirpated") sites within the Great Basin. This represents a presence-to-absence ratio of approximately 80:1. Due to this magnitude of imbalance, a logarithmic scale is used in the chart below to display both categories clearly.</p>
 
-      <figure class="eda-figure reveal">
-        <img src="images/eda-class-balance.png" data-i18n-alt="figClassBalanceAlt" alt="Bar chart, log scale: detected 17,949; recent absence 20; long absence 123; extirpated 82" loading="lazy" onerror="this.parentElement.classList.add('eda-figure-missing')">
-        <figcaption class="eda-figure-caption" data-i18n="figClassBalanceCaption">Figure: record count by status, log scale &mdash; detected 17,949 &middot; recent absence 20 &middot; long absence 123 &middot; extirpated 82.</figcaption>
-      </figure>
-      <p class="eda-note reveal" data-i18n="classBalanceNote">Log scale &mdash; presence : absence ratio = 79.8 : 1.</p>
+  <figure class="eda-figure reveal">
+    <img src="images/eda-class-balance.png" data-i18n-alt="figClassBalanceAlt" alt="Bar chart, log scale: detected 17,949; recent absence 20; long absence 123; extirpated 82" loading="lazy" onerror="this.parentElement.classList.add('eda-figure-missing')">
+    <figcaption class="eda-figure-caption" data-i18n="figClassBalanceCaption">Figure: record count by status, log scale &mdash; detected 17,949 &middot; recent absence 20 &middot; long absence 123 &middot; extirpated 82.</figcaption>
+  </figure>
+  <p class="eda-note reveal" data-i18n="classBalanceNote">Log scale &mdash; presence : absence ratio = 79.8 : 1.</p>
 
-      <h4 class="eda-subhead reveal" data-i18n="edaGeoTitle">The Geographic Confound</h4>
-      <p class="reveal" data-i18n="edaGeoText">Spatial distribution varies significantly between observation types. Presence records cover a wide latitudinal range from approximately 34°N to 69°N across the American pika range. In contrast, absence records are geographically restricted to a specific corridor between roughly 37.7°N and 48.5°N, encompassing the Sierra Nevada, Great Basin, and northern Rockies regions. Evaluating presence and absence across the entire dataset without controlling for this geographic asymmetry may introduce spatial confounding between local ecological factors and broader regional climate differences.</p>
+  <h4 class="eda-subhead reveal" data-i18n="edaProvenanceTitle">Data Sources &amp; Duplicates</h4>
+  <p class="reveal" data-i18n="edaProvenanceText">The presence file aggregates several original sources, identifiable from its record IDs: mostly iNaturalist citizen-science observations, a large secondary contribution from the Arctos natural-history-museum network, and a mix of other museum catalog codes and GBIF-style UUIDs. Presence and absence share 43 columns; three fields &mdash; <code>patch_size</code>, <code>slope</code>, and <code>units</code> &mdash; exist only in the presence file and are almost entirely empty, so they add little value as-is.</p>
+  <p class="reveal" data-i18n="edaDuplicatesText">Neither file contains full-row duplicates, and there is no ID overlap between presence and absence &mdash; a clean separation between the two classes. The 68 duplicated IDs within the absence file are expected: absence IDs are site names, and the same site was legitimately resurveyed in different years. The 3 duplicated IDs in presence are negligible against ~17,949 rows.</p>
 
-      <figure class="eda-figure reveal">
-        <img src="images/eda-geo-range.png" data-i18n-alt="figGeoRangeAlt" alt="Latitude range comparison: presence 34.2 to 69.0 degrees North; absence 37.7 to 48.5 degrees North, a narrow band within the presence range" loading="lazy" onerror="this.parentElement.classList.add('eda-figure-missing')">
-        <figcaption class="eda-figure-caption" data-i18n="figGeoRangeCaption">Figure: latitude range &mdash; presence 34.2&deg;&ndash;69.0&deg;N vs. absence 37.7&deg;&ndash;48.5&deg;N.</figcaption>
-      </figure>
+  <h4 class="eda-subhead reveal" data-i18n="edaMissingTitle">Missing Data</h4>
+  <p class="reveal" data-i18n="edaMissingText"><code>patch_size</code> (~99.9%), <code>units</code> (~88.9%), and <code>slope</code> (~88.8%) are almost completely empty in the presence file. Beyond those three, a supplementary block of drought/snow/temperature-extreme variables (PDSI, SWE, max/min snow) is missing in roughly 15% of presence rows and 7% of absence rows &mdash; and missing at nearly identical rates across many columns at once, which points to whole records falling outside the coverage of those supplementary raster layers rather than random per-cell gaps. The core BIO1&ndash;BIO15 variables, <code>months_with_snow</code>, <code>estim_snow</code>, and <code>winter_precip</code> are essentially complete in both files.</p>
 
-      <h4 class="eda-subhead reveal" data-i18n="edaComparisonTitle">Comparing the Full Dataset and a Regional Subset</h4>
-      <p class="reveal" data-i18n="edaComparisonText">To test that confound directly, a second analysis restricts the presence data to the exact geographic bounding box covered by the absence surveys &mdash; no buffer, no invented parameters. This keeps 4,480 of the 17,949 presence records (25%) and improves the class-imbalance ratio from 79.8:1 down to 19.9:1, at the cost of discarding most of the presence data.</p>
+  <div class="eda-highlight reveal">
+    <strong class="eda-highlight-title" data-i18n="edaElevZeroTitle">A Data-Quality Catch: Elevation Recorded as 0.0</strong>
+    <p data-i18n="edaElevZeroText">36 presence rows (0.2% of the presence data) have <code>elevation == 0.0</code> &mdash; implausible for an alpine specialist, and more likely a sentinel for a failed elevation lookup than a genuine sea-level record. These rows cluster at the extreme geographic edges of the presence data (e.g. the northernmost and southeasternmost points), consistent with coordinates falling outside the elevation raster's coverage. Recoding <code>elevation == 0.0</code> to missing before any modeling that uses elevation is the recommended fix; within the regional subset described below, this issue disappears entirely &mdash; all 36 rows sit outside that region's boundary.</p>
+  </div>
 
-      <figure class="eda-figure reveal">
-        <img src="images/eda-tradeoff.png" data-i18n-alt="figTradeoffAlt" alt="Grouped bar chart, log scale: full range has 17,949 presence and 225 absence records (79.8 to 1); regional subset has 4,480 presence and 225 absence records (19.9 to 1)" loading="lazy" onerror="this.parentElement.classList.add('eda-figure-missing')">
-        <figcaption class="eda-figure-caption" data-i18n="figTradeoffCaption">Figure: presence/absence counts, full range vs. regional subset (79.8:1 &rarr; 19.9:1).</figcaption>
-      </figure>
-      <p class="eda-note reveal" data-i18n="edaTradeoffCaption">Restricting to the absence region roughly quarters the imbalance ratio &mdash; at the cost of three-quarters of the presence data.</p>
+  <h4 class="eda-subhead reveal" data-i18n="edaGeoTitle">The Geographic Confound</h4>
+  <p class="reveal" data-i18n="edaGeoText">Spatial distribution varies significantly between observation types. Presence records cover a wide latitudinal range from approximately 34°N to 69°N across the American pika range. In contrast, absence records are geographically restricted to a specific corridor between roughly 37.7°N and 48.5°N, encompassing the Sierra Nevada, Great Basin, and northern Rockies regions. Evaluating presence and absence across the entire dataset without controlling for this geographic asymmetry may introduce spatial confounding between local ecological factors and broader regional climate differences.</p>
 
-      <div class="eda-highlight reveal">
-        <strong class="eda-highlight-title" data-i18n="edaElevationTitle">Elevation: the Headline Reversal</strong>
-        <p data-i18n="edaElevationText">Across the full dataset, detected sites had the <em>highest</em> median elevation of all four status groups (&asymp;&nbsp;2,438&nbsp;m) &mdash; elevation looked like a clean, strong predictor. Restricted to the absence region alone, that flips: detected sites drop to the lowest-or-tied-lowest median (&asymp;&nbsp;2,012&nbsp;m), while extirpated sites remain the highest (&asymp;&nbsp;2,516&nbsp;m). The historical resurvey sites were deliberately chosen at high-elevation, well-documented habitat &mdash; so within this specific region, being "detected" nearby is not the same as being at the highest elevation. Elevation's apparent importance in a range-wide model may partly reflect which broad region a point falls in, rather than how suitable that specific elevation is.</p>
+  <figure class="eda-figure reveal">
+    <img src="images/eda-geo-range.png" data-i18n-alt="figGeoRangeAlt" alt="Latitude range comparison: presence 34.2 to 69.0 degrees North; absence 37.7 to 48.5 degrees North, a narrow band within the presence range" loading="lazy" onerror="this.parentElement.classList.add('eda-figure-missing')">
+    <figcaption class="eda-figure-caption" data-i18n="figGeoRangeCaption">Figure: latitude range &mdash; presence 34.2&deg;&ndash;69.0&deg;N vs. absence 37.7&deg;&ndash;48.5&deg;N.</figcaption>
+  </figure>
 
-        <figure class="eda-figure">
-          <img src="images/eda-elevation-compare.png" data-i18n-alt="figElevationAlt" alt="Two-panel bar chart comparing median elevation by status: globally, detected sites have the highest median elevation (2438 m); restricted to the absence region, detected sites have the lowest median elevation (2012 m), while extirpated remains highest (2516 m) in both panels." loading="lazy" onerror="this.parentElement.classList.add('eda-figure-missing')">
-          <figcaption class="eda-figure-caption" data-i18n="figElevationCaption">Figure: median elevation by status, global vs. regional &mdash; detected goes from highest to lowest.</figcaption>
-        </figure>
-      </div>
-    </div>
+  <h4 class="eda-subhead reveal" data-i18n="edaComparisonTitle">Comparing the Full Dataset and a Regional Subset</h4>
+  <p class="reveal" data-i18n="edaComparisonText">To test that confound directly, a second analysis restricts the presence data to the exact geographic bounding box covered by the absence surveys &mdash; no buffer, no invented parameters. This keeps 4,480 of the 17,949 presence records (25%) and improves the class-imbalance ratio from 79.8:1 down to 19.9:1, at the cost of discarding most of the presence data.</p>
+
+  <p class="reveal" data-i18n="edaBufferIntro">That "no buffer" choice was tested, not assumed: presence-record counts were checked against a range of buffer distances added around the absence bounding box before settling on zero.</p>
+
+  <div class="feature-table-wrap reveal">
+    <table class="feature-table">
+      <caption data-i18n="edaBufferCaption">Presence Records Retained vs. Buffer Around the Absence Region</caption>
+      <thead>
+        <tr>
+          <th data-i18n="edaBufferColBuffer">Buffer</th>
+          <th data-i18n="edaBufferColN">Presence Records Kept</th>
+          <th data-i18n="edaBufferColPct">% of Full Presence Data</th>
+          <th data-i18n="edaBufferColRatio">Presence : Absence Ratio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>0.00&deg;</td><td>4,480</td><td>25.0%</td><td>19.9 : 1</td></tr>
+        <tr><td>0.25&deg;</td><td>5,558</td><td>31.0%</td><td>24.7 : 1</td></tr>
+        <tr><td>0.50&deg;</td><td>6,121</td><td>34.1%</td><td>27.2 : 1</td></tr>
+        <tr><td>1.00&deg;</td><td>6,867</td><td>38.3%</td><td>30.5 : 1</td></tr>
+        <tr><td>1.50&deg;</td><td>8,826</td><td>49.2%</td><td>39.2 : 1</td></tr>
+        <tr><td>2.00&deg;</td><td>9,233</td><td>51.4%</td><td>41.0 : 1</td></tr>
+        <tr><td>3.00&deg;</td><td>10,252</td><td>57.1%</td><td>45.6 : 1</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="eda-note reveal" data-i18n="edaBufferNote">Gains taper off quickly &mdash; even a 3&deg; buffer (roughly 300&nbsp;km) only recovers 57% of presence data while the ratio climbs back to 45.6 : 1. The exact bounding box (0&deg; buffer) was kept as the most defensible option, since it ties directly to where the absence resurveys actually happened.</p>
+
+  <figure class="eda-figure reveal">
+    <img src="images/eda-tradeoff.png" data-i18n-alt="figTradeoffAlt" alt="Grouped bar chart, log scale: full range has 17,949 presence and 225 absence records (79.8 to 1); regional subset has 4,480 presence and 225 absence records (19.9 to 1)" loading="lazy" onerror="this.parentElement.classList.add('eda-figure-missing')">
+    <figcaption class="eda-figure-caption" data-i18n="figTradeoffCaption">Figure: presence/absence counts, full range vs. regional subset (79.8:1 &rarr; 19.9:1).</figcaption>
+  </figure>
+  <p class="eda-note reveal" data-i18n="edaTradeoffCaption">Restricting to the absence region roughly quarters the imbalance ratio &mdash; at the cost of three-quarters of the presence data.</p>
+
+  <h4 class="eda-subhead reveal" data-i18n="edaSignalTitle">Which Signals Hold Up Regionally?</h4>
+  <p class="reveal" data-i18n="edaSignalText">The same eight variables were compared between presence and absence twice: once using all presence records, once restricted to the regional subset. Some gaps barely move, some narrow, one reverses outright.</p>
+
+  <div class="feature-table-wrap reveal">
+    <table class="feature-table">
+      <caption data-i18n="edaSignalCaption">Presence&ndash;Absence Comparison: Full Range vs. Regional Subset</caption>
+      <thead>
+        <tr>
+          <th data-i18n="edaSignalColVar">Variable</th>
+          <th data-i18n="edaSignalColFull">Presence Median (Full Range)</th>
+          <th data-i18n="edaSignalColRegional">Presence Median (Regional)</th>
+          <th data-i18n="edaSignalColAbsence">Absence Median</th>
+          <th data-i18n="edaSignalColP">Regional p-value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Elevation (m)</td><td>2,438.4</td><td>2,011.8</td><td>2,136.0</td><td>0.0028</td></tr>
+        <tr><td>BIO1 &ndash; Annual Mean Temp (&deg;C)</td><td>1.51</td><td>3.22</td><td>6.47</td><td>&lt;0.0001</td></tr>
+        <tr><td>BIO5 &ndash; Max Temp Warmest Mo. (&deg;C)</td><td>20.02</td><td>20.28</td><td>26.65</td><td>&lt;0.0001</td></tr>
+        <tr><td>BIO6 &ndash; Min Temp Coldest Mo. (&deg;C)</td><td>-13.05</td><td>-9.26</td><td>-7.53</td><td>&lt;0.0001</td></tr>
+        <tr><td>BIO12 &ndash; Annual Precip (mm)</td><td>677</td><td>1,112</td><td>539</td><td>&lt;0.0001</td></tr>
+        <tr><td>Months with snow</td><td>6.0</td><td>6.0</td><td>4.0</td><td>&lt;0.0001</td></tr>
+        <tr><td>Annual mean PDSI</td><td>-1.84</td><td>-1.87</td><td>1.32</td><td>&lt;0.0001</td></tr>
+        <tr><td>Annual mean SWE (mm)</td><td>97.2</td><td>181.3</td><td>66.5</td><td>&lt;0.0001</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="reveal" data-i18n="edaSignalInterpretation">Snow, PDSI, and BIO5 barely move between the two comparisons &mdash; months-with-snow stays at 6.0, PDSI shifts from -1.84 to -1.87, and the SWE gap actually widens (97 &rarr; 181&nbsp;mm), further above absence's 66&nbsp;mm. These look like real regional signal rather than a sampling artifact. BIO1 and BIO6 keep the same direction (presence colder) but the gap narrows substantially once matched by region &mdash; BIO1's gap shrinks from about 5.0&deg;C globally to about 3.3&deg;C regionally, meaning part of the original gap was regional confounding. BIO12 (precipitation) widens further regionally (677 &rarr; 1,112&nbsp;mm), moving away from absence rather than toward it. Elevation is the one variable that reverses direction entirely.</p>
+
+  <div class="eda-highlight reveal">
+    <strong class="eda-highlight-title" data-i18n="edaElevationTitle">Elevation: the Headline Reversal</strong>
+    <p data-i18n="edaElevationText">Across the full dataset, detected sites had the <em>highest</em> median elevation of all four status groups (&asymp;&nbsp;2,438&nbsp;m) &mdash; elevation looked like a clean, strong predictor. Restricted to the absence region alone, that flips: detected sites drop to the lowest-or-tied-lowest median (&asymp;&nbsp;2,012&nbsp;m), while extirpated sites remain the highest (&asymp;&nbsp;2,516&nbsp;m). The historical resurvey sites were deliberately chosen at high-elevation, well-documented habitat &mdash; so within this specific region, being "detected" nearby is not the same as being at the highest elevation. Elevation's apparent importance in a range-wide model may partly reflect which broad region a point falls in, rather than how suitable that specific elevation is.</p>
+
+    <figure class="eda-figure">
+      <img src="images/eda-elevation-compare.png" data-i18n-alt="figElevationAlt" alt="Two-panel bar chart comparing median elevation by status: globally, detected sites have the highest median elevation (2438 m); restricted to the absence region, detected sites have the lowest median elevation (2012 m), while extirpated remains highest (2516 m) in both panels." loading="lazy" onerror="this.parentElement.classList.add('eda-figure-missing')">
+      <figcaption class="eda-figure-caption" data-i18n="figElevationCaption">Figure: median elevation by status, global vs. regional &mdash; detected goes from highest to lowest.</figcaption>
+    </figure>
+  </div>
+
+  <h4 class="eda-subhead reveal" data-i18n="edaCorrTitle">Correlated Variable Families</h4>
+  <p class="reveal" data-i18n="edaCorrText">The 37 shared environmental variables (excluding IDs, coordinates, year, and status) break into a handful of tightly correlated groups rather than 37 independent signals: a temperature family (BIO1, BIO5, BIO6, max/min temperature and their summer/winter splits), a snow/SWE family (estimated snow, maximum snow-water-equivalent, annual mean SWE, cold-season mean SWE, months with snow), and moderately-to-strongly correlated current-year vs. previous-year pairs. Some pairs are nearly redundant: <code>max_temperature</code> and <code>summer_max_temperature</code> correlate at r&nbsp;=&nbsp;1.000, <code>min_temperature</code> and <code>winter_min_temperature</code> at r&nbsp;=&nbsp;0.997, and annual precipitation (BIO12) and winter precipitation at r&nbsp;=&nbsp;0.976.</p>
+  <p class="reveal" data-i18n="edaCorrStabilityText">This correlation structure barely changes when restricted to the regional subset: <code>max_temperature</code> vs. <code>summer_max_temperature</code> stays at r&nbsp;=&nbsp;1.000, annual mean SWE vs. maximum SWE moves only slightly (0.946 &rarr; 0.937), and the elevation&ndash;temperature relationship holds (r&nbsp;=&nbsp;-0.618 full range vs. -0.608 regional). Unlike the presence-vs-absence comparisons above, correlation among predictors reflects physical relationships that don't depend on which subset of presence points is used.</p>
+  </div>
 
     <!-- ---- Sub-block 3: Pre-Training ---- -->
 
