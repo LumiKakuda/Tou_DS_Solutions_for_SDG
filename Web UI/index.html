@@ -287,7 +287,7 @@
   <p class="eda-note reveal" data-i18n="classBalanceNote">Log scale &mdash; presence : absence ratio = 79.8 : 1.</p>
 
   <h4 class="eda-subhead reveal" data-i18n="edaProvenanceTitle">Data Sources &amp; Duplicates</h4>
-  <p class="reveal" data-i18n="edaProvenanceText">The presence file aggregates several original sources, identifiable from its record IDs: mostly iNaturalist citizen-science observations, a large secondary contribution from the Arctos natural-history-museum network, and a mix of other museum catalog codes and GBIF-style UUIDs. Presence and absence share 43 columns; three fields &mdash; <code>patch_size</code>, <code>slope</code>, and <code>units</code> &mdash; exist only in the presence file and are almost entirely empty, so they add little value as-is.</p>
+  <p class="reveal" data-i18n="edaProvenanceText">Presence and absence share 43 columns; three fields &mdash; <code>patch_size</code>, <code>slope</code>, and <code>units</code> &mdash; exist only in the presence file and are almost entirely empty, so they add little value as-is.</p>
   <p class="reveal" data-i18n="edaDuplicatesText">Neither file contains full-row duplicates, and there is no ID overlap between presence and absence &mdash; a clean separation between the two classes. The 68 duplicated IDs within the absence file are expected: absence IDs are site names, and the same site was legitimately resurveyed in different years. The 3 duplicated IDs in presence are negligible against ~17,949 rows.</p>
 
   <h4 class="eda-subhead reveal" data-i18n="edaMissingTitle">Missing Data</h4>
@@ -305,80 +305,6 @@
     <img src="images/eda-geo-range.png" data-i18n-alt="figGeoRangeAlt" alt="Latitude range comparison: presence 34.2 to 69.0 degrees North; absence 37.7 to 48.5 degrees North, a narrow band within the presence range" loading="lazy" onerror="this.parentElement.classList.add('eda-figure-missing')">
     <figcaption class="eda-figure-caption" data-i18n="figGeoRangeCaption">Figure: latitude range &mdash; presence 34.2&deg;&ndash;69.0&deg;N vs. absence 37.7&deg;&ndash;48.5&deg;N.</figcaption>
   </figure>
-
-  <h4 class="eda-subhead reveal" data-i18n="edaComparisonTitle">Comparing the Full Dataset and a Regional Subset</h4>
-  <p class="reveal" data-i18n="edaComparisonText">To test that confound directly, a second analysis restricts the presence data to the exact geographic bounding box covered by the absence surveys &mdash; no buffer, no invented parameters. This keeps 4,480 of the 17,949 presence records (25%) and improves the class-imbalance ratio from 79.8:1 down to 19.9:1, at the cost of discarding most of the presence data.</p>
-
-  <p class="reveal" data-i18n="edaBufferIntro">That "no buffer" choice was tested, not assumed: presence-record counts were checked against a range of buffer distances added around the absence bounding box before settling on zero.</p>
-
-  <div class="feature-table-wrap reveal">
-    <table class="feature-table">
-      <caption data-i18n="edaBufferCaption">Presence Records Retained vs. Buffer Around the Absence Region</caption>
-      <thead>
-        <tr>
-          <th data-i18n="edaBufferColBuffer">Buffer</th>
-          <th data-i18n="edaBufferColN">Presence Records Kept</th>
-          <th data-i18n="edaBufferColPct">% of Full Presence Data</th>
-          <th data-i18n="edaBufferColRatio">Presence : Absence Ratio</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>0.00&deg;</td><td>4,480</td><td>25.0%</td><td>19.9 : 1</td></tr>
-        <tr><td>0.25&deg;</td><td>5,558</td><td>31.0%</td><td>24.7 : 1</td></tr>
-        <tr><td>0.50&deg;</td><td>6,121</td><td>34.1%</td><td>27.2 : 1</td></tr>
-        <tr><td>1.00&deg;</td><td>6,867</td><td>38.3%</td><td>30.5 : 1</td></tr>
-        <tr><td>1.50&deg;</td><td>8,826</td><td>49.2%</td><td>39.2 : 1</td></tr>
-        <tr><td>2.00&deg;</td><td>9,233</td><td>51.4%</td><td>41.0 : 1</td></tr>
-        <tr><td>3.00&deg;</td><td>10,252</td><td>57.1%</td><td>45.6 : 1</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="eda-note reveal" data-i18n="edaBufferNote">Gains taper off quickly &mdash; even a 3&deg; buffer (roughly 300&nbsp;km) only recovers 57% of presence data while the ratio climbs back to 45.6 : 1. The exact bounding box (0&deg; buffer) was kept as the most defensible option, since it ties directly to where the absence resurveys actually happened.</p>
-
-  <figure class="eda-figure reveal">
-    <img src="images/eda-tradeoff.png" data-i18n-alt="figTradeoffAlt" alt="Grouped bar chart, log scale: full range has 17,949 presence and 225 absence records (79.8 to 1); regional subset has 4,480 presence and 225 absence records (19.9 to 1)" loading="lazy" onerror="this.parentElement.classList.add('eda-figure-missing')">
-    <figcaption class="eda-figure-caption" data-i18n="figTradeoffCaption">Figure: presence/absence counts, full range vs. regional subset (79.8:1 &rarr; 19.9:1).</figcaption>
-  </figure>
-  <p class="eda-note reveal" data-i18n="edaTradeoffCaption">Restricting to the absence region roughly quarters the imbalance ratio &mdash; at the cost of three-quarters of the presence data.</p>
-
-  <h4 class="eda-subhead reveal" data-i18n="edaSignalTitle">Which Signals Hold Up Regionally?</h4>
-  <p class="reveal" data-i18n="edaSignalText">The same eight variables were compared between presence and absence twice: once using all presence records, once restricted to the regional subset. Some gaps barely move, some narrow, one reverses outright.</p>
-
-  <div class="feature-table-wrap reveal">
-    <table class="feature-table">
-      <caption data-i18n="edaSignalCaption">Presence&ndash;Absence Comparison: Full Range vs. Regional Subset</caption>
-      <thead>
-        <tr>
-          <th data-i18n="edaSignalColVar">Variable</th>
-          <th data-i18n="edaSignalColFull">Presence Median (Full Range)</th>
-          <th data-i18n="edaSignalColRegional">Presence Median (Regional)</th>
-          <th data-i18n="edaSignalColAbsence">Absence Median</th>
-          <th data-i18n="edaSignalColP">Regional p-value</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Elevation (m)</td><td>2,438.4</td><td>2,011.8</td><td>2,136.0</td><td>0.0028</td></tr>
-        <tr><td>BIO1 &ndash; Annual Mean Temp (&deg;C)</td><td>1.51</td><td>3.22</td><td>6.47</td><td>&lt;0.0001</td></tr>
-        <tr><td>BIO5 &ndash; Max Temp Warmest Mo. (&deg;C)</td><td>20.02</td><td>20.28</td><td>26.65</td><td>&lt;0.0001</td></tr>
-        <tr><td>BIO6 &ndash; Min Temp Coldest Mo. (&deg;C)</td><td>-13.05</td><td>-9.26</td><td>-7.53</td><td>&lt;0.0001</td></tr>
-        <tr><td>BIO12 &ndash; Annual Precip (mm)</td><td>677</td><td>1,112</td><td>539</td><td>&lt;0.0001</td></tr>
-        <tr><td>Months with snow</td><td>6.0</td><td>6.0</td><td>4.0</td><td>&lt;0.0001</td></tr>
-        <tr><td>Annual mean PDSI</td><td>-1.84</td><td>-1.87</td><td>1.32</td><td>&lt;0.0001</td></tr>
-        <tr><td>Annual mean SWE (mm)</td><td>97.2</td><td>181.3</td><td>66.5</td><td>&lt;0.0001</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="reveal" data-i18n="edaSignalInterpretation">Snow, PDSI, and BIO5 barely move between the two comparisons &mdash; months-with-snow stays at 6.0, PDSI shifts from -1.84 to -1.87, and the SWE gap actually widens (97 &rarr; 181&nbsp;mm), further above absence's 66&nbsp;mm. These look like real regional signal rather than a sampling artifact. BIO1 and BIO6 keep the same direction (presence colder) but the gap narrows substantially once matched by region &mdash; BIO1's gap shrinks from about 5.0&deg;C globally to about 3.3&deg;C regionally, meaning part of the original gap was regional confounding. BIO12 (precipitation) widens further regionally (677 &rarr; 1,112&nbsp;mm), moving away from absence rather than toward it. Elevation is the one variable that reverses direction entirely.</p>
-
-  <div class="eda-highlight reveal">
-    <strong class="eda-highlight-title" data-i18n="edaElevationTitle">Elevation: the Headline Reversal</strong>
-    <p data-i18n="edaElevationText">Across the full dataset, detected sites had the <em>highest</em> median elevation of all four status groups (&asymp;&nbsp;2,438&nbsp;m) &mdash; elevation looked like a clean, strong predictor. Restricted to the absence region alone, that flips: detected sites drop to the lowest-or-tied-lowest median (&asymp;&nbsp;2,012&nbsp;m), while extirpated sites remain the highest (&asymp;&nbsp;2,516&nbsp;m). The historical resurvey sites were deliberately chosen at high-elevation, well-documented habitat &mdash; so within this specific region, being "detected" nearby is not the same as being at the highest elevation. Elevation's apparent importance in a range-wide model may partly reflect which broad region a point falls in, rather than how suitable that specific elevation is.</p>
-
-    <figure class="eda-figure">
-      <img src="images/eda-elevation-compare.png" data-i18n-alt="figElevationAlt" alt="Two-panel bar chart comparing median elevation by status: globally, detected sites have the highest median elevation (2438 m); restricted to the absence region, detected sites have the lowest median elevation (2012 m), while extirpated remains highest (2516 m) in both panels." loading="lazy" onerror="this.parentElement.classList.add('eda-figure-missing')">
-      <figcaption class="eda-figure-caption" data-i18n="figElevationCaption">Figure: median elevation by status, global vs. regional &mdash; detected goes from highest to lowest.</figcaption>
-    </figure>
-  </div>
 
   <h4 class="eda-subhead reveal" data-i18n="edaCorrTitle">Correlated Variable Families</h4>
   <p class="reveal" data-i18n="edaCorrText">The 37 shared environmental variables (excluding IDs, coordinates, year, and status) break into a handful of tightly correlated groups rather than 37 independent signals: a temperature family (BIO1, BIO5, BIO6, max/min temperature and their summer/winter splits), a snow/SWE family (estimated snow, maximum snow-water-equivalent, annual mean SWE, cold-season mean SWE, months with snow), and moderately-to-strongly correlated current-year vs. previous-year pairs. Some pairs are nearly redundant: <code>max_temperature</code> and <code>summer_max_temperature</code> correlate at r&nbsp;=&nbsp;1.000, <code>min_temperature</code> and <code>winter_min_temperature</code> at r&nbsp;=&nbsp;0.997, and annual precipitation (BIO12) and winter precipitation at r&nbsp;=&nbsp;0.976.</p>
@@ -448,12 +374,16 @@
       </tbody>
     </table>
   </div>
-
   <p class="reveal" data-i18n="preTrainingBalance">The cleaned dataset's 14,393 presence and 187 absence records form a heavily imbalanced base for training — handled next, in the model-building step, through balanced resampling and an ensemble approach.</p>
     </div>
 
+  <div class="eda-highlight reveal">
+    <strong class="eda-highlight-title" data-i18n="shapCorrelatedTitle">Extra section </strong>
+    <p data-i18n="shapCorrelatedText">The correlation-based pruning step was only ever applied to <em>low-importance</em> variables flagged by SHAP — never to the top-ranked predictors, so <code>bio5_temp_max_warm</code>, <code>max_temperature</code>, and <code>bio1_temp_mean_annual</code> were never candidates for removal on correlation grounds alone. They're also not fully redundant: each captures a different temporal slice of the same underlying heat signal. BIO5 is the long-term (1970&ndash;2000) climatological normal for the warmest month; <code>max_temperature</code> is the actual maximum recorded in that specific observation year, capturing how far that year departed from the baseline; BIO1 is the long-term annual mean, reflecting overall thermal regime rather than a summer spike alone. A site can have a high BIO5 baseline but a mild <code>max_temperature</code> in a given year, or the reverse &mdash; and those are exactly the cases where keeping all three gives the model information a single temperature variable would miss.</p>
+  </div>
+
     <!-- ---- Sub-block 4: Model ---- -->
-<div class="methodology-block anchor-block" id="model-build">
+  <div class="methodology-block anchor-block" id="model-build">
   <h3 class="subhead reveal" data-i18n="modelBuildTitle">Building the Model</h3>
   <p class="reveal" data-i18n="modelBuildIntro">Three tree-based ensemble classifiers were trained and compared on the final 20-feature set: Random Forest (RF), XGBoost, and LightGBM. All three handle non-linear relationships and correlated climate variables gracefully, need little preprocessing, and report which features mattered most to their own predictions — well suited to a predictor set dominated by intercorrelated bioclimatic variables.</p>
   <p class="reveal" data-i18n="modelBuildValidation">Because presence records (14,393) vastly outnumber absence records (187) — roughly 77:1 — training used balanced resampling rather than the full imbalanced set: each iteration draws a random subset of about 200&ndash;225 presence records and pairs it with the available absence records, then randomly withholds 20% of that balanced subset for testing. Hyperparameters for each algorithm were tuned via cross-validation before the ensemble step below.</p>
@@ -547,183 +477,79 @@
 <div class="divider" aria-hidden="true"><svg viewBox="0 0 1440 32" preserveAspectRatio="none"><path d="M0.0,16.6 Q0.0,16.6 80.0,18.6 Q160.0,20.6 240.0,16.1 Q320.0,11.7 400.0,12.8 Q480.0,13.8 560.0,19.0 Q640.0,24.2 720.0,21.2 Q800.0,18.3 880.0,13.0 Q960.0,7.7 1040.0,11.1 Q1120.0,14.5 1200.0,18.0 Q1280.0,21.5 1360.0,17.5 Q1440,16.0 1440,16.0" /></svg></div>
 
 <!-- ============================================================ -->
-<!--  SECTION 04 — TRY THE MODEL (map + form + prediction)         -->
+<!--  SECTION 04 — FUTURE CLIMATE PROJECTIONS                      -->
+<!--  Replaces the live single-site predictor with the model's     -->
+<!--  2050 suitability projections under two IPCC scenarios.       -->
 <!-- ============================================================ -->
 <section id="test-model" class="section">
   <div class="container">
-    <p class="section-eyebrow reveal" data-i18n="s4Eyebrow">04 &middot; Try It</p>
-    <h2 class="reveal" data-i18n="s4Title">Test the Prediction Model</h2>
-    <p class="section-intro reveal" data-i18n="tryItLeadIntro">This tool puts the research questions above into practice. Pick a place on the map &mdash; or type coordinates directly &mdash; describe its climate, terrain, snow, and drought conditions, and the model estimates whether an American pika could survive there.</p>
+    <p class="section-eyebrow reveal">04 &middot; Looking Ahead</p>
+    <h2 class="reveal">Projecting Habitat Suitability to 2050</h2>
+    <p class="section-intro reveal">
+      The classifier above learned how today&rsquo;s climate and terrain predict where pikas
+      survive. To look ahead, we feed it the climate expected by around 2050 in place of
+      today&rsquo;s, under two IPCC emissions pathways, and let it re-score every site.
+      Explore the training data and both projections below.
+    </p>
 
     <div class="model-flow reveal">
       <div class="flow-step">
         <span class="flow-number">1</span>
-        <h4 data-i18n="flowStep1Title">Climate &amp; Site Data</h4>
-        <p data-i18n="flowStep1Text">Temperature, precipitation, snow, drought, slope, and location for a place and year.</p>
+        <h4>Future Climate Inputs</h4>
+        <p>WorldClim CMIP6 projections supply 2050 temperature and precipitation under a mild (SSP2-4.5) and an extreme (SSP5-8.5) scenario.</p>
       </div>
       <svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg>
       <div class="flow-step">
         <span class="flow-number">2</span>
-        <h4 data-i18n="flowStep2Title">Classification Model</h4>
-        <p data-i18n="flowStep2Text">A trained classifier weighs each variable against patterns learned from real occurrence records.</p>
+        <h4>Derived Features</h4>
+        <p>Temperature-based and snow features are scaled from each site&rsquo;s own projected warming, so present-day conditions carry forward consistently.</p>
       </div>
       <svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg>
       <div class="flow-step">
         <span class="flow-number">3</span>
-        <h4 data-i18n="flowStep3Title">Presence / Absence</h4>
-        <p data-i18n="flowStep3Text">A prediction, with a confidence score, for whether the site is likely pika habitat.</p>
+        <h4>Re-scored Suitability</h4>
+        <p>The trained classifier re-scores every site with these future inputs, from 0 (unsuitable) to 1 (highly suitable).</p>
       </div>
     </div>
 
-    <p class="reveal" data-i18n="s4Intro">You've seen how the model behind PikaWatch was built and evaluated — now try it yourself. Select a site on the map, or enter coordinates directly, then fill in the climate and terrain conditions and run the model.</p>
-
-    <div class="demo-disclaimer reveal" data-i18n-html="demoDisclaimer">
-      <strong>Demo logic only.</strong> This interface runs a simplified rule-of-thumb function to demonstrate the workflow, not the trained model described above. See the code comments in <code>index.html</code> for how to connect a real classifier's API once it's ready.
+    <div class="eda-highlight reveal">
+      <strong class="eda-highlight-title">How These Projections Were Made</strong>
+      <p>Climate variables come directly from WorldClim&rsquo;s downscaled CMIP6 scenarios. Temperature-derived and snow features aren&rsquo;t available from WorldClim directly, and TerraClimate&rsquo;s future data uses fixed warming levels (+2&deg;C / +4&deg;C) rather than emissions scenarios &mdash; mixing the two would combine incompatible futures. Instead, each site&rsquo;s own projected warming (summer warming for summer variables, winter warming for winter ones) was applied to its present-day values, and snow was scaled down in proportion to projected winter warming.</p>
     </div>
 
-    <div class="test-grid reveal">
+    <p class="reveal" style="margin-top:2rem;">
+      <strong>Choose a view:</strong> the occurrence records the model was trained on, or its projected suitability under each scenario.
+    </p>
 
-      <!-- ---------------- MAP COLUMN ---------------- -->
-      <div class="map-column">
-        <div class="map-toolbar">
-          <button type="button" id="locate-btn" class="btn btn-tertiary btn-small">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
-            <span data-i18n="mapLocateBtn">Use My Location</span>
-          </button>
-          <span class="map-hint" data-i18n="mapHint">Click anywhere on the map to drop a pin</span>
-        </div>
-        <div id="map" role="application" data-i18n-aria="mapAriaLabel" aria-label="Interactive map of the United States for selecting a prediction site"></div>
-        <p class="map-caption"><span data-i18n="mapCaptionLabel">Selected location:</span> <span id="selected-coords" data-i18n="mapCaptionNone">none yet</span></p>
-        <p class="map-status" id="locate-status" aria-live="polite"></p>
+    <div class="projection-controls reveal" role="group" aria-label="Choose a map to display">
+      <button type="button" class="proj-toggle-btn is-active" data-view="observed" aria-pressed="true">
+        <span class="proj-toggle-dot proj-dot-observed" aria-hidden="true"></span>
+        <span>Observed Occurrences<span class="proj-toggle-sub"><br>Today</span></span>
+      </button>
+      <button type="button" class="proj-toggle-btn" data-view="mild" aria-pressed="false">
+        <span class="proj-toggle-dot proj-dot-mild" aria-hidden="true"></span>
+        <span>Mild Scenario<span class="proj-toggle-sub"><br>SSP2-4.5 &middot; ~2050</span></span>
+      </button>
+      <button type="button" class="proj-toggle-btn" data-view="extreme" aria-pressed="false">
+        <span class="proj-toggle-dot proj-dot-extreme" aria-hidden="true"></span>
+        <span>Extreme Scenario<span class="proj-toggle-sub"><br>SSP5-8.5 &middot; ~2050</span></span>
+      </button>
+    </div>
+
+    <div class="projection-display reveal">
+  
+      <div class="projection-map-panel">
+        <img id="projection-map-img"
+             src="images/observed-occurrences.png"
+             alt="Map of observed pika occurrence records across the western United States and Canada: green points show presence (n = 14,376), red points show absence (n = 187)."
+             loading="lazy">
+        <p class="map-caption" id="projection-map-caption">Presence/absence records the model was trained on. Presence is spread widely across the pika&rsquo;s range; absence is scarce and clustered in a handful of resurvey sites.</p>
       </div>
-
-      <!-- ---------------- FORM COLUMN ---------------- -->
-      <div class="form-column">
-        <form id="prediction-form" novalidate>
-
-          <fieldset>
-            <legend>
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7Z"/><circle cx="12" cy="9" r="2.5" fill="var(--color-surface)"/></svg>
-              <span data-i18n="legendLocation">Location &amp; Time</span>
-            </legend>
-            <div class="field-grid">
-              <div class="field">
-                <label for="latitude"><span data-i18n="fieldLatLabel">Latitude</span> <span class="unit">(&deg;N)</span></label>
-                <input type="number" id="latitude" name="latitude" step="0.0001" min="-90" max="90" data-i18n-placeholder="fieldLatPlaceholder" placeholder="e.g., 39.6433" required>
-                <small class="hint" data-i18n="fieldLatHint">Click the map, or enter manually.</small>
-              </div>
-              <div class="field">
-                <label for="longitude"><span data-i18n="fieldLonLabel">Longitude</span> <span class="unit">(&deg;)</span></label>
-                <input type="number" id="longitude" name="longitude" step="0.0001" min="-180" max="180" data-i18n-placeholder="fieldLonPlaceholder" placeholder="e.g., -105.6386" required>
-                <small class="hint" data-i18n="fieldLonHint">Negative values are west of the meridian.</small>
-              </div>
-              <div class="field">
-                <label for="year" data-i18n="fieldYearLabel">Year</label>
-                <input type="number" id="year" name="year" step="1" min="1980" max="2100" placeholder="2024" required>
-                <small class="hint" data-i18n="fieldYearHint">Observation or future-projection year.</small>
-              </div>
-              <div class="field">
-                <label for="slope_deg"><span data-i18n="fieldSlopeLabel">Slope</span> <span class="unit">(&deg;)</span></label>
-                <input type="number" id="slope_deg" name="slope_deg" step="0.1" min="0" max="90" data-i18n-placeholder="fieldSlopePlaceholder" placeholder="e.g., 28.5" required>
-                <small class="hint" data-i18n="fieldSlopeHint">Terrain steepness at the site.</small>
-              </div>
-            </div>
-          </fieldset>
-
-          <fieldset>
-            <legend>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="10" y="3" width="4" height="12" rx="2"/><circle cx="12" cy="18" r="3.4"/></svg>
-              <span data-i18n="legendTemperature">Temperature Variables</span>
-            </legend>
-            <div class="field-grid">
-              <div class="field">
-                <label for="bio1_temp_mean_annual"><span data-i18n="fieldBio1Label">Annual Mean Temp.</span> <span class="unit">(&deg;C)</span></label>
-                <input type="number" id="bio1_temp_mean_annual" name="bio1_temp_mean_annual" step="0.1" placeholder="e.g., 1.5" required>
-                <small class="hint" data-i18n="fieldBio1Hint">Average temperature across the year (WorldClim BIO1).</small>
-              </div>
-              <div class="field">
-                <label for="bio5_temp_max_warm"><span data-i18n="fieldBio5Label">Max Temp. of Warmest Month</span> <span class="unit">(&deg;C)</span></label>
-                <input type="number" id="bio5_temp_max_warm" name="bio5_temp_max_warm" step="0.1" placeholder="e.g., 18.0" required>
-                <small class="hint">WorldClim BIO5.</small>
-              </div>
-              <div class="field">
-                <label for="bio6_temp_min_cold"><span data-i18n="fieldBio6Label">Min Temp. of Coldest Month</span> <span class="unit">(&deg;C)</span></label>
-                <input type="number" id="bio6_temp_min_cold" name="bio6_temp_min_cold" step="0.1" placeholder="e.g., -18.0" required>
-                <small class="hint">WorldClim BIO6.</small>
-              </div>
-              <div class="field">
-                <label for="bio4_seasonality_temp"><span data-i18n="fieldBio4Label">Temperature Seasonality</span> <span class="unit">(SD&times;100)</span></label>
-                <input type="number" id="bio4_seasonality_temp" name="bio4_seasonality_temp" step="1" min="0" placeholder="e.g., 850" required>
-                <small class="hint" data-i18n="fieldBio4Hint">Variability through the year (WorldClim BIO4).</small>
-              </div>
-              <div class="field">
-                <label for="winter_max_temperature"><span data-i18n="fieldWinterMaxLabel">Winter Max Temp.</span> <span class="unit">(&deg;C)</span></label>
-                <input type="number" id="winter_max_temperature" name="winter_max_temperature" step="0.1" placeholder="e.g., 5.0" required>
-                <small class="hint" data-i18n="fieldWinterMaxHint">Warmest point typically reached in winter.</small>
-              </div>
-              <div class="field">
-                <label for="summer_min_temperature"><span data-i18n="fieldSummerMinLabel">Summer Min Temp.</span> <span class="unit">(&deg;C)</span></label>
-                <input type="number" id="summer_min_temperature" name="summer_min_temperature" step="0.1" placeholder="e.g., 4.0" required>
-                <small class="hint" data-i18n="fieldSummerMinHint">Coolest point typically reached in summer.</small>
-              </div>
-              <div class="field">
-                <label for="months_above_25" data-i18n="fieldMonthsAboveLabel">Months Above 25&deg;C</label>
-                <input type="number" id="months_above_25" name="months_above_25" step="1" min="0" max="12" placeholder="e.g., 0" required>
-                <small class="hint" data-i18n="fieldMonthsAboveHint">Count of months exceeding the pika's heat-stress threshold.</small>
-              </div>
-            </div>
-          </fieldset>
-
-          <fieldset>
-            <legend>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><line x1="5" y1="7.5" x2="19" y2="16.5"/><line x1="19" y1="7.5" x2="5" y2="16.5"/></svg>
-              <span data-i18n="legendPrecipitation">Precipitation &amp; Snow</span>
-            </legend>
-            <div class="field-grid">
-              <div class="field">
-                <label for="bio12_precip_annual"><span data-i18n="fieldBio12Label">Annual Precipitation</span> <span class="unit">(mm)</span></label>
-                <input type="number" id="bio12_precip_annual" name="bio12_precip_annual" step="1" min="0" placeholder="e.g., 600" required>
-                <small class="hint" data-i18n="fieldBio12Hint">Total precipitation across the year (WorldClim BIO12).</small>
-              </div>
-              <div class="field">
-                <label for="estim_snow"><span data-i18n="fieldSnowLabel">Estimated Snow Cover</span> <span class="unit">(cm)</span></label>
-                <input type="number" id="estim_snow" name="estim_snow" step="0.1" min="0" placeholder="e.g., 55" required>
-                <small class="hint" data-i18n="fieldSnowHint">Approximate depth — insulates pikas through winter.</small>
-              </div>
-            </div>
-          </fieldset>
-
-          <fieldset>
-            <legend>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>
-              <span data-i18n="legendDrought">Drought Conditions</span>
-            </legend>
-            <div class="field-grid">
-              <div class="field">
-                <label for="Worst_drought"><span data-i18n="fieldDroughtCurLabel">Worst Drought Index &mdash; Current Year</span> <span class="unit">(index)</span></label>
-                <input type="number" id="Worst_drought" name="Worst_drought" step="0.01" placeholder="e.g., -1.2" required>
-                <small class="hint" data-i18n="fieldDroughtHint">More negative = more severe drought (e.g., a PDSI-style index).</small>
-              </div>
-              <div class="field">
-                <label for="Worst_drought_YearBefore"><span data-i18n="fieldDroughtPrevLabel">Worst Drought Index &mdash; Year Before</span> <span class="unit">(index)</span></label>
-                <input type="number" id="Worst_drought_YearBefore" name="Worst_drought_YearBefore" step="0.01" placeholder="e.g., -0.8" required>
-                <small class="hint" data-i18n="fieldDroughtPrevHint">Same index for the preceding year, capturing lagged effects.</small>
-              </div>
-            </div>
-          </fieldset>
-
-          <div class="form-actions">
-            <button type="button" id="sample-btn" class="btn btn-tertiary" data-i18n="btnSample">Load Sample Data</button>
-            <button type="reset" class="btn btn-secondary" data-i18n="btnClear">Clear Form</button>
-            <button type="submit" class="btn btn-primary" data-i18n="btnPredict">Predict Presence</button>
-          </div>
-        </form>
-
-        <div id="result-panel" class="result-panel" aria-live="polite">
-          <p class="result-placeholder" id="result-placeholder" data-i18n="resultPlaceholder">Select a site on the map, complete the variables, then run the model to see a prediction here.</p>
-        </div>
+      <div class="projection-stats-panel" id="projection-stats-panel" aria-live="polite">
+        <p class="proj-stats-empty">This is the raw occurrence data the model was trained on &mdash; no projection stats apply here.</p>
       </div>
     </div>
+
   </div>
 </section>
 
