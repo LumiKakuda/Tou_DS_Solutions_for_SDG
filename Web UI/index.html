@@ -648,6 +648,20 @@
   </div>
 </section>
 
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 1440 32" preserveAspectRatio="none"><path d="M0.0,16.6 Q0.0,16.6 80.0,18.6 Q160.0,20.6 240.0,16.1 Q320.0,11.7 400.0,12.8 Q480.0,13.8 560.0,19.0 Q640.0,24.2 720.0,21.2 Q800.0,18.3 880.0,13.0 Q960.0,7.7 1040.0,11.1 Q1120.0,14.5 1200.0,18.0 Q1280.0,21.5 1360.0,17.5 Q1440,16.0 144<PASSWORD>" /></svg></div>
+
+<!-- ============================================================ -->
+<!--  SECTION 07 — Git Hub         -->
+<!-- ============================================================ -->
+<section id="git" class="section">
+  <div class="container">
+    <p class="section-eyebrow reveal" data-i18n="s6Eyebrow">07 &middot; GitHub</p>
+    <h2 class="reveal" data-i18n="s6Title">GitHub</h2>
+    <p class="reveal" data-i18n="s6Text">The code for this project is available on GitHub. You can explore the repository to access the source code, data, and additional resources related to the PikaWatch project.</p>
+    <p class="reveal"><a href="https://github.com/LumiKakuda/Tou_DS_Solutions_for_SDG" target="_blank" rel="noopener noreferrer" data-i18n="s6LinkText">Visit the GitHub Repository</a></p>
+  </div>
+</section>
+
 </main>
 
 <!-- ============================================================ -->
@@ -1467,6 +1481,104 @@
   })();
 
   /* ============================================================
+   * Future projection
+   * ============================================================ */
+
+  var scenarioData = {
+    observed: {
+      image: 'images/observed-occurrences.png',
+      alt: 'Map of observed pika occurrence records across the western United States and Canada: green points show presence (n = 14,376), red points show absence (n = 187).',
+      caption: 'Presence/absence records the model was trained on. Presence is spread widely across the pika\u2019s range; absence is scarce and clustered in a handful of resurvey sites.',
+      info: null,   // null = show the original "Choose a view" paragraph
+      stats: null   // null = show the "no projection stats apply" placeholder
+    },
+    mild: {
+      image: 'images/mild-scenario-2050.png',
+      alt: 'Map of projected pika habitat suitability around 2050 under the mild SSP2-4.5 emissions scenario.',
+      caption: 'Projected suitability for ~2050 under SSP2-4.5 (mild warming).',
+      info: 'You\u2019re viewing the <strong>Mild Scenario (SSP2-4.5)</strong> \u2014 the classifier\u2019s re-scored suitability for around 2050 assuming moderate emissions reductions. Cooler colors mark sites that stay suitable; warmer colors mark sites the model expects to lose suitability.',
+      stats: [
+        { label: 'Mean suitability today:', value: '0.934' },
+        { label: 'Mean suitability mild:', value: '0.826' },
+        { label: 'Mean change in suitability:', value: '-0.108' },
+        { label: 'Sites declining:', value: '12670 / 14580' },
+        { label: 'Sharp decline (less than 0.20 suitability):', value: '3203' }
+      ],
+      legend: 'Each dot is one of the training sites, re-scored using the mild-scenario climate inputs for ~2050. Color follows the same 0-to-1 suitability scale shown on the map: green sites are still expected to be highly suitable; orange and red sites are the ones the model expects to lose suitability as their local climate shifts.'
+
+    },
+    extreme: {
+      image: 'images/extreme-scenario-2050.png',
+      alt: 'Map of projected pika habitat suitability around 2050 under the extreme SSP5-8.5 emissions scenario.',
+      caption: 'Projected suitability for ~2050 under SSP5-8.5 (extreme warming).',
+      info: 'You\u2019re viewing the <strong>Extreme Scenario (SSP5-8.5)</strong> \u2014 the classifier\u2019s re-scored suitability for around 2050 under continued high emissions. Expect a larger share of currently suitable sites to fall below the suitability threshold than under the mild scenario.',
+      stats: [
+        { label: 'Mean suitability today:', value: '0.934' },
+        { label: 'Mean suitability extreme:', value: '0.785' },
+        { label: 'Mean change in suitability:', value: '-0.148' },
+        { label: 'Sites declining:', value: '13673 / 14580' },
+        { label: 'Sharp decline (less than 0.20 suitability):', value: '4729' }
+      ],
+      legend: 'Each dot is one of the training sites, re-scored using the mild-scenario climate inputs for ~2050. Color follows the same 0-to-1 suitability scale shown on the map: green sites are still expected to be highly suitable; orange and red sites are the ones the model expects to lose suitability as their local climate shifts.'
+    }
+  };
+
+  var buttons = document.querySelectorAll('.proj-toggle-btn');
+  var img = document.getElementById('projection-map-img');
+  var mapPanel = img ? img.closest('.projection-map-panel') : null;
+  var caption = document.getElementById('projection-map-caption');
+  var statsPanel = document.getElementById('projection-stats-panel');
+  var viewIntro = document.getElementById('projection-view-intro');
+  var scenarioInfo = document.getElementById('projection-scenario-info');
+
+  function renderStats(stats, legend) {
+  var statsHtml = stats
+    ? '<dl class="proj-stats-list">' + stats.map(function (s) {
+        return '<div class="proj-stats-row"><dt>' + s.label + '</dt><dd>' + s.value + '</dd></div>';
+      }).join('') + '</dl>'
+    : '<p class="proj-stats-empty">This is the raw occurrence data the model was trained on \u2014 no projection stats apply here.</p>';
+
+  var legendHtml = legend ? '<p class="proj-plot-explainer">' + legend + '</p>' : '';
+  statsPanel.innerHTML = statsHtml + legendHtml;
+  }
+
+  function setView(view) {
+    var data = scenarioData[view];
+    if (!data || !img) return;
+
+    buttons.forEach(function (btn) {
+      var isActive = btn.getAttribute('data-view') === view;
+      btn.classList.toggle('is-active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+
+    if (mapPanel) mapPanel.classList.remove('proj-image-missing');
+    img.classList.add('is-loading');
+    img.onload = function () { img.classList.remove('is-loading'); };
+    img.onerror = function () {
+      img.classList.remove('is-loading');
+      if (mapPanel) mapPanel.classList.add('proj-image-missing');
+    };
+    img.src = data.image;
+    img.alt = data.alt;
+    if (caption) caption.textContent = data.caption;
+
+    if (data.info) {
+      if (viewIntro) viewIntro.hidden = true;
+      if (scenarioInfo) { scenarioInfo.innerHTML = data.info; scenarioInfo.hidden = false; }
+    } else {
+      if (viewIntro) viewIntro.hidden = false;
+      if (scenarioInfo) scenarioInfo.hidden = true;
+    }
+
+    renderStats(data.stats, data.legend);
+  }
+
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () { setView(btn.getAttribute('data-view')); });
+  });
+
+  /* ============================================================
    * SAMPLE DATA
    * ============================================================ */
   var sampleData = {
@@ -1486,37 +1598,6 @@
     if (typeof window.placeMarkerOnMap === 'function') { window.placeMarkerOnMap(sampleData.latitude, sampleData.longitude); }
   });
 
-  /* ============================================================
-   * PREDICTION LOGIC
-   *
-   * IMPORTANT — READ THIS BEFORE DEPLOYING:
-   * mockPredictPikaPresence() below is a simplified, rule-of-thumb
-   * heuristic included ONLY so this template's interface works
-   * end-to-end without a backend. It is NOT the trained Random
-   * Forest model described in the Methodology section, and should
-   * not be used for real conservation decisions.
-   *
-   * The relative weights below match the illustrative "feature
-   * importance" bars shown in the Results section, so the two
-   * parts of the template stay internally consistent.
-   *
-   * TO CONNECT YOUR REAL MODEL, replace the call to
-   * mockPredictPikaPresence() inside the form "submit" handler with:
-   *
-   *   async function predictPikaPresence(payload) {
-   *     const response = await fetch('https://your-api.example.com/predict', {
-   *       method: 'POST',
-   *       headers: { 'Content-Type': 'application/json' },
-   *       body: JSON.stringify(payload)
-   *     });
-   *     if (!response.ok) throw new Error('Prediction request failed');
-   *     return response.json();
-   *     // expected shape: { prediction: "Present" | "Absent", probability: 0.0-1.0 }
-   *   }
-   *
-   * collectFormData() below already builds a payload object whose keys
-   * match the 15 variable names exactly, ready to send as JSON.
-   * ============================================================ */
   var FIELD_IDS = ['year', 'slope_deg', 'bio1_temp_mean_annual', 'bio4_seasonality_temp',
     'bio5_temp_max_warm', 'bio6_temp_min_cold', 'bio12_precip_annual', 'estim_snow',
     'months_above_25', 'winter_max_temperature', 'summer_min_temperature',
