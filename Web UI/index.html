@@ -235,6 +235,7 @@
       <a href="#pre-training" class="jump-pill"><span class="pill-number">3</span><span data-i18n="pillPreTraining">Pre-processing</span></a>
       <a href="#model-build" class="jump-pill"><span class="pill-number">4</span><span data-i18n="pillModel">Model</span></a>
       <a href="#evaluation" class="jump-pill"><span class="pill-number">5</span><span data-i18n="pillEvaluation">Evaluation</span></a>
+      <a href="#model-limitations" class="jump-pill"><span class="pill-number">6</span><span data-i18n="pillModelLimitations">Limitations</span></a>
     </nav>
 
     <!-- ---- Sub-block 1: Data Collection ---- -->
@@ -658,12 +659,48 @@
 <div class="divider" aria-hidden="true"><svg viewBox="0 0 1440 32" preserveAspectRatio="none"><path d="M0.0,16.6 Q0.0,16.6 80.0,18.6 Q160.0,20.6 240.0,16.1 Q320.0,11.7 400.0,12.8 Q480.0,13.8 560.0,19.0 Q640.0,24.2 720.0,21.2 Q800.0,18.3 880.0,13.0 Q960.0,7.7 1040.0,11.1 Q1120.0,14.5 1200.0,18.0 Q1280.0,21.5 1360.0,17.5 Q1440,16.0 1440,16.0" /></svg></div>
 
 <!-- ============================================================ -->
-<!--  SECTION 05 — References         -->
+<!--  SECTION 05 — Model Limitations         -->
+<!-- ============================================================ -->
+
+<section id="model-limitations" class="section">
+  <div class="container">
+    <p class="section-eyebrow reveal" data-i18n="methodologyEyebrow">05 &middot; Model Limitations</p>
+    <h2 class="reveal" data-i18n="methodologyTitle">Model Limitations</h2>
+    <p class="reveal" data-i18n="modelLimitationsIntro">The Random Forest ensemble performed extremely well on the independent test set, but the geographic distribution of the underlying data points to an important caveat. Presence records are spread across a large portion of the study area, while absence records &mdash; just 187 in total &mdash; are concentrated within a limited number of survey locations, reflecting how the original field surveys were designed rather than the pika's actual range.</p>
+
+    <figure class="eda-figure reveal">
+    <img src="images/spatial-distribution.png" data-i18n-alt="figSpatialAlt" alt="Scatter map of pika presence (blue) and absence (red) observations, with presence spread broadly across the study area's latitude and longitude range while absence points cluster in a few small areas" loading="lazy" onerror="this.parentElement.classList.add('eda-figure-missing')">
+    <figcaption class="eda-figure-caption" data-i18n="figSpatialCaption">Figure: geographical distribution of pika presence and absence observations used for model training and evaluation.</figcaption>
+    </figure>
+
+    <p class="reveal" data-i18n="modelLimitationsScarcity">This scarcity and clustering make it hard to fully assess how well the model generalizes across the pika's entire current range. Ideally, transferability would be tested against independent presence/absence data from geographically distinct regions &mdash; but with absence records so scarce, nearly all of them were needed during training just to keep the balanced-resampling strategy viable, leaving none to spare for a fully independent regional holdout.</p>
+
+    <p class="reveal" data-i18n="modelLimitationsClusterCheck">As a partial substitute for that ideal test, the test observations were grouped into 15 spatial clusters by geographic proximity, and Precision&ndash;Recall AUC was calculated separately within each one &mdash; checking whether predictive performance holds up consistently across different parts of the study area, or is instead concentrated in a few well-sampled locations.</p>
+
+    <figure class="eda-figure reveal">
+    <img src="images/pr-auc-clusters.png" data-i18n-alt="figClusterAlt" alt="Map of 15 spatial clusters across the study area, each labeled with its Precision-Recall AUC score; values range narrowly from about 0.9984 to 1.0000 with no cluster standing out as substantially weaker" loading="lazy" onerror="this.parentElement.classList.add('eda-figure-missing')">
+    <figcaption class="eda-figure-caption" data-i18n="figClusterCaption">Figure: Precision&ndash;Recall AUC calculated separately for each of 15 spatial clusters in the testing dataset.</figcaption>
+    </figure>
+
+    <div class="eda-highlight reveal">
+    <strong class="eda-highlight-title" data-i18n="modelLimitationsCaveatTitle">Consistent &ne; Universally Applicable</strong>
+    <p data-i18n="modelLimitationsCaveatText">PR-AUC varied only modestly across the 15 clusters, with no region showing a substantial drop &mdash; suggesting the model is picking up on broad climatic relationships rather than memorizing local conditions. But this check only covers regions already represented in the survey data; it is not an independent test of transferability to unsampled parts of the pika's range, and the model should not be treated as universally applicable across all pika habitat. It can be applied with confidence to areas environmentally and geographically similar to the training data &mdash; not safely extrapolated beyond it.</p>
+    </div>
+
+    <p class="section-closing reveal" data-i18n="modelLimitationsScope">For this reason, all subsequent analyses of habitat suitability change are restricted to the geographic regions represented in the training and testing data. This avoids extrapolating the model into areas where its performance has never been evaluated, so that projected changes in suitability reflect genuine responses to future climate conditions rather than artefacts of extrapolation beyond the available observations.</p>
+
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 1440 32" preserveAspectRatio="none"><path d="M0.0,16.6 Q0.0,16.6 80.0,18.6 Q160.0,20.6 240.0,16.1 Q320.0,11.7 400.0,12.8 Q480.0,13.8 560.0,19.0 Q640.0,24.2 720.0,21.2 Q800.0,18.3 880.0,13.0 Q960.0,7.7 1040.0,11.1 Q1120.0,14.5 1200.0,18.0 Q1280.0,21.5 1360.0,17.5 Q1440,16.0 144<PASSWORD>" /></svg></div>
+
+<!-- ============================================================ -->
+<!--  SECTION 06 — References         -->
 <!-- ============================================================ -->
 <section id="references" class="section">
   <div class="container">
-    <p class="section-eyebrow reveal" data-i18n="s5Eyebrow">05 &middot; References</p>
-    <h2 class="reveal" data-i18n="s5Title">References</h2>
+    <p class="section-eyebrow reveal" data-i18n="s6Eyebrow">06 &middot; References</p>
+    <h2 class="reveal" data-i18n="s6Title">References</h2>
     <ul class="references-list">
     <li class="reference-item">
       <span class="authors">Beever, E. A., Ray, C., Wilkening, J. L., Brussard, P. F., & Mote, P. W.</span> 
@@ -699,7 +736,7 @@
       <span class="title">Agricultural risks from changing snowmelt.</span> 
       <span class="journal"><em>Nature Climate Change</em>, 10(5), 459–465.</span>
     </li>
-    
+
     <li class="reference-item">
       <span class="authors">Smith, A. T., & Weston, M. L.</span> 
       <span class="year">(1990).</span> 
