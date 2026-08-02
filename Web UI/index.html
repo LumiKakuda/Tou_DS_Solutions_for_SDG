@@ -1482,37 +1482,6 @@
     if (typeof window.placeMarkerOnMap === 'function') { window.placeMarkerOnMap(sampleData.latitude, sampleData.longitude); }
   });
 
-  /* ============================================================
-   * PREDICTION LOGIC
-   *
-   * IMPORTANT — READ THIS BEFORE DEPLOYING:
-   * mockPredictPikaPresence() below is a simplified, rule-of-thumb
-   * heuristic included ONLY so this template's interface works
-   * end-to-end without a backend. It is NOT the trained Random
-   * Forest model described in the Methodology section, and should
-   * not be used for real conservation decisions.
-   *
-   * The relative weights below match the illustrative "feature
-   * importance" bars shown in the Results section, so the two
-   * parts of the template stay internally consistent.
-   *
-   * TO CONNECT YOUR REAL MODEL, replace the call to
-   * mockPredictPikaPresence() inside the form "submit" handler with:
-   *
-   *   async function predictPikaPresence(payload) {
-   *     const response = await fetch('https://your-api.example.com/predict', {
-   *       method: 'POST',
-   *       headers: { 'Content-Type': 'application/json' },
-   *       body: JSON.stringify(payload)
-   *     });
-   *     if (!response.ok) throw new Error('Prediction request failed');
-   *     return response.json();
-   *     // expected shape: { prediction: "Present" | "Absent", probability: 0.0-1.0 }
-   *   }
-   *
-   * collectFormData() below already builds a payload object whose keys
-   * match the 15 variable names exactly, ready to send as JSON.
-   * ============================================================ */
   var FIELD_IDS = ['year', 'slope_deg', 'bio1_temp_mean_annual', 'bio4_seasonality_temp',
     'bio5_temp_max_warm', 'bio6_temp_min_cold', 'bio12_precip_annual', 'estim_snow',
     'months_above_25', 'winter_max_temperature', 'summer_min_temperature',
