@@ -501,10 +501,14 @@ Overall, the SHAP analysis reinforces the feature importance results by showing 
     <p class="section-eyebrow reveal">04 &middot; Looking Ahead</p>
     <h2 class="reveal">Projecting Habitat Suitability to 2050</h2>
     <p class="section-intro reveal">
-      The classifier above learned how today&rsquo;s climate and terrain predict where pikas
-      survive. To look ahead, we feed it the climate expected by around 2050 in place of
-      today&rsquo;s, under two IPCC emissions pathways, and let it re-score every site.
-      Explore the training data and both projections below.
+     The classifier was trained to learn how current climate and topographic conditions determine habitat suitability for the American pika. This model can then be used to explore how habitat suitability may change under future climate conditions. To do this, the present-day climate variables were replaced with projected climate data for approximately 2050 under two IPCC greenhouse gas emission scenarios, while keeping the terrain variables unchanged. The model then predicted habitat suitability for each site under these future conditions:<p>
+<p class="section-intro reveal"></p>• Mild Scenario (SSP2-4.5): it imagines a future where the world takes some
+action on emissions, so they rise a bit longer and then stabilise around the
+middle of the century, leading to moderate warming.<p><p>
+• Extreme Scenario (SSP5-8.5): it imagines a future with little to no action, where
+fossil-fuel use keeps growing throughout the century, pushing warming to the
+highest levels among the standard scenarios
+<p class="section-intro reveal"></p>Explore the current habitat suitability and the projected changes under both climate scenarios below.<p>
     </p>
 
     <div class="model-flow reveal">
@@ -529,7 +533,13 @@ Overall, the SHAP analysis reinforces the feature importance results by showing 
 
     <div class="eda-highlight reveal">
       <strong class="eda-highlight-title">How These Projections Were Made</strong>
-      <p>Climate variables come directly from WorldClim&rsquo;s downscaled CMIP6 scenarios. Temperature-derived and snow features aren&rsquo;t available from WorldClim directly, and TerraClimate&rsquo;s future data uses fixed warming levels (+2&deg;C / +4&deg;C) rather than emissions scenarios &mdash; mixing the two would combine incompatible futures. Instead, each site&rsquo;s own projected warming (summer warming for summer variables, winter warming for winter ones) was applied to its present-day values, and snow was scaled down in proportion to projected winter warming.</p>
+      <p>Climate variables come directly from WorldClim&rsquo;s downscaled CMIP6 scenarios. Temperature-derived and snow features aren&rsquo;t available from WorldClim directly, and TerraClimate&rsquo;s future data uses fixed warming levels (+2&deg;C / +4&deg;C) rather than emissions scenarios &mdash; mixing the two would combine incompatible futures. To ensure consistency, we therefore derived all
+features from the WorldClim projections.
+For each site, we first measured the projected change in temperature between the
+present and future climate. We then applied this change to the corresponding
+temperature-based feature, using summer warming for summer variables and winter
+warming for winter variables.
+This adjustment was calculated separately for each site. Snow for example was scaled down in proportion to projected winter warming.</p>
     </div>
 
     <p class="reveal" style="margin-top:2rem;">
@@ -1515,7 +1525,7 @@ Overall, the SHAP analysis reinforces the feature importance results by showing 
         { label: 'Sites declining:', value: '12670 / 14580' },
         { label: 'Sharp decline (less than 0.20 suitability):', value: '3203' }
       ],
-      legend: 'Each dot is one of the training sites, re-scored using the mild-scenario climate inputs for ~2050. Color follows the same 0-to-1 suitability scale shown on the map: green sites are still expected to be highly suitable; orange and red sites are the ones the model expects to lose suitability as their local climate shifts.'
+      legend: 'Each dot is one of the training sites, re-scored using the mild-scenario climate inputs for ~2050. Color follows the same 0-to-1 suitability scale shown on the map: green sites are still expected to be highly suitable; orange and red sites are the ones the model expects to lose suitability as their local climate shifts. Under the mild climate change scenario, habitat suitability for the American pika showed an overall mean decrease of approximately 10%. Suitability declined at 12,670 of the 14,580 sites (about 86% of all locations). A marked reduction in habitat suitability (suitability score < 0.20) was observed at 320 sites, indicating that while declines were widespread, only a relatively small number of locations experienced severe habitat loss.'
 
     },
     extreme: {
@@ -1530,7 +1540,7 @@ Overall, the SHAP analysis reinforces the feature importance results by showing 
         { label: 'Sites declining:', value: '13673 / 14580' },
         { label: 'Sharp decline (less than 0.20 suitability):', value: '4729' }
       ],
-      legend: 'Each dot is one of the training sites, re-scored using the mild-scenario climate inputs for ~2050. Color follows the same 0-to-1 suitability scale shown on the map: green sites are still expected to be highly suitable; orange and red sites are the ones the model expects to lose suitability as their local climate shifts.'
+      legend: 'Each dot is one of the training sites, re-scored using the mild-scenario climate inputs for ~2050. Color follows the same 0-to-1 suitability scale shown on the map: green sites are still expected to be highly suitable; orange and red sites are the ones the model expects to lose suitability as their local climate shifts. The extreme climate change scenario projected a greater overall reduction in habitat suitability, with a mean decrease of approximately 15%. Suitability declined at 13,673 of the 14,580 sites (about 94% of all locations). In addition, 4,729 sites were projected to have suitability values below 0.20, indicating a substantial increase in the number of locations experiencing severe habitat deterioration compared with the mild climate scenario.'
     }
   };
 
